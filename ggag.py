@@ -28,7 +28,7 @@ elif menu == "고장상황":
     # 코드 블록을 표시합니다
     st.code("DB 작업중.....")
     st.code("Link 현행화.....")
-    st.code("★장비교체 완료 NeOSS, NMS, SDN")
+ 
 
     ip_address = st.text_input("■ [OLT LINK] Enter the L2 IP address")
     
@@ -44,6 +44,8 @@ elif menu == "고장상황":
         for text in additional_texts:
             combined_text = text + ip_address
             st.write(combined_text)
+
+   st.code("★장비교체 완료 NeOSS, NMS, SDN")
 
     options = ["[NOC_10G(용량확대)]","[NOC_BAT(24)]","[NOC_CRC발생]","[NOC_PLK_PSU교체]","[NOC_PSU교체]",
                "[NOC_고객프로파일]","[NOC_광레벨불]","[NOC_자산관리]","[NOC_장비교체]","[NOC_장비철거]",
