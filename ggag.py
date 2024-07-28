@@ -2,14 +2,6 @@ import streamlit as st
 import streamlit.components.v1 as components
 
 # 제목을 표시합니다 ver1.0 2024.6.27
-st.title("#도우미")
-
-# 우측 정렬된 서브헤더 추가
-st.markdown("""
-<div style='text-align: right;'>
-    <h3>by Kwak.cb</h3>
-</div>
-""", unsafe_allow_html=True)
 
 # 사이드바에 메뉴 생성
 menu = st.sidebar.radio(
@@ -18,6 +10,15 @@ menu = st.sidebar.radio(
 )
 
 if menu == "Home":
+    st.title("#도우미")
+
+# 우측 정렬된 서브헤더 추가
+    st.markdown("""
+    <div style='text-align: right;'>
+    <h3>by Kwak.cb</h3>
+    </div>
+    """ , unsafe_allow_html=True)
+
     st.header("Notice")
     etc_memo = st.text_input("memo input")
     st.code(etc_memo)
