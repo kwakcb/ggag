@@ -2,7 +2,7 @@ import streamlit as st
 import streamlit.components.v1 as components
 
 # 제목을 표시합니다 ver1.0 2024.6.27
-st.title("ktMOS")
+st.title("#도우미")
 
 # 우측 정렬된 서브헤더 추가
 st.markdown("""
@@ -23,8 +23,7 @@ if menu == "Home":
     st.code(etc_memo)
 
 elif menu == "고장상황":
-    st.header("고장상황")
-    
+        
     ip_address = st.text_input("■ [OLT LINK] Enter the L2 IP address")
     
     # 여러 개의 추가 텍스트 정의
@@ -71,8 +70,7 @@ elif menu == "고장상황":
     # 클립보드 복사 버튼을 HTML로 삽입
     components.html(copy_script_bs_head, height=100)
 
-    st.header("고장회복")
-    options1 = ["[KT차단기복구]", "[고객원인]","[고객측작업]","[광커넥터복구]","[기타]","[멀티탭 ON/교체]","[모듈교체]",
+        options1 = ["[KT차단기복구]", "[고객원인]","[고객측작업]","[광커넥터복구]","[기타]","[멀티탭 ON/교체]","[모듈교체]",
                 "[발전기가동]","[사설정전복구]","[사설차단기복구]","[장비교체]","[장비리셋]","[장비철거]","[전원가복구]",
                 "[전원어댑터교체]","[출동중복구]","[타사전환]","[타사전환]","[타사전환]","[폐문]","[한전정전복구]"]
 
