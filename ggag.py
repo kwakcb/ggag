@@ -86,7 +86,6 @@ combined_text = f"{selected_option1}\n{moss_recover}\n{moss_thankyou}"
 if selected_option2 != " ":
     combined_text += f"\n<NOC_선조치> {selected_option2}"
 
-
 # combined_text 변수를 세션 상태에 저장
 st.session_state['combined_text'] = combined_text
 
@@ -94,7 +93,7 @@ st.session_state['combined_text'] = combined_text
 copy_script_recover_head = f"""
 <script>
 function copyToClipboard() {{
-    const combinedText = document.getElementById('combined-text').innerText;
+    const combinedText = `{st.session_state['combined_text'].replace('\\n', '\\n')}`;
     navigator.clipboard.writeText(combinedText).then(function() {{
         alert('Copied to clipboard: ' + combinedText);
     }}, function(err) {{
@@ -108,7 +107,6 @@ document.addEventListener('DOMContentLoaded', function() {{
 }});
 </script>
 <button id="copy-button-recover-head">Copy to Clipboard</button>
-<div id="combined-text" style="display:none;">{st.session_state['combined_text']}</div>
 """
 
 # 클립보드 복사 버튼을 HTML로 삽입
