@@ -23,13 +23,23 @@ if menu == "Home":
     st.code(etc_memo)
 
 elif menu == "고장상황":
+    st.header("고장상황")
+    
     ip_address = st.text_input("■ [OLT LINK] Enter the L2 IP address")
-
+    
     # 여러 개의 추가 텍스트 정의
     additional_texts = [
         "sh arp pon | inc ",
         "sh epon ip-macs all all | inc ",
-    ]##
+    ]
+    
+    # IP 주소가 입력된 경우에만 처리
+    if ip_address:
+        # 각 추가 텍스트와 IP 주소 결합하여 출력
+        for text in additional_texts:
+            combined_text = text + ip_address
+            st.write(combined_text)
+
     options = ["[NOC_10G(용량확대)]","[NOC_BAT(24)]","[NOC_CRC발생]","[NOC_PLK_PSU교체]","[NOC_PSU교체]",
                "[NOC_고객프로파일]","[NOC_광레벨불]","[NOC_자산관리]","[NOC_장비교체]","[NOC_장비철거]",
                "[NOC_전원OFF]","[NOC_중복장애]","[NOC_통합멀티룸]","[NOC_품질개선]"]
@@ -61,16 +71,7 @@ elif menu == "고장상황":
     # 클립보드 복사 버튼을 HTML로 삽입
     components.html(copy_script_bs_head, height=100)
 
-###
-
-    # IP 주소가 입력된 경우에만 처리
-    if ip_address:
-        # 각 추가 텍스트와 IP 주소 결합하여 출력
-        for text in additional_texts:
-            combined_text = text + ip_address
-            st.write(combined_text)
-
-st.header("고장회복")
+    st.header("고장회복")
     options1 = ["[KT차단기복구]", "[고객원인]","[고객측작업]","[광커넥터복구]","[기타]","[멀티탭 ON/교체]","[모듈교체]",
                 "[발전기가동]","[사설정전복구]","[사설차단기복구]","[장비교체]","[장비리셋]","[장비철거]","[전원가복구]",
                 "[전원어댑터교체]","[출동중복구]","[타사전환]","[타사전환]","[타사전환]","[폐문]","[한전정전복구]"]
@@ -112,13 +113,14 @@ st.header("고장회복")
     # 클립보드 복사 버튼을 HTML로 삽입
     components.html(copy_script_recover_head, height=100)
 
-
 elif menu == "긴급복구":
-    # 긴급복구 메뉴 내용 구성
-    
+    st.header("긴급복구")
+    # 이 부분은 공란으로 남겨둡니다.
+
 elif menu == "일지":
-    # 일지 메뉴 내용 구성
-   
+    st.header("일지")
+    # 이 부분은 공란으로 남겨둡니다.
+
 elif menu == "기타":
-    # 리스트박스에 표시할 항목 목록 정의
-    
+    st.header("기타")
+    # 이 부분은 공란으로 남겨둡니다.
