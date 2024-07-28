@@ -90,21 +90,21 @@ if selected_option2 != " ":
 st.session_state['combined_text'] = combined_text
 
 # 회복 HEAD 클립보드 복사 기능을 위한 HTML과 JavaScript 코드
-copy_script_recover_head = f"""
+copy_script_recover_head = """
 <script>
-function copyToClipboard() {{
-    const combinedText = `{st.session_state['combined_text'].replace('\\n', '\\n')}`;
-    navigator.clipboard.writeText(combinedText).then(function() {{
+function copyToClipboard() {
+    const combinedText = `""" + st.session_state['combined_text'].replace('\n', '\\n') + """`;
+    navigator.clipboard.writeText(combinedText).then(function() {
         alert('Copied to clipboard: ' + combinedText);
-    }}, function(err) {{
+    }, function(err) {
         alert('Failed to copy text: ' + err);
-    }});
-}}
+    });
+}
 
 // 클릭 이벤트가 발생할 때 클립보드에 텍스트를 복사
-document.addEventListener('DOMContentLoaded', function() {{
+document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('copy-button-recover-head').addEventListener('click', copyToClipboard);
-}});
+});
 </script>
 <button id="copy-button-recover-head">Copy to Clipboard</button>
 """
