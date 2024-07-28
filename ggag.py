@@ -19,8 +19,8 @@ if menu == "Home":
     </div>
     """ , unsafe_allow_html=True)
 
-    st.header("Notice")
-    etc_memo = st.text_input("memo input")
+    st.header("★ Notice")
+    etc_memo = st.text_input("# memo")
     st.code(etc_memo)
 
 elif menu == "고장상황":
