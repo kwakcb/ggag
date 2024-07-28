@@ -25,6 +25,11 @@ if menu == "Home":
 
 elif menu == "고장상황":
         
+    # 코드 블록을 표시합니다
+    st.code("DB 작업중.....")
+    st.code("Link 현행화.....")
+    st.code("★장비교체 완료 NeOSS, NMS, SDN")
+
     ip_address = st.text_input("■ [OLT LINK] Enter the L2 IP address")
     
     # 여러 개의 추가 텍스트 정의
