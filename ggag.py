@@ -1,7 +1,7 @@
 import streamlit as st
 import streamlit.components.v1 as components
 
-# 제목을 표시합니다 ver1.0   2024.6.27
+# 제목을 표시합니다 ver1.0 2024.6.27
 st.title("ktMOS")
 
 # 우측 정렬된 서브헤더 추가
