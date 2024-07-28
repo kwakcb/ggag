@@ -42,6 +42,30 @@ options = ["[NOC_10G(용량확대)]","[NOC_BAT(24)]","[NOC_CRC발생]","[NOC_PLK
 # 리스트박스 생성
 selected_option = st.selectbox("■ BS HEAD", options)
 
+# BS HEAD 클립보드 복사 기능을 위한 HTML과 JavaScript 코드
+copy_script_bs_head = f"""
+<script>
+function copyToClipboard(text) {{
+    navigator.clipboard.writeText(text).then(function() {{
+        alert('Copied to clipboard: ' + text);
+    }}, function(err) {{
+        alert('Failed to copy text: ' + err);
+    }});
+}}
+
+// 클릭 이벤트가 발생할 때 클립보드에 텍스트를 복사
+document.addEventListener('DOMContentLoaded', function() {{
+    document.getElementById('copy-button-bs-head').addEventListener('click', function() {{
+        copyToClipboard("{selected_option}");
+    }});
+}});
+</script>
+<button id="copy-button-bs-head">Copy to Clipboard</button>
+"""
+
+# 클립보드 복사 버튼을 HTML로 삽입
+components.html(copy_script_bs_head, height=100)
+
 #------------------------------
 # 첫 번째 리스트박스에 표시할 항목 목록 정의
 options1 = ["[KT차단기복구]", "[고객원인]","[고객측작업]","[광커넥터복구]","[기타]","[멀티탭 ON/교체]","[모듈교체]",
@@ -65,8 +89,8 @@ if selected_option2 != " ":
 # combined_text 변수를 세션 상태에 저장
 st.session_state['combined_text'] = combined_text
 
-# 클립보드 복사 기능을 위한 HTML과 JavaScript 코드
-copy_script = f"""
+# 회복 HEAD 클립보드 복사 기능을 위한 HTML과 JavaScript 코드
+copy_script_recover_head = f"""
 <script>
 function copyToClipboard() {{
     const combinedText = document.getElementById('combined-text').innerText;
@@ -79,15 +103,15 @@ function copyToClipboard() {{
 
 // 클릭 이벤트가 발생할 때 클립보드에 텍스트를 복사
 document.addEventListener('DOMContentLoaded', function() {{
-    document.getElementById('copy-button').addEventListener('click', copyToClipboard);
+    document.getElementById('copy-button-recover-head').addEventListener('click', copyToClipboard);
 }});
 </script>
-<button id="copy-button">Copy to Clipboard</button>
+<button id="copy-button-recover-head">Copy to Clipboard</button>
 <div id="combined-text" style="display:none;">{st.session_state['combined_text']}</div>
 """
 
 # 클립보드 복사 버튼을 HTML로 삽입
-components.html(copy_script, height=100)
+components.html(copy_script_recover_head, height=100)
 
 # 선택된 항목 및 텍스트를 화면에 표시
 # st.write(f"■ 회복 HEAD: {selected_option1}")
