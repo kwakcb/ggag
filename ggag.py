@@ -10,7 +10,7 @@ menu = st.sidebar.radio(
 )
 
 if menu == "Home":
-    st.title("#도우미")
+    st.title("ktMOS")
 
 # 우측 정렬된 서브헤더 추가
     st.markdown("""
