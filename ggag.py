@@ -5,7 +5,7 @@ import streamlit.components.v1 as components
 
 # 사이드바에 메뉴 생성
 menu = st.sidebar.radio(
-    "Menu",
+    "",
     ("Home", "고장상황", "긴급복구", "일지", "기타")
 )
 
