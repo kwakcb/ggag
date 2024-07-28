@@ -84,7 +84,8 @@ selected_option2 = st.selectbox("<NOC_선조치>", options2)
 # 조건에 따라 combined_text 구성
 combined_text = f"{selected_option1}\n{moss_recover}\n{moss_thankyou}"
 if selected_option2 != " ":
-    combined_text += f"\n{selected_option2}"
+    combined_text += f"\n<NOC_선조치> {selected_option2}"
+
 
 # combined_text 변수를 세션 상태에 저장
 st.session_state['combined_text'] = combined_text
