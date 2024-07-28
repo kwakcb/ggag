@@ -46,8 +46,8 @@ elif menu == "고장상황":
             st.write(combined_text)
 
     LLID = st.text_input("LLID")
-    st.code(LLID)
-    
+    #st.code(LLID)
+
     st.code("★장비교체 완료 NeOSS, NMS, SDN")
 
     options = ["[NOC_10G(용량확대)]","[NOC_BAT(24)]","[NOC_CRC발생]","[NOC_PLK_PSU교체]","[NOC_PSU교체]",
