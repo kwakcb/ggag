@@ -62,6 +62,9 @@ combined_text = f"{selected_option1}\n{moss_recover}\n{moss_thankyou}"
 if selected_option2 != " ":
     combined_text += f"\n<NOC_선조치> {selected_option2}"
 
+# combined_text 변수를 세션 상태에 저장
+st.session_state['combined_text'] = combined_text
+
 # 클립보드 복사 기능을 위한 HTML과 JavaScript 코드
 copy_script = f"""
 <script>
@@ -76,7 +79,7 @@ function copyToClipboard(text) {{
 // 클릭 이벤트가 발생할 때 클립보드에 텍스트를 복사
 document.addEventListener('DOMContentLoaded', function() {{
     document.getElementById('copy-button').addEventListener('click', function() {{
-        const combinedText = `{combined_text.replace('\n', '\\n')}`;
+        const combinedText = `{st.session_state['combined_text'].replace('\n', '\\n')}`;
         copyToClipboard(combinedText);
     }});
 }});
@@ -87,11 +90,3 @@ document.addEventListener('DOMContentLoaded', function() {{
 # 클립보드 복사 버튼을 HTML로 삽입
 components.html(copy_script, height=100)
 
-# 선택된 항목을 화면에 표시
-# st.write(f"{selected_option}")
-# 선택된 항목 및 텍스트를 화면에 표시
-#st.write(f"■ 회복 HEAD: {selected_option1}")
-#st.write(f"회복내용: {moss_recover}")
-#st.write(moss_thankyou)
-#if selected_option2 != " ":
-#    st.write(f"<NOC_선조치> {selected_option2}")
