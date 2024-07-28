@@ -45,10 +45,10 @@ elif menu == "고장상황":
             combined_text = text + ip_address
             st.write(combined_text)
 
-    LLID = st.text_input("LLID")
+    LLID = st.text_input("-LLID")
     #st.code(LLID)
 
-    st.code("★장비교체 완료 NeOSS, NMS, SDN")
+    st.code("★ 장비교체 NeOSS, NMS, SDN 현행화 완료")
 
     options = ["[NOC_10G(용량확대)]","[NOC_BAT(24)]","[NOC_CRC발생]","[NOC_PLK_PSU교체]","[NOC_PSU교체]",
                "[NOC_고객프로파일]","[NOC_광레벨불]","[NOC_자산관리]","[NOC_장비교체]","[NOC_장비철거]",
