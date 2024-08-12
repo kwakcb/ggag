@@ -55,7 +55,7 @@ elif menu == "고장상황":
     // 클릭 이벤트가 발생할 때 클립보드에 텍스트를 복사
     document.addEventListener('DOMContentLoaded', function() {{
         document.getElementById('copy-button-bs-head').addEventListener('click', function() {{
-            copyToClipboard(`{combined_text_bs.replace('\\n', '\\\\n')}`);
+            copyToClipboard(`{combined_text_bs.replace('\\n', '\\\\n').replace('`', '\\`')}`);
         }});
     }});
     </script>
@@ -88,7 +88,7 @@ elif menu == "고장상황":
     copy_script_recover_head = f"""
     <script>
     function copyToClipboard() {{
-        const combinedText = `{combined_text_recover.replace('\\n', '\\\\n')}`;
+        const combinedText = `{combined_text_recover.replace('\\n', '\\\\n').replace('`', '\\`')}`;
         navigator.clipboard.writeText(combinedText).then(function() {{
             alert('클립보드에 복사되었습니다: ' + combinedText);
         }}, function(err) {{
