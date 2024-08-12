@@ -1,5 +1,6 @@
 import streamlit as st
 import streamlit.components.v1 as components
+import json
 
 # 제목을 표시합니다 ver1.0 2024.6.27
 
@@ -55,7 +56,7 @@ elif menu == "고장상황":
     // 클릭 이벤트가 발생할 때 클립보드에 텍스트를 복사
     document.addEventListener('DOMContentLoaded', function() {{
         document.getElementById('copy-button-bs-head').addEventListener('click', function() {{
-            const textToCopy = `{combined_text_bs.replace("\n", "\\n").replace("`", "\\`")}`;
+            const textToCopy = {json.dumps(combined_text_bs)};
             copyToClipboard(textToCopy);
         }});
     }});
@@ -89,7 +90,7 @@ elif menu == "고장상황":
     copy_script_recover_head = f"""
     <script>
     function copyToClipboard() {{
-        const combinedText = `{combined_text_recover.replace("\n", "\\n").replace("`", "\\`")}`;
+        const combinedText = {json.dumps(combined_text_recover)};
         navigator.clipboard.writeText(combinedText).then(function() {{
             alert('클립보드에 복사되었습니다: ' + combinedText);
         }}, function(err) {{
