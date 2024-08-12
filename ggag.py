@@ -46,20 +46,20 @@ elif menu == "고장상황":
     <script>
     function copyToClipboard(text) {{
         navigator.clipboard.writeText(text).then(function() {{
-            alert('Copied to clipboard: ' + text);
+            alert('클립보드에 복사되었습니다: ' + text);
         }}, function(err) {{
-            alert('Failed to copy text: ' + err);
+            alert('텍스트 복사 실패: ' + err);
         }});
     }}
 
     // 클릭 이벤트가 발생할 때 클립보드에 텍스트를 복사
     document.addEventListener('DOMContentLoaded', function() {{
         document.getElementById('copy-button-bs-head').addEventListener('click', function() {{
-            copyToClipboard(`{combined_text_bs.replace('\n', '\\n')}`);
+            copyToClipboard(`{combined_text_bs.replace('\\n', '\\\\n')}`);
         }});
     }});
     </script>
-    <button id="copy-button-bs-head">Copy to Clipboard</button>
+    <button id="copy-button-bs-head">클립보드에 복사</button>
     """
 
     # 클립보드 복사 버튼을 HTML로 삽입
@@ -90,9 +90,9 @@ elif menu == "고장상황":
     function copyToClipboard() {{
         const combinedText = `{combined_text_recover.replace('\\n', '\\\\n')}`;
         navigator.clipboard.writeText(combinedText).then(function() {{
-            alert('Copied to clipboard: ' + combinedText);
+            alert('클립보드에 복사되었습니다: ' + combinedText);
         }}, function(err) {{
-            alert('Failed to copy text: ' + err);
+            alert('텍스트 복사 실패: ' + err);
         }});
     }}
 
@@ -101,7 +101,7 @@ elif menu == "고장상황":
         document.getElementById('copy-button-recover-head').addEventListener('click', copyToClipboard);
     }});
     </script>
-    <button id="copy-button-recover-head">Copy to Clipboard</button>
+    <button id="copy-button-recover-head">클립보드에 복사</button>
     """
 
     # 클립보드 복사 버튼을 HTML로 삽입
