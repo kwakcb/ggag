@@ -224,13 +224,13 @@ elif menu == "L2":
     ]
 
     # Display the commands for each device
-    st.write("**다산 L2**")
+    st.write("다산 L2---------")
     for cmd in commands_dasan:
         st.write(cmd)
 
     st.write("\n")  # Add a new line for separation
 
-    st.write("**유비 L2**")
+    st.write("유비 L2-----------------")
     for cmd in commands_yubi:
         st.write(cmd)
 
