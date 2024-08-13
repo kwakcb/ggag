@@ -7,7 +7,7 @@ import json
 # 사이드바에 메뉴 생성
 menu = st.sidebar.radio(
     "",
-    ("Home", "고장상황", "OLT", "광3종", "L2", "기타")
+    ("Home", "고장상황", "OLT", "광3종", "L2", "기타", "IP SETING", "OPR")
 )
 
 if menu == "Home":
@@ -202,6 +202,43 @@ elif menu == "광3종":
 
 elif menu == "L2":
     st.header("L2")
+
+    commands_dasan = [
+        "sh mac | inc Total",
+        "sh ip dhcp sno bin | inc Total",
+        "sh ip igmp sno tab rep | inc Total",
+        "sh port status",
+        "sh port statistics avg-pps",
+        "sh port statistics rmon",
+        "sh rate"
+    ]
+
+    commands_yubi = [
+        "sh mac | inc total",
+        "sh ip dhcp sno bin | inc total",
+        "sh ip igmp sno tab gro | inc total",
+        "sh port status",
+        "sh port statistics avg type",
+        "sh port statistics rmon",
+        "sh rate"
+    ]
+
+    # Display the commands for each device
+    st.write("**다산 L2**")
+    for cmd in commands_dasan:
+        st.write(cmd)
+
+    st.write("\n")  # Add a new line for separation
+
+    st.write("**유비 L2**")
+    for cmd in commands_yubi:
+        st.write(cmd)
+
+elif menu == "IP SETING":
+    st.header("IP SETTING")
+
+elif menu == "OPR":
+    st.header("OPR")
 
 elif menu == "기타":
     st.header("기타")
