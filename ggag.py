@@ -269,19 +269,6 @@ with col3:
 if st.button("설정 저장"):
     st.write(f"IP 주소: {ip_address} | / {subnet_mask} | 게이트웨이: {gateway}")
 
-# Display the values upon clicking the button
-if st.button("Save Settings"):
-    st.write(f"IP Address: {ip_address} | Subnet Mask: {subnet_mask} | Gateway: {gateway}")
-
-# Submit button
-if st.button("Save Settings"):
-    # Create three columns for one-line display
-    col1, col2, col3 = st.columns(3)
-    
-    # Display the values in each column
-    col1.write("IP: " + ip_address + "/" + subnet_mask)
-    #col2.write("Subnet Mask: " + subnet_mask)
-    col3.write("Gateway: " + gateway)
 
 
 elif menu == "OPR":
