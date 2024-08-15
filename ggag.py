@@ -250,18 +250,30 @@ elif menu == "L2":
 elif menu == "IP SETING":
     st.header("IP SETTING")
 
-# Input fields for IP settings
-ip_address = st.text_input("Enter IP Address:")
-subnet_mask = st.text_input("Enter Subnet Mask:")
-gateway = st.text_input("Enter Gateway:")
+# Create three columns for the input fields
+col1, col2, col3 = st.columns(3)
 
+# Place each text_input in a different column
+with col1:
+    ip_address = st.text_input("Enter IP Address:")
+
+with col2:
+    subnet_mask = st.text_input("Enter Subnet Mask:")
+
+with col3:
+    gateway = st.text_input("Enter Gateway:")
+
+# Display the values upon clicking the button
+if st.button("Save Settings"):
+    st.write(f"IP Address: {ip_address} | Subnet Mask: {subnet_mask} | Gateway: {gateway}")
+    
 # Submit button
 if st.button("Save Settings"):
     # Create three columns for one-line display
     col1, col2, col3 = st.columns(3)
     
     # Display the values in each column
-    col1.write("IP:" + ip_address + "/" + subnet_mask)
+    col1.write("IP: " + ip_address + "/" + subnet_mask)
     #col2.write("Subnet Mask: " + subnet_mask)
     col3.write("Gateway: " + gateway)
 
