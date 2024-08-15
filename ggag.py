@@ -249,7 +249,17 @@ elif menu == "L2":
 
 elif menu == "IP SETING":
     st.header("IP SETTING")
+# Input fields for IP, Subnet Mask, and Gateway
+ip = st.text_input("Enter IP Address:")
+sm = st.text_input("Enter Subnet Mask:")
+gateway = st.text_input("Enter Gateway:")
 
+# Action on button click
+if st.button("Save Settings"):
+    st.write("IP Address:", ip)
+    st.write("Subnet Mask:", sm)
+    st.write("Gateway:", gateway)
+    
 elif menu == "OPR":
     st.header("OPR")
 
