@@ -250,7 +250,6 @@ elif menu == "L2":
 elif menu == "IP SETING":
     st.header("IP SETTING")
 
-st.title("IP 설정 메뉴")
 
 # 입력 필드를 배치할 열 생성
 col1, col2, col3 = st.columns(3)
