@@ -250,23 +250,29 @@ elif menu == "L2":
 elif menu == "IP SETING":
     st.header("IP SETTING")
 
-# Create three columns for the input fields
+st.title("IP 설정 메뉴")
+
+# 입력 필드를 배치할 열 생성
 col1, col2, col3 = st.columns(3)
 
-# Place each text_input in a different column
+# 각 열에 입력 필드를 배치
 with col1:
-    ip_address = st.text_input("Enter IP Address:")
+    ip_address = st.text_input("IP 주소 입력:", key="ip")
 
 with col2:
-    subnet_mask = st.text_input("Enter Subnet Mask:")
+    subnet_mask = st.text_input("서브넷 마스크 입력:", key="subnet")
 
 with col3:
-    gateway = st.text_input("Enter Gateway:")
+    gateway = st.text_input("게이트웨이 입력:", key="gateway")
+
+# 버튼 클릭 시 값 표시
+if st.button("설정 저장"):
+    st.write(f"IP 주소: {ip_address} | / {subnet_mask} | 게이트웨이: {gateway}")
 
 # Display the values upon clicking the button
 if st.button("Save Settings"):
     st.write(f"IP Address: {ip_address} | Subnet Mask: {subnet_mask} | Gateway: {gateway}")
-    
+
 # Submit button
 if st.button("Save Settings"):
     # Create three columns for one-line display
