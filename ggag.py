@@ -122,8 +122,8 @@ elif menu == "고장상황":
     # 클립보드 복사 버튼을 HTML로 삽입
     components.html(copy_script_recover_head, height=100)
 
-elif menu == "OLT":
-    st.header("OLT")
+elif menu == "OLT-L2 Link":
+    st.header("OLT-L2 Link")
     
     # 코드 블록을 표시합니다
     st.code("DB 작업중.....")
