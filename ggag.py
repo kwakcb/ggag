@@ -7,11 +7,29 @@ import json
 # 사이드바에 메뉴 생성
 menu = st.sidebar.radio(
     "",
-    ("Home", "고장상황", "OLT", "광3종", "L2", "기타", "IP SETING", "OPR")
+    ("Home", "고장상황", "OLT-L2 Link", "광3종", "L2", "IP SETING", "긴급복구")
 )
 
 if menu == "Home":
-    st.title("Memo")
+    st.title("-전원분야 고장성 경보 범위-
+[한전정전] 한전정전으로 발전기 가동 또는 축전기 방전 중
+
+[차단기OFF] VCB / ACB / MG / MC OFF로 축전지 방전, 발전기 가동 중
+
+[변압기 고장] 축전기 방전 또는 발전기 가동 중
+
+[국사 화재] 화재감지기 작동 현장 출동중
+
+[국사 침수] 침수 알람 발생 현장 출동중
+
+-네트워트 현황보고-
+[MOSS 항목] 전원,교환,액세스
+
+[PING경보] ACCESS_XDSL,엔토피아
+
+[공사정보] 작업통제_대쉬보드 총건수_1000/page설정_ 작업현황 전체복사 후 A2 주변서식에 맟추기
+
+")
 
     # 우측 정렬된 서브헤더 추가
     st.markdown("""
@@ -224,13 +242,13 @@ elif menu == "L2":
     ]
 
     # Display the commands for each device
-    st.write("다산 L2---------")
+    st.write("■ 다산 L2 ---")
     for cmd in commands_dasan:
         st.write(cmd)
 
     st.write("\n")  # Add a new line for separation
 
-    st.write("유비 L2-----------------")
+    st.write("■ 유비 L2 ---")
     for cmd in commands_yubi:
         st.write(cmd)
 
