@@ -260,15 +260,28 @@ elif menu == "IP SETING":
         ip_address = st.text_input("IP 주소 :", key="ip")
 
     with col2:
-        subnet_mask = st.text_input("서브넷 마스크 :", key="subnet")
+        subnet_mask = st.text_input("서브넷 마스크 (/CIDR 형식):", key="subnet")
 
     with col3:
-        gateway = st.text_input("게이트웨이 :", key="gateway")
+        gateway = st.text_input("게이트웨이:", key="gateway")
 
-    # 버튼 클릭 시 값 표시
+    # 버튼 클릭 시 설정 텍스트 출력
     if st.button("설정 저장"):
-        st.write(f"IP : {ip_address}/{subnet_mask}   G/W: {gateway}")
+        if ip_address and subnet_mask and gateway:
+            config_text = f"""
+            [U3024B/U4224B] 
 
+            conf t
+            int vlan1
+            ip address {ip_address}/{subnet_mask}
+            exit
+            ip default-gateway {gateway}
+            exit
+            wr m
+            """
+            st.code(config_text)
+        else:
+            st.error("IP 주소, 서브넷 마스크, 게이트웨이를 모두 입력해주세요.")
 
 
 elif menu == "OPR":
