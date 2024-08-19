@@ -276,7 +276,7 @@ elif menu == "IP SETING":
 
     # 서브넷 마스크와 CIDR 형식 대응표를 화면에 표시
     st.subheader("서브넷 마스크와 CIDR 대응표")
-    st.write("""
+    st.markdown("""
     /24 - 255.255.255.0<br>
     /25 - 255.255.255.128<br>
     /26 - 255.255.255.192<br>
