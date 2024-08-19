@@ -253,20 +253,20 @@ elif menu == "IP SETING":
     st.header("IP SETTING")
 
     # 장비 모델 선택을 위한 드롭다운 메뉴
-    model = st.selectbox("장비 모델을 선택하세요", ["U3024B", "U4224B"], key="model")
+    model = st.selectbox("장비 모델을 선택하세요", ["U3024B", "MVD10024", "V2708GA", "V5124F"], key="model")
 
     # 입력 필드를 배치할 열 생성
     col1, col2, col3 = st.columns(3)
 
     # 각 열에 입력 필드를 배치
     with col1:
-        ip_address = st.text_input("IP 주소 :", key="ip")
+        ip_address = st.text_input("IP :", key="ip")
 
     with col2:
-        subnet_mask = st.text_input("서브넷 마스크 (/CIDR 형식):", key="subnet")
+        subnet_mask = st.text_input("SM", key="subnet")
 
     with col3:
-        gateway = st.text_input("게이트웨이:", key="gateway")
+        gateway = st.text_input("GW", key="gateway")
 
     # 버튼 클릭 시 설정 텍스트 출력
     if st.button("설정 저장"):
@@ -283,18 +283,47 @@ elif menu == "IP SETING":
                 exit
                 wr m
                 """
-            elif model == "U4224B":
+            elif model == "MVD10024":
                 config_text = f"""
-                [U4224B] 
+                [MVD10024] 
 
                 conf t
                 int vlan1
                 ip address {ip_address}/{subnet_mask}
                 exit
-                ip default-gateway {gateway}
+                ip route 0.0.0.0 0.0.0.0 {gateway}
                 exit
                 wr m
                 """
+            
+            elif model == "V2708GA":
+                config_text = f"""
+                [V2708GA] 
+
+                conf t
+                int mgmt
+                ip address {ip_address}/{subnet_mask}
+                exit
+                ip route 0.0.0.0 0.0.0.0 {gateway}
+                exit
+                wr m
+                """
+            elif model == "V5124F":
+                config_text = f"""
+                [V5124F] 
+
+                conf t
+                int bridge
+                set port nego 25-26 off
+                exit
+                int br2
+                ip address {ip_address}/{subnet_mask}
+                exit
+                ip route 0.0.0.0/0 {gateway}
+                exit
+                wr m
+                """
+
             st.code(config_text)
         else:
             st.error("IP 주소, 서브넷 마스크, 게이트웨이를 모두 입력해주세요.")
