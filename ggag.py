@@ -2,6 +2,25 @@ import streamlit as st
 import streamlit.components.v1 as components
 import json
 
+# 서브넷 마스크와 CIDR 형식 대응표
+subnet_options = {
+    "/24": "255.255.255.0",
+    "/25": "255.255.255.128",
+    "/26": "255.255.255.192",
+    "/27": "255.255.255.224",
+    "/28": "255.255.255.240",
+    "/29": "255.255.255.248",
+    "/30": "255.255.255.252"
+}
+
+# 모델별 서브넷 마스크 형식 설정
+model_subnet_formats = {
+    "U3024B": "/24",  # CIDR 형식
+    "MVD10024": "255.255.255.0",  # 서브넷 마스크 형식
+    "V2708GA": "/24",  # CIDR 형식
+    "V5124F": "/24"  # CIDR 형식
+}
+
 # 제목을 표시합니다 ver1.0 2024.6.27
 
 # 사이드바에 메뉴 생성
@@ -263,21 +282,28 @@ elif menu == "IP SETING":
         ip_address = st.text_input("IP :", key="ip")
 
     with col2:
-        subnet_mask = st.text_input("SM", key="subnet")
+        # 모델에 따라 서브넷 마스크 입력 방식 변경
+        if model in ["U3024B", "V2708GA", "V5124F"]:
+            # CIDR 형식 선택
+            cidr = st.selectbox("서브넷 마스크 (/CIDR 형식):", list(subnet_options.keys()), key="subnet")
+            subnet_mask = subnet_options[cidr]
+        else:
+            # 서브넷 마스크 직접 입력
+            subnet_mask = st.text_input("서브넷 마스크:", key="subnet")
 
     with col3:
-        gateway = st.text_input("GW", key="gateway")
+        gateway = st.text_input("GW:", key="gateway")
 
     # 버튼 클릭 시 설정 텍스트 출력
     if st.button("설정 저장"):
-        if ip_address and subnet_mask and gateway:
+        if ip_address and gateway:
             if model == "U3024B":
                 config_text = f"""
                 [U3024B] 
 
                 conf t
                 int vlan1
-                ip address {ip_address}/{subnet_mask}
+                ip address {ip_address}/{cidr}
                 exit
                 ip default-gateway {gateway}
                 exit
@@ -289,20 +315,19 @@ elif menu == "IP SETING":
 
                 conf t
                 int vlan1
-                ip address {ip_address}/{subnet_mask}
+                ip address {ip_address} {subnet_mask}
                 exit
                 ip route 0.0.0.0 0.0.0.0 {gateway}
                 exit
                 wr m
                 """
-            
             elif model == "V2708GA":
                 config_text = f"""
                 [V2708GA] 
 
                 conf t
                 int mgmt
-                ip address {ip_address}/{subnet_mask}
+                ip address {ip_address}/{cidr}
                 exit
                 ip route 0.0.0.0 0.0.0.0 {gateway}
                 exit
@@ -317,7 +342,7 @@ elif menu == "IP SETING":
                 set port nego 25-26 off
                 exit
                 int br2
-                ip address {ip_address}/{subnet_mask}
+                ip address {ip_address}/{cidr}
                 exit
                 ip route 0.0.0.0/0 {gateway}
                 exit
@@ -327,7 +352,6 @@ elif menu == "IP SETING":
             st.code(config_text)
         else:
             st.error("IP 주소, 서브넷 마스크, 게이트웨이를 모두 입력해주세요.")
-
 
 elif menu == "OPR":
     st.header("OPR")
