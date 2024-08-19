@@ -1,6 +1,23 @@
 import streamlit as st
 import streamlit.components.v1 as components
 import json
+import streamlit.components.v1 as components
+
+def set_browser_title(title):
+    # JavaScript를 사용하여 브라우저의 탭 제목을 설정합니다
+    js_code = f"""
+    <script>
+    document.title = "{title}";
+    </script>
+    """
+    components.html(js_code, height=0)
+
+# 페이지 제목을 설정
+set_browser_title("Streamlit-KWAK")
+
+# 페이지 내용
+st.title("안녕하세요, ktMOS!")
+st.write("이 페이지의 탭 제목은 브라우저에서 'Streamlit KWAK'으로 표시됩니다.")
 
 # 서브넷 마스크와 CIDR 형식 대응표
 subnet_options = {
