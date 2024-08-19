@@ -274,6 +274,18 @@ elif menu == "IP SETING":
     # 장비 모델 선택을 위한 드롭다운 메뉴
     model = st.selectbox("장비 모델을 선택하세요", ["U3024B", "MVD10024", "V2708GA", "V5124F"], key="model")
 
+    # 서브넷 마스크와 CIDR 형식 대응표를 화면에 표시
+    st.subheader("서브넷 마스크와 CIDR 대응표")
+    st.write("""
+    /24  -  255.255.255.0
+    /25  -  255.255.255.128
+    /26  -  255.255.255.192
+    /27  -  255.255.255.224
+    /28  -  255.255.255.240
+    /29  -  255.255.255.248
+    /30  -  255.255.255.252
+    """)
+
     # 입력 필드를 배치할 열 생성
     col1, col2, col3 = st.columns(3)
 
@@ -303,7 +315,7 @@ elif menu == "IP SETING":
 
                 conf t
                 int vlan1
-                ip address {ip_address}{cidr}
+                ip address {ip_address}/{cidr}
                 exit
                 ip default-gateway {gateway}
                 exit
@@ -327,7 +339,7 @@ elif menu == "IP SETING":
 
                 conf t
                 int mgmt
-                ip address {ip_address}{cidr}
+                ip address {ip_address}/{cidr}
                 exit
                 ip route 0.0.0.0 0.0.0.0 {gateway}
                 exit
@@ -342,7 +354,7 @@ elif menu == "IP SETING":
                 set port nego 25-26 off
                 exit
                 int br2
-                ip address {ip_address}{cidr}
+                ip address {ip_address}/{cidr}
                 exit
                 ip route 0.0.0.0/0 {gateway}
                 exit
@@ -352,7 +364,7 @@ elif menu == "IP SETING":
             st.code(config_text)
         else:
             st.error("IP 주소, 서브넷 마스크, 게이트웨이를 모두 입력해주세요.")
-
+            
 elif menu == "OPR":
     st.header("OPR")
 
