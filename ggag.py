@@ -48,12 +48,12 @@ elif menu == "고장상황":
 
     # 두 번째 리스트박스에 표시할 항목 목록 정의
     options2 = [" ", "DB현행화", "FOLLOW추가", "WorkSync", "기타", "문자발송", "원격조치", "원인분석", "전기작업확인(전화)", "정전알림이"]
-    selected_option2 = st.selectbox("<NOC_선조치>", options2, key="bs_option2")
+    selected_option2 = st.selectbox("<선조치_NOC>", options2, key="bs_option2")
 
     # 조건에 따라 combined_text 구성
     combined_text_bs = f"{selected_option}\n{moss_recover_bs}\n{moss_thankyou_bs}"
     if selected_option2 != " ":
-        combined_text_bs += f"\n<NOC_선조치> {selected_option2}"
+        combined_text_bs += f"\n<선조치_NOC> {selected_option2}"
 
     # 클립보드 복사 기능을 위한 HTML과 JavaScript 코드
     copy_script_bs_head = f"""
@@ -92,12 +92,12 @@ elif menu == "고장상황":
 
     # 두 번째 리스트박스에 표시할 항목 목록 정의
     options2 = [" ", "DB현행화", "FOLLOW추가", "WorkSync", "기타", "문자발송", "원격조치", "원인분석", "전기작업확인(전화)", "정전알림이"]
-    selected_option2 = st.selectbox("<NOC_선조치>", options2, key="recover_option2")
+    selected_option2 = st.selectbox("<선조치_NOC>", options2, key="recover_option2")
 
     # 조건에 따라 combined_text 구성
     combined_text_recover = f"{selected_option1}\n{moss_recover}\n{moss_thankyou}"
     if selected_option2 != " ":
-        combined_text_recover += f"\n<NOC_선조치> {selected_option2}"
+        combined_text_recover += f"\n<선조치_NOC> {selected_option2}"
 
     # 클립보드 복사 기능을 위한 HTML과 JavaScript 코드
     copy_script_recover_head = f"""
@@ -199,17 +199,17 @@ elif menu == "광3종":
 
     # 각 명령어를 출력
     if commands1:
-        st.write("동원---------------------------------------------")
+        st.write("■ 동원 ----------")
         for cmd in commands1:
             st.write(cmd)
     
     if commands2:
-        st.write("유비------------------------------------------------")
+        st.write("■ 유비 ----------")
         for cmd in commands2:
             st.write(cmd)
 
     if commands3:
-        st.write("다산-----------------------------------------------")
+        st.write("■ 다산 ----------")
         for cmd in commands3:
             st.write(cmd)
 
@@ -256,17 +256,17 @@ col1, col2, col3 = st.columns(3)
 
 # 각 열에 입력 필드를 배치
 with col1:
-    ip_address = st.text_input("IP 주소 입력:", key="ip")
+    ip_address = st.text_input("IP 주소 :", key="ip")
 
 with col2:
-    subnet_mask = st.text_input("서브넷 마스크 입력:", key="subnet")
+    subnet_mask = st.text_input("서브넷 마스크 :", key="subnet")
 
 with col3:
-    gateway = st.text_input("게이트웨이 입력:", key="gateway")
+    gateway = st.text_input("게이트웨이 :", key="gateway")
 
 # 버튼 클릭 시 값 표시
-if st.button("설정 저장"):
-    st.write(f"IP 주소: {ip_address} | / {subnet_mask} | 게이트웨이: {gateway}")
+    if st.button("설정 저장"):
+        st.write(f"IP 주소: {ip_address} / {subnet_mask}  게이트웨이: {gateway}")
 
 
 
