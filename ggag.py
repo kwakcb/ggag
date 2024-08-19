@@ -303,7 +303,7 @@ elif menu == "IP SETING":
 
                 conf t
                 int vlan1
-                ip address {ip_address}/{cidr}
+                ip address {ip_address}{cidr}
                 exit
                 ip default-gateway {gateway}
                 exit
@@ -327,7 +327,7 @@ elif menu == "IP SETING":
 
                 conf t
                 int mgmt
-                ip address {ip_address}/{cidr}
+                ip address {ip_address}{cidr}
                 exit
                 ip route 0.0.0.0 0.0.0.0 {gateway}
                 exit
@@ -342,7 +342,7 @@ elif menu == "IP SETING":
                 set port nego 25-26 off
                 exit
                 int br2
-                ip address {ip_address}/{cidr}
+                ip address {ip_address}{cidr}
                 exit
                 ip route 0.0.0.0/0 {gateway}
                 exit
