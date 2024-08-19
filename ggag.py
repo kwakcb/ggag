@@ -252,6 +252,9 @@ elif menu == "L2":
 elif menu == "IP SETING":
     st.header("IP SETTING")
 
+    # 장비 모델 선택을 위한 드롭다운 메뉴
+    model = st.selectbox("장비 모델을 선택하세요", ["U3024B", "U4224B"], key="model")
+
     # 입력 필드를 배치할 열 생성
     col1, col2, col3 = st.columns(3)
 
@@ -268,17 +271,30 @@ elif menu == "IP SETING":
     # 버튼 클릭 시 설정 텍스트 출력
     if st.button("설정 저장"):
         if ip_address and subnet_mask and gateway:
-            config_text = f"""
-            [U3024B/U4224B] 
+            if model == "U3024B":
+                config_text = f"""
+                [U3024B] 
 
-            conf t
-            int vlan1
-            ip address {ip_address}/{subnet_mask}
-            exit
-            ip default-gateway {gateway}
-            exit
-            wr m
-            """
+                conf t
+                int vlan1
+                ip address {ip_address}/{subnet_mask}
+                exit
+                ip default-gateway {gateway}
+                exit
+                wr m
+                """
+            elif model == "U4224B":
+                config_text = f"""
+                [U4224B] 
+
+                conf t
+                int vlan1
+                ip address {ip_address}/{subnet_mask}
+                exit
+                ip default-gateway {gateway}
+                exit
+                wr m
+                """
             st.code(config_text)
         else:
             st.error("IP 주소, 서브넷 마스크, 게이트웨이를 모두 입력해주세요.")
