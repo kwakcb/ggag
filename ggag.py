@@ -247,26 +247,27 @@ elif menu == "L2":
     for cmd in commands_yubi:
         st.write(cmd)
 
+
+
 elif menu == "IP SETING":
     st.header("IP SETTING")
 
+    # 입력 필드를 배치할 열 생성
+    col1, col2, col3 = st.columns(3)
 
-# 입력 필드를 배치할 열 생성
-col1, col2, col3 = st.columns(3)
+    # 각 열에 입력 필드를 배치
+    with col1:
+        ip_address = st.text_input("IP 주소 :", key="ip")
 
-# 각 열에 입력 필드를 배치
-with col1:
-    ip_address = st.text_input("IP 주소 :", key="ip")
+    with col2:
+        subnet_mask = st.text_input("서브넷 마스크 :", key="subnet")
 
-with col2:
-    subnet_mask = st.text_input("서브넷 마스크 :", key="subnet")
+    with col3:
+        gateway = st.text_input("게이트웨이 :", key="gateway")
 
-with col3:
-    gateway = st.text_input("게이트웨이 :", key="gateway")
-
-# 버튼 클릭 시 값 표시
-if st.button("설정 저장"):
-    st.write(f"IP 주소: {ip_address} / {subnet_mask}  게이트웨이: {gateway}")
+    # 버튼 클릭 시 값 표시
+    if st.button("설정 저장"):
+        st.write(f"IP 주소: {ip_address} / {subnet_mask}  게이트웨이: {gateway}")
 
 
 
