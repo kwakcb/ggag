@@ -267,7 +267,7 @@ elif menu == "IP SETING":
 
     # 버튼 클릭 시 값 표시
     if st.button("설정 저장"):
-        st.write(f"IP 주소: {ip_address} / {subnet_mask}  게이트웨이: {gateway}")
+        st.write(f"IP : {ip_address}/{subnet_mask}   G/W: {gateway}")
 
 
 
