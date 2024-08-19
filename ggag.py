@@ -105,7 +105,7 @@ elif menu == "고장상황":
     function copyToClipboard() {{
         const combinedText = {json.dumps(combined_text_recover)};
         navigator.clipboard.writeText(combinedText).then(function() {{
-            alert('클립보드에 복사되었습니다: ' + combinedText);
+            alert(combinedText);
         }}, function(err) {{
             alert('텍스트 복사 실패: ' + err);
         }});
