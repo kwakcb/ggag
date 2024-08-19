@@ -265,8 +265,8 @@ with col3:
     gateway = st.text_input("게이트웨이 :", key="gateway")
 
 # 버튼 클릭 시 값 표시
-    if st.button("설정 저장"):
-        st.write(f"IP 주소: {ip_address} / {subnet_mask}  게이트웨이: {gateway}")
+if st.button("설정 저장"):
+    st.write(f"IP 주소: {ip_address} / {subnet_mask}  게이트웨이: {gateway}")
 
 
 
