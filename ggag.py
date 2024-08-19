@@ -60,7 +60,7 @@ elif menu == "고장상황":
     <script>
     function copyToClipboard(text) {{
         navigator.clipboard.writeText(text).then(function() {{
-            alert('클립보드에 복사되었습니다: ' + text);
+            alert(text);
         }}, function(err) {{
             alert('텍스트 복사 실패: ' + err);
         }});
