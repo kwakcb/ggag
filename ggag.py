@@ -273,7 +273,7 @@ elif menu == "IP SETING":
     st.header("IP SETTING")
 
     # 장비 모델 선택을 위한 드롭다운 메뉴
-    model = st.selectbox("장비 모델을 선택하세요", ["U3024B", "MVD10024",  "V59XX", "V2708GA", "V5124F"], key="model")
+    model = st.selectbox("장비 모델을 선택하세요", ["U3024B", "MVD10024",  "V5972", "V2708GA", "V5124F"], key="model")
 
     # 서브넷 마스크와 CIDR 형식 대응표를 화면에 표시
     st.subheader("서브넷 마스크")
@@ -335,9 +335,9 @@ elif menu == "IP SETING":
                 wr m
                 """
             
-            elif model == "59XX":
+            elif model == "5972":
                 config_text = f"""
-                [V59XX]
+                [V5972]
 
                 conf t
                 ip route 0.0.0.0/0 {gateway}
