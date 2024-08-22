@@ -296,7 +296,7 @@ elif menu == "IP SETING":
 
     with col2:
         # 모델에 따라 서브넷 마스크 입력 방식 변경
-        if model in ["U3024B", "V59XX","V2708GA", "V5124F"]:
+        if model in ["U3024B", "MVD10024", "V5972", "V2708GA", "V5124F"]:
             # CIDR 형식 선택
             cidr = st.selectbox("서브넷 마스크", list(subnet_options.keys()), key="subnet")
             subnet_mask = subnet_options[cidr]
@@ -335,7 +335,7 @@ elif menu == "IP SETING":
                 wr m
                 """
             
-            elif model == "5972":
+            elif model == "V5972":
                 config_text = f"""
                 [V5972]
 
