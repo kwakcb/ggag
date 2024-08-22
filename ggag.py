@@ -27,7 +27,7 @@ model_subnet_formats = {
 # 사이드바에 메뉴 생성
 menu = st.sidebar.radio(
     "",
-    ("Home", "고장상황", "OLT-L2 Link", "광3종", "L2", "IP SETING", "긴급복구")
+    ("Home", "고장상황", "OLT-L2 Link", "광3종", "L2 Check", "IP SETING", "OPR", "기타")
 )
 
 if menu == "Home":
