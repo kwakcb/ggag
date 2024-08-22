@@ -171,13 +171,13 @@ elif menu == "광3종":
     # st.header("광3종")
 
     # 동원 입력값을 받습니다
-    user_input1 = st.text_input("-동원: S/P L", "1/1 1")
+    user_input1 = st.text_input("-동원[MEGALITE,0960]: S/P L", "1/1 1")
 
     # 유비 입력값을 받습니다
-    user_input2 = st.text_input("-유비: S/P", "1/1")
+    user_input2 = st.text_input("-유비[U9500H,U9732S,U902A]: S/P", "1/1")
 
     # 다산 입력값을 받습니다
-    user_input3 = st.text_input("-다산: S/P L", "1/1 1")
+    user_input3 = st.text_input("-다산[]: S/P L", "1/1 1")
 
     # 명령어 목록을 저장할 리스트
     commands1 = []
@@ -384,21 +384,21 @@ elif menu == "OPR":
     
     st.text("[OPR]\n\n"
             "admin/enter/ en\n\n"
-            "V5204# sh onu service-info\n\n"
-            "V5204# sh olt mac epon 0/1\n\n"
-            "V5204# sh mac address-table\n\n"
-            "V5204# sh arp\n\n"
-            "V5204# sh ip dhcp snoop bin\n\n"
-            "V5204# sh ip igmp snoop gro\n\n"
-            "V5204# sh int statistics avg-type\n\n\n"
-            "V5204# ping 168.126.63.1\n\n\n"
-            "ONT ERASE\n\n"
-            "conf t\n\n"
-            "int epon 0/1\n\n"
-            "no onu 1-64\n\n\n"
-            "ONT RESET\n\n"
-            "conf t\n\n"
-            "int epon 0/1\n\n"
+            "V5204# sh onu service-info\n"
+            "V5204# sh olt mac epon 0/1\n"
+            "V5204# sh mac address-table\n"
+            "V5204# sh arp\n"
+            "V5204# sh ip dhcp snoop bin\n"
+            "V5204# sh ip igmp snoop gro\n"
+            "V5204# sh int statistics avg-type\n"
+            "V5204# ping 168.126.63.1\n\n"
+            "ONT ERASE\n"
+            "conf t\n"
+            "int epon 0/1\n"
+            "no onu 1-64\n\n"
+            "ONT RESET\n"
+            "conf t\n"
+            "int epon 0/1\n"
             "onu reset 1-64")
 
 
