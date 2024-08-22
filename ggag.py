@@ -17,6 +17,7 @@ subnet_options = {
 model_subnet_formats = {
     "U3024B": "/24",  # CIDR 형식
     "MVD10024": "255.255.255.0",  # 서브넷 마스크 형식
+    "V59XX": "/24",  # CIDR 형식
     "V2708GA": "/24",  # CIDR 형식
     "V5124F": "/24"  # CIDR 형식
 }
@@ -232,8 +233,8 @@ elif menu == "광3종":
         for cmd in commands3:
             st.write(cmd)
 
-elif menu == "L2":
-    st.header("L2")
+elif menu == "L2 Check":
+    st.header("L2 Check")
 
     commands_dasan = [
         "sh mac | inc Total",
@@ -272,18 +273,18 @@ elif menu == "IP SETING":
     st.header("IP SETTING")
 
     # 장비 모델 선택을 위한 드롭다운 메뉴
-    model = st.selectbox("장비 모델을 선택하세요", ["U3024B", "MVD10024", "V2708GA", "V5124F"], key="model")
+    model = st.selectbox("장비 모델을 선택하세요", ["U3024B", "MVD10024",  "V59XX", "V2708GA", "V5124F"], key="model")
 
     # 서브넷 마스크와 CIDR 형식 대응표를 화면에 표시
-    st.subheader("서브넷 마스크와 CIDR 대응표")
+    st.subheader("서브넷 마스크")
     st.markdown("""
-    /24 - 255.255.255.0
-    /25 - 255.255.255.128
-    /26 - 255.255.255.192
-    /27 - 255.255.255.224
-    /28 - 255.255.255.240
-    /29 - 255.255.255.248
-    /30 - 255.255.255.252
+    /24 : 255.255.255.0
+    /25 : 255.255.255.128
+    /26 : 255.255.255.192
+    /27 : 255.255.255.224
+    /28 : 255.255.255.240
+    /29 : 255.255.255.248
+    /30 : 255.255.255.252
     """)
 
     # 입력 필드를 배치할 열 생성
@@ -295,9 +296,9 @@ elif menu == "IP SETING":
 
     with col2:
         # 모델에 따라 서브넷 마스크 입력 방식 변경
-        if model in ["U3024B", "V2708GA", "V5124F"]:
+        if model in ["U3024B", "V59XX","V2708GA", "V5124F"]:
             # CIDR 형식 선택
-            cidr = st.selectbox("서브넷 마스크 (/CIDR 형식):", list(subnet_options.keys()), key="subnet")
+            cidr = st.selectbox("서브넷 마스크", list(subnet_options.keys()), key="subnet")
             subnet_mask = subnet_options[cidr]
         else:
             # 서브넷 마스크 직접 입력
@@ -333,16 +334,29 @@ elif menu == "IP SETING":
                 exit
                 wr m
                 """
+            
+            elif model == "59XX":
+                config_text = f"""
+                [V59XX]
+
+                conf t
+                ip route 0.0.0.0/0 {gateway}
+                int br1
+                no shutdown
+                ip address {ip_address}{cidr}
+                end
+                wr m
+                """
+                
             elif model == "V2708GA":
                 config_text = f"""
                 [V2708GA] 
 
                 conf t
+                ip route 0.0.0.0 0.0.0.0 {gateway}
                 int mgmt
                 ip address {ip_address}{cidr}
-                exit
-                ip route 0.0.0.0 0.0.0.0 {gateway}
-                exit
+                end
                 wr m
                 """
             elif model == "V5124F":
@@ -350,14 +364,13 @@ elif menu == "IP SETING":
                 [V5124F] 
 
                 conf t
+                ip route 0.0.0.0/0 {gateway}
                 int bridge
                 set port nego 25-26 off
                 exit
                 int br2
                 ip address {ip_address}{cidr}
-                exit
-                ip route 0.0.0.0/0 {gateway}
-                exit
+                end
                 wr m
                 """
 
@@ -367,6 +380,27 @@ elif menu == "IP SETING":
 
 elif menu == "OPR":
     st.header("OPR")
+
+    
+    st.text("[OPR]\n\n"
+            "admin/enter/ en\n\n"
+            "V5204# sh onu service-info\n\n"
+            "V5204# sh olt mac epon 0/1\n\n"
+            "V5204# sh mac address-table\n\n"
+            "V5204# sh arp\n\n"
+            "V5204# sh ip dhcp snoop bin\n\n"
+            "V5204# sh ip igmp snoop gro\n\n"
+            "V5204# sh int statistics avg-type\n\n\n"
+            "V5204# ping 168.126.63.1\n\n\n"
+            "ONT ERASE\n\n"
+            "conf t\n\n"
+            "int epon 0/1\n\n"
+            "no onu 1-64\n\n\n"
+            "ONT RESET\n\n"
+            "conf t\n\n"
+            "int epon 0/1\n\n"
+            "onu reset 1-64")
+
 
 elif menu == "기타":
     st.header("기타")
