@@ -149,6 +149,7 @@ elif menu == "OLT-L2 Link":
     st.code("DB 작업중.....")
     st.code("Link 현행화.....")
     st.code("★ 장비교체 NeOSS, NMS, SDN 현행화 완료")
+    st.code("★ 상황전파 수정요청")
 
     ip_address = st.text_input("■ [OLT LINK] Enter the L2 IP address")
     
