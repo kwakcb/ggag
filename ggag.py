@@ -17,7 +17,7 @@ subnet_options = {
 model_subnet_formats = {
     "U3024B": "/24",  # CIDR 형식
     "MVD10024": "255.255.255.0",  # 서브넷 마스크 형식
-    "V59XX": "/24",  # CIDR 형식
+    "V5972": "/24",  # CIDR 형식
     "V2708GA": "/24",  # CIDR 형식
     "V5124F": "/24"  # CIDR 형식
 }
