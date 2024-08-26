@@ -435,5 +435,5 @@ elif menu == "10G":
             "-NMS LINK UPDATE\n"
             "-공사정보 등록 확인\n"
             "-10G OPTIC LEVEL : -11~ -18 DB\n"
-            "-5G 속도측정 : 모뎀4번포트에 고정IP\n\n"
+            "-5G 속도측정 : 모뎀4번포트에 고정IP\n\n")
            
