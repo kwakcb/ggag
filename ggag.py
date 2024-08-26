@@ -16,6 +16,7 @@ subnet_options = {
 # 모델별 서브넷 마스크 형식 설정
 model_subnet_formats = {
     "U3024B": "/24",  # CIDR 형식
+    "E5624R": "/24",  # CIDR 형식
     "MVD10024": "255.255.255.0",  # 서브넷 마스크 형식
     "V5972": "/24",  # CIDR 형식
     "V2708GA": "/24",  # CIDR 형식
@@ -27,7 +28,7 @@ model_subnet_formats = {
 # 사이드바에 메뉴 생성
 menu = st.sidebar.radio(
     "",
-    ("Home", "고장상황", "OLT-L2 Link", "광3종", "L2 Check", "IP SETING", "OPR", "기타")
+    ("Home", "고장상황", "OLT-L2 Link", "광3종", "L2 Check", "IP SETING", "OPR", "10G")
 )
 
 if menu == "Home":
@@ -172,13 +173,13 @@ elif menu == "광3종":
     # st.header("광3종")
 
     # 동원 입력값을 받습니다
-    user_input1 = st.text_input("-동원[MEGALITE,0960]: S/P L", "1/1 1")
+    user_input1 = st.text_input("-동원[MEGALITE,DWES0960]: S/P L", "1/1 1")
 
     # 유비 입력값을 받습니다
     user_input2 = st.text_input("-유비[U9500H,U9732S,U902A]: S/P", "1/1")
 
     # 다산 입력값을 받습니다
-    user_input3 = st.text_input("-다산[]: S/P L", "1/1 1")
+    user_input3 = st.text_input("-다산[V5832XG]: S/P L", "1/1 1")
 
     # 명령어 목록을 저장할 리스트
     commands1 = []
@@ -274,7 +275,7 @@ elif menu == "IP SETING":
     st.header("IP SETTING")
 
     # 장비 모델 선택을 위한 드롭다운 메뉴
-    model = st.selectbox("장비 모델을 선택하세요", ["U3024B", "MVD10024",  "V5972", "V2708GA", "V5124F"], key="model")
+    model = st.selectbox("장비 모델을 선택하세요", ["U3024B", "E5624R", "MVD10024",  "V5972", "V2708GA", "V5124F"], key="model")
 
     # 서브넷 마스크와 CIDR 형식 대응표를 화면에 표시
     st.subheader("서브넷 마스크")
@@ -297,7 +298,7 @@ elif menu == "IP SETING":
 
     with col2:
         # 모델에 따라 서브넷 마스크 입력 방식 변경
-        if model in ["U3024B", "V5972", "V2708GA", "V5124F"]:
+        if model in ["U3024B", "E5624R", "V5972", "V2708GA", "V5124F"]:
             # CIDR 형식 선택
             cidr = st.selectbox("서브넷 마스크", list(subnet_options.keys()), key="subnet")
             subnet_mask = subnet_options[cidr]
@@ -323,6 +324,21 @@ elif menu == "IP SETING":
                 exit
                 wr m
                 """
+            
+            elif model == "E5624R":
+                config_text = f"""
+                [E5624R] 
+
+                conf t
+                int vlan1
+                no ip dhcp
+                ip address {ip_address}{cidr}
+                exit
+                ip default-gateway {gateway}
+                exit
+                wr m
+                """
+
             elif model == "MVD10024":
                 config_text = f"""
                 [MVD10024] 
@@ -403,5 +419,21 @@ elif menu == "OPR":
             "onu reset 1-64")
 
 
-elif menu == "기타":
-    st.header("기타")
+elif menu == "10G":
+    st.header("[NOC_10G[용량확대]]")
+
+    st.text("-PING : 1G, 10G\n"
+            "-SDN\n"
+            " .사전작업[변경IP입력]\n"
+            " .10G MODULE CHANGE\n"
+            " .사후작업[기존IP삭제]\n"
+            "-NEOSS 수정 : L2 TIE, IP, FTTH-RN\n"
+            "-CPE RESET\n"
+            " .UBI : (CONFIG-RANGE-PORT)#cpe reset gi1-24\n"
+            " .DANSAN : (CONFIG/CPE)#cpe reset 1-24\n"
+            "ip dhcp snoop bind \n\n"
+            "-NMS LINK UPDATE\n"
+            "-공사정보 등록 확인\n"
+            "-10G OPTIC LEVEL : -11~ -18 DB\n"
+            "-5G 속도측정 : 모뎀4번포트에 고정IP\n\n"
+           
