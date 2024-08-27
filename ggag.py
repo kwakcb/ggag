@@ -192,8 +192,8 @@ elif menu == "광3종":
             commands1 = [
                 f"sh epon onu-ddm {user_input1}",
                 f"sh epon rssi rx-pwr-periodic {user_input1}",
-                f"sh epon crc-monitoring statistics {user_input1}"
-                f"clear epon coc-monitoring ?"
+                f"sh epon crc-monitoring statistics {user_input1}\n"
+                f"clear epon coc-monitoring ?\n"
                 f"sh epon ip-macs all all | inc "
             ]
         else:
@@ -205,7 +205,7 @@ elif menu == "광3종":
             commands2 = [
                 f"sh pon onu-ddm {user_input2}",
                 f"sh pon top onu {user_input2}",
-                f"sh pon stats onu-crc {user_input2}"
+                f"sh pon stats onu-crc {user_input2}\n"
                 f"sh arp pon | inc "
             ]
         else:
