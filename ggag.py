@@ -204,6 +204,7 @@ elif menu == "광3종":
                 f"sh pon onu-ddm {user_input2}",
                 f"sh pon top onu {user_input2}",
                 f"sh pon stats onu-crc {user_input2}"
+                f"sh arp pon | inc "
             ]
         else:
             st.error("유비 입력값 형식이 올바르지 않습니다. 예: 5/8")
@@ -215,6 +216,8 @@ elif menu == "광3종":
                 f"sh epon onu-ddm {user_input3}",
                 f"sh epon rssi rx-pwr-periodic {user_input3}",
                 f"sh epon crc-monitoring statistics {user_input3}"
+                f"clear epon coc-monitoring ?"
+                f"sh epon ip-macs all all | inc "
             ]
         else:
             st.error("다산 입력값 형식이 올바르지 않습니다. 예: 2/13 40")
