@@ -192,9 +192,8 @@ elif menu == "광3종":
             commands1 = [
                 f"sh epon onu-ddm {user_input1}",
                 f"sh epon rssi rx-pwr-periodic {user_input1}",
-                f"sh epon crc-monitoring statistics {user_input1}\n"
-                f"clear epon coc-monitoring ?\n"
-                f"sh epon ip-macs all all | inc "
+                f"sh epon crc-monitoring statistics {user_input1}"
+               
             ]
         else:
             st.error("동원 입력값 형식이 올바르지 않습니다. 예: 1/1 1")
@@ -206,7 +205,7 @@ elif menu == "광3종":
                 f"sh pon onu-ddm {user_input2}",
                 f"sh pon top onu {user_input2}",
                 f"sh pon stats onu-crc {user_input2}\n"
-                f"sh arp pon | inc "
+                
             ]
         else:
             st.error("유비 입력값 형식이 올바르지 않습니다. 예: 5/8")
