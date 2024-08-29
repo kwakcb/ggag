@@ -57,7 +57,8 @@ if menu == "Home":
     # 메모 입력
     etc_memo = st.text_input("#memo", key="home_memo")
 
-elif menu == "고장상황":
+
+if menu == "고장상황":
     options = ["[NOC_10G(용량확대)]", "[NOC_BAT(24)]", "[NOC_CRC발생]", "[NOC_PLK_PSU교체]", "[NOC_PSU교체]",
                "[NOC_고객프로파일]", "[NOC_광레벨불]", "[NOC_민원처리]", "[NOC_자산관리]", "[NOC_장비교체]", "[NOC_장비철거]", "[NOC_점검정비]",
                "[NOC_전원OFF]", "[NOC_중복장애]", "[NOC_통합멀티룸]", "[NOC_품질개선]"]
@@ -81,9 +82,9 @@ elif menu == "고장상황":
     <script>
     function copyToClipboard(text) {{
         navigator.clipboard.writeText(text).then(function() {{
-        #    alert(text);
+            // alert(text);  // 이 줄을 제거하거나 주석 처리합니다.
         }}, function(err) {{
-        #    alert('텍스트 복사 실패: ' + err);
+            // alert('텍스트 복사 실패: ' + err);  // 이 줄도 제거하거나 주석 처리합니다.
         }});
     }}
 
@@ -126,9 +127,9 @@ elif menu == "고장상황":
     function copyToClipboard() {{
         const combinedText = {json.dumps(combined_text_recover)};
         navigator.clipboard.writeText(combinedText).then(function() {{
-        #    alert(combinedText);
+            // alert(combinedText);  // 이 줄을 제거하거나 주석 처리합니다.
         }}, function(err) {{
-        #    alert('텍스트 복사 실패: ' + err);
+            // alert('텍스트 복사 실패: ' + err);  // 이 줄도 제거하거나 주석 처리합니다.
         }});
     }}
 
@@ -142,6 +143,7 @@ elif menu == "고장상황":
 
     # 클립보드 복사 버튼을 HTML로 삽입
     components.html(copy_script_recover_head, height=100)
+
 
 elif menu == "OLT-L2 Link":
     st.header("OLT-L2 Link")
