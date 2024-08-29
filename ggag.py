@@ -193,6 +193,9 @@ elif menu == "광3종":
                 f"sh epon onu-ddm {user_input1}",
                 f"sh epon rssi rx-pwr-periodic {user_input1}",
                 f"sh epon crc-monitoring statistics {user_input1}"
+                f"clear epon crc-monitoring statistics {user_input1}"
+
+
                
             ]
         else:
@@ -397,6 +400,9 @@ elif menu == "IP SETING":
             st.code(config_text)
         else:
             st.error("IP 주소, 서브넷 마스크, 게이트웨이를 모두 입력해주세요.")
+
+        <img src="ip_band.png" alt="IP 설정 이미지">
+
 
 elif menu == "OPR":
     st.header("OPR")
