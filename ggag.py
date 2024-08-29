@@ -402,11 +402,11 @@ elif menu == "IP SETING":
             st.error("IP 주소, 서브넷 마스크, 게이트웨이를 모두 입력해주세요.")
 
 
-# 이미지 URL
-image_url = "https://github.com/kwakcb/ggag/blob/main/ip_band.png?raw=true"
+    # 이미지 URL
+    image_url = "https://github.com/kwakcb/ggag/blob/main/ip_band.png?raw=true"
 
-# 이미지 표시
-st.image(image_url, caption="IP 설정 이미지", use_column_width=True)
+    # 이미지 표시
+    st.image(image_url, caption="IP BAND 이미지", use_column_width=True)
 
 
 
