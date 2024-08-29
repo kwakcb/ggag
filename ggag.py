@@ -401,16 +401,13 @@ elif menu == "IP SETING":
         else:
             st.error("IP 주소, 서브넷 마스크, 게이트웨이를 모두 입력해주세요.")
 
-from flask import Flask, render_template
 
-app = Flask(__name__)
+# 이미지 URL
+image_url = "https://github.com/kwakcb/ggag/blob/main/ip_band.png?raw=true"
 
-@app.route('/ip_settings')
-def ip_settings():
-    return render_template('ip_settings.html')
+# 이미지 표시
+st.image(image_url, caption="IP 설정 이미지", use_column_width=True)
 
-if __name__ == '__main__':
-    app.run(debug=True)
 
 
 elif menu == "OPR":
