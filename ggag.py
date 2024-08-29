@@ -401,7 +401,12 @@ elif menu == "IP SETING":
         else:
             st.error("IP 주소, 서브넷 마스크, 게이트웨이를 모두 입력해주세요.")
 
-        <img src="https://github.com/kwakcb/ggag/blob/main/ip_band.png" alt="IP 설정 이미지">
+<html>
+<body>
+    <h1>IP 설정</h1>
+    <img src="https://github.com/kwakcb/ggag/blob/main/ip_band.png" alt="IP 설정 이미지">
+</body>
+</html>
 
 
 elif menu == "OPR":
