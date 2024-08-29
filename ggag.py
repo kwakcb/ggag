@@ -81,9 +81,9 @@ elif menu == "고장상황":
     <script>
     function copyToClipboard(text) {{
         navigator.clipboard.writeText(text).then(function() {{
-            alert(text);
+        #    alert(text);
         }}, function(err) {{
-            alert('텍스트 복사 실패: ' + err);
+        #    alert('텍스트 복사 실패: ' + err);
         }});
     }}
 
@@ -126,9 +126,9 @@ elif menu == "고장상황":
     function copyToClipboard() {{
         const combinedText = {json.dumps(combined_text_recover)};
         navigator.clipboard.writeText(combinedText).then(function() {{
-            alert(combinedText);
+        #    alert(combinedText);
         }}, function(err) {{
-            alert('텍스트 복사 실패: ' + err);
+        #    alert('텍스트 복사 실패: ' + err);
         }});
     }}
 
