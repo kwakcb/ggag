@@ -149,8 +149,8 @@ elif menu == "OLT-L2 Link":
     st.header("OLT-L2 Link")
     
     # 코드 블록을 표시합니다
-    st.code("DB 작업중.....")
-    st.code("Link 현행화.....")
+    st.code("Link 현행화 중...")
+    st.code("DB현행화 완료...")
     st.code("★ 장비교체 NeOSS, NMS, SDN 현행화 완료")
     st.code("★ 상황전파 수정요청")
 
@@ -160,6 +160,8 @@ elif menu == "OLT-L2 Link":
     additional_texts = [
         "sh arp pon | inc ",
         "sh epon ip-macs all all | inc ",
+        "sh arp | inc ",
+        "sh olt mac epon 1/1 | inc "
     ]
     
     # IP 주소가 입력된 경우에만 처리
@@ -248,7 +250,7 @@ elif menu == "L2 Check":
     commands_dasan = [
         "sh mac | inc Total",
         "sh ip dhcp sno bin | inc Total",
-        "sh ip igmp sno tab rep | inc Total",
+        "sh ip igmp sno tab | inc Total",
         "sh port status",
         "sh port statistics avg-pps",
         "sh port statistics rmon",
@@ -282,7 +284,7 @@ elif menu == "IP SETING":
     st.header("IP SETTING")
 
     # 장비 모델 선택을 위한 드롭다운 메뉴
-    model = st.selectbox("장비 모델을 선택하세요", ["U3024B", "E5624R", "MVD10024",  "V5972", "V2708GA", "V5124F"], key="model")
+    model = st.selectbox("장비 모델을 선택하세요", ["U3024B", "E5624R", "MVD10024",  "V5972", "V2708GA", "V3024V" "V5124F"], key="model")
 
     # 서브넷 마스크와 CIDR 형식 대응표를 화면에 표시
     st.subheader("서브넷 마스크")
@@ -305,7 +307,7 @@ elif menu == "IP SETING":
 
     with col2:
         # 모델에 따라 서브넷 마스크 입력 방식 변경
-        if model in ["U3024B", "E5624R", "V5972", "V2708GA", "V5124F"]:
+        if model in ["U3024B", "E5624R", "V5972", "V2708GA", "V3024V", "V5124F"]:
             # CIDR 형식 선택
             cidr = st.selectbox("서브넷 마스크", list(subnet_options.keys()), key="subnet")
             subnet_mask = subnet_options[cidr]
@@ -383,6 +385,19 @@ elif menu == "IP SETING":
                 end
                 wr m
                 """
+
+            elif model == "V3024V":
+                config_text = f"""
+                [V3024V] 
+
+                conf t
+                ip route 0.0.0.0 0.0.0.0 {gateway}
+                int vlan1
+                ip address {ip_address}{cidr}
+                end
+                wr m
+                """
+
             elif model == "V5124F":
                 config_text = f"""
                 [V5124F] 
