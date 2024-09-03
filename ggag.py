@@ -255,6 +255,7 @@ elif menu == "L2 Check":
         "sh port status",
         "sh port statistics avg-pps",
         "sh port statistics rmon",
+        "(bridge)# port ena 1-24",
         "sh rate"
     ]
 
