@@ -29,7 +29,7 @@ model_subnet_formats = {
 # 사이드바에 메뉴 생성
 menu = st.sidebar.radio(
     "",
-    ("Home", "고장상황", "OLT-L2 Link", "광3종", "L2 Check", "IP SETING", "OPR", "10G")
+    ("Home", "고장상황", "OLT-L2 Link", "광3종", "OLT Check", "L2 Check", "IP SETING", "OPR", "10G","ftp긴급복구","U4224B_SDN")
 )
 
 if menu == "Home":
@@ -56,7 +56,7 @@ if menu == "Home":
     """, unsafe_allow_html=True)
 
     # 메모 입력
-    etc_memo = st.text_input("#memo", key="home_memo")
+    #etc_memo = st.text_input("#memo", key="home_memo")
 
 
 if menu == "고장상황":
@@ -245,10 +245,16 @@ elif menu == "광3종":
         for cmd in commands3:
             st.write(cmd)
 
+elif menu == "OLT Check":
+    st.header("OLT Check")
+
+
 elif menu == "L2 Check":
     st.header("L2 Check")
 
     commands_dasan = [
+        "admin/vertex25",
+        "default / bridge",
         "sh mac | inc Total",
         "sh ip dhcp sno bin | inc Total",
         "sh ip igmp sno tab | inc Total",
@@ -260,13 +266,17 @@ elif menu == "L2 Check":
     ]
 
     commands_yubi = [
+        "root / premier",
+        "vlan1 / range port",
         "sh mac | inc total",
         "sh ip dhcp sno bin | inc total",
         "sh ip igmp sno tab gro | inc total",
         "sh port status",
         "sh port statistics avg type",
         "sh port statistics rmon",
-        "sh rate"
+        "(config)#range port"
+
+
     ]
 
     # Display the commands for each device
@@ -469,4 +479,43 @@ elif menu == "10G":
             "-공사정보 등록 확인\n"
             "-10G OPTIC LEVEL : -11~ -18 DB\n"
             "-5G 속도측정 : 모뎀4번포트에 고정IP\n\n")
-           
+
+elif menu == "ftp긴급복구":
+    st.header("ftp긴급복구")
+
+    st.text("[유비]-워드패드로 편집\n"
+            "#copy ftp config\n"
+            "#ftp server ip : 59.27.68.120\n"
+            "#user : noc\n"
+            "#pass : 1\n"
+            "#source ip : 장비ip\n"
+            "#dest : start.cfg\n\n"
+            "[다산]-메모장으로 편집\n"
+            "#copy ftp config download : start.cfg\n"
+            "#ftp server ip : 59.27.68.120\n"
+            "#download file : 장비ip.cfg\n"
+            "#user : noc\n"
+            "#pass : 1\n")
+            
+elif menu == "U4224B_SDN":
+    st.header("U4224B_SDN")
+
+    st.text("R114[X]->R104[O]\n"
+            "#copy ftp config\n"
+            "#sh flash\n"
+            "#boot system os2 U4200.r104\n"
+            "#erase os1 U4200.r104\n"
+            "#copy ftp os1\n"
+            "#ip : 59.27.68.120\n\n"
+            "#id : noc\n"
+            "#password : 1\n"
+            "#Source : U4200.r104\n"
+            "#Dest : U4200.r104\n\n"
+            "#copy ftp config\n"
+            "#ip : 59.27.68.120\n"
+            "#id : noc\n"
+            "#password : 1\n"
+            "#Source : 장비ip.cfg\n"
+            "#Dest : str.cfg\n"
+            "#boot config str.cfg\n")
+            
