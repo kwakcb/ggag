@@ -30,6 +30,7 @@ model_subnet_formats = {
 menu = st.sidebar.radio(
     "",
    ("Home", "고장상황", "OLT-L2 Link", "광3종", "OLT Check", "L2 Check", "IP SETING", "OPR", "10G","ftp긴급복구","U4224B_SDN")
+)
 
 if menu == "Home":
     st.title("""Memo
