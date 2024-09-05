@@ -261,7 +261,7 @@ elif menu == "OLT Check":
         "clear epon crc-monitoring statistics 2/2 all\n"
         "sh mac-address-table pon1/1\n"
         "sh ip dhcp snoop binding\n"
-        "sh ip igmp snoop 	table 		group\n"
+        "sh ip igmp snoop table group\n"
         "sh ip pim neighbor\n\n"
         "[유비]\n"
         "sh slot\n"
