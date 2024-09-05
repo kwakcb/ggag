@@ -247,6 +247,45 @@ elif menu == "광3종":
 
 elif menu == "OLT Check":
     st.header("OLT Check")
+    
+    st.text("[동원]\n"
+        "sh slot\n"
+        "sh system\n"
+        "소용량PIU:ge1,2,3,4,5,6/1~4\n"
+    	"대용량PIU:xe1,2,3,4,5,6,9,A,B,C/1~8\n"
+        "sh epon servic-police 1/1 all\n"
+        "sh epon ip-macs 1/1 all | inc a.b.c.d\n"
+        "sh epon onu ddm 1/1 all\n"
+        "sh epon rssi rx-power-peri 1/1 all\n" 
+        "sh epon crc-monitoring statistics 2/2 all\n"
+        "clear epon crc-monitoring statistics 2/2 all\n"
+        "sh mac-address-table pon1/1\n"
+        "sh ip dhcp snoop binding\n"
+        "sh ip igmp snoop 	table 		group\n"
+        "sh ip pim neighbor\n\n"
+        "[유비]\n"
+        "sh slot\n"
+        "sh pon onu ddm 1/1-1\n"
+        "sh pon top onu 1/1\n"
+        "sh pon olt ddmi 1/1 1\n"
+        "sh pon olt dyna bridge-entri 1/1-1\n"
+        "sh arp pon | inc a.b.c.d\n"
+        "(config-pon)#reboot hybridonu 1/1-2\n"
+        "sh pon service-policy onu 1/1-1\n"
+        "sh pon[10gpon] stats onu-crc 1/1\n"
+        "sh mac-address-table\n"
+        "sh ip dhcp sno bin\n"
+        "sh ip igmp sno tab rep\n"
+        "sh ip pim sparse-mode neigbor\n\n"
+        "[다산]\n"
+        "sh onu ddm epon 1/1\n"
+        "sh olt rssi-info epon 1/1\n"
+        "sh olt statistics epon 1/1\n"
+        "sh olt statistics onu epon 1/1\n"
+        "sh arp | inc 183.106.186.23\n"
+        "sh olt mac epon 1/1 | inc 183.106.186.23\n")
+
+
 
 
 elif menu == "L2 Check":
