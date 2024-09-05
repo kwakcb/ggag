@@ -29,8 +29,7 @@ model_subnet_formats = {
 # 사이드바에 메뉴 생성
 menu = st.sidebar.radio(
     "",
-    ("Home", "고장상황", "OLT-L2 Link", "광3종", "L2 Check", "IP SETING", "OPR", "10G")
-)
+   ("Home", "고장상황", "OLT-L2 Link", "광3종", "OLT Check", "L2 Check", "IP SETING", "OPR", "10G","ftp긴급복구","U4224B_SDN")
 
 if menu == "Home":
     st.title("""Memo
@@ -243,6 +242,8 @@ elif menu == "광3종":
         st.write("■ 다산 ----------")
         for cmd in commands3:
             st.write(cmd)
+
+
 
 elif menu == "L2 Check":
     st.header("L2 Check")
@@ -468,3 +469,6 @@ elif menu == "10G":
             "-10G OPTIC LEVEL : -11~ -18 DB\n"
             "-5G 속도측정 : 모뎀4번포트에 고정IP\n\n")
            
+
+
+ 
