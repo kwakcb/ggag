@@ -19,8 +19,9 @@ model_subnet_formats = {
     "E5624R": "/24",  # CIDR 형식
     "MVD10024": "255.255.255.0",  # 서브넷 마스크 형식
     "V5972": "/24",  # CIDR 형식
+    "V2724GB": "/24",  # CIDR 형식
     "V2708GA": "/24",  # CIDR 형식
-     "V3024V": "/24",  # CIDR 형식
+    "V3024V": "/24",  # CIDR 형식
     "V5124F": "/24"  # CIDR 형식
 }
 
@@ -402,7 +403,7 @@ elif menu == "IP SETING":
     st.header("IP SETTING")
 
     # 장비 모델 선택을 위한 드롭다운 메뉴
-    model = st.selectbox("장비 모델을 선택하세요", ["U3024B", "E5624R", "MVD10024",  "V5972", "V2708GA", "V3024V", "V5124F"], key="model")
+    model = st.selectbox("장비 모델을 선택하세요", ["U3024B", "E5624R", "MVD10024",  "V5972", "V2724GB","V2708GA", "V3024V", "V5124F"], key="model")
 
     # 서브넷 마스크와 CIDR 형식 대응표를 화면에 표시
     st.subheader("서브넷 마스크")
@@ -425,7 +426,7 @@ elif menu == "IP SETING":
 
     with col2:
         # 모델에 따라 서브넷 마스크 입력 방식 변경
-        if model in ["U3024B", "E5624R", "V5972", "V2708GA", "V3024V", "V5124F"]:
+        if model in ["U3024B", "E5624R", "V5972", "V2724GB", "V2708GA", "V3024V", "V5124F"]:
             # CIDR 형식 선택
             cidr = st.selectbox("서브넷 마스크", list(subnet_options.keys()), key="subnet")
             subnet_mask = subnet_options[cidr]
@@ -491,7 +492,20 @@ elif menu == "IP SETING":
                 end
                 wr m
                 """
-                
+
+            elif model == "V2724GB":
+                config_text = f"""
+                [V2724GB] 
+
+                conf t
+                ip route 0.0.0.0/0 {gateway}
+                int default
+                ip address {ip_address}{cidr} pri
+                end
+                wr m
+                """
+
+
             elif model == "V2708GA":
                 config_text = f"""
                 [V2708GA] 
