@@ -146,7 +146,7 @@ if menu == "고장상황":
     components.html(copy_script_recover_head, height=100)
 
     # 헤더 선택 리스트박스
-    header_options = ["[L2정전]", "[L2선로]", "[아파트_정전]"]
+    header_options = ["[L2_정전]", "[L2_선로]", "[아파트_정전]"]
     selected_header = st.selectbox("■ 다량장애 헤더선택", header_options, key="header_option")
 
     # 입력 항목
