@@ -155,9 +155,9 @@ if menu == "고장상황":
     subscriber_count = st.text_input("고객수", key="subscriber_count")
 
     # 헤더에 따라 추가 단어 삽입
-    if selected_header == "[L2정전]":
+    if selected_header == "[L2_정전]":
         extra_text = "일대 한전정전 추정"
-    elif selected_header == "[L2선로]":
+    elif selected_header == "[L2_선로]":
         extra_text = "선로장애 추정"
     elif selected_header == "[아파트_정전]":
         extra_text = "공용전원 정전 추정"
