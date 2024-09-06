@@ -145,47 +145,53 @@ if menu == "고장상황":
     # 클립보드 복사 버튼을 HTML로 삽입
     components.html(copy_script_recover_head, height=100)
 
-# 헤더 선택
-    headers = ["[L2정전]", "[L2선로]", "[아파트_정전]"]
-    selected_header = st.selectbox("■ 헤더 선택", headers)
+    # 헤더 선택 리스트박스
+    header_options = ["[L2정전]", "[L2선로]", "[아파트_정전]"]
+    selected_header = st.selectbox("■ 고장 상황 헤더 선택", header_options, key="header_option")
 
-    # 입력 항목 받기
-    guksa_business = st.text_input("■ 국사_사업장")
-    l2_count = st.text_input("■ L2 대수")
-    subscriber_count = st.text_input("■ 가입자수")
+    # 입력 항목
+    site_name = st.text_input("국사_사업장", key="site_name")
+    l2_count = st.text_input("L2 대수", key="l2_count")
+    subscriber_count = st.text_input("가입자수", key="subscriber_count")
 
-    # 결과를 합친 문자열 생성
-    if selected_header and guksa_business and l2_count and subscriber_count:
-        combined_result = f"{selected_header} {guksa_business}  L2*{l2_count}sys [{subscriber_count}고객]"
-
-        st.write("**결과:**")
-        st.write(combined_result)
-
-        # 클립보드 복사 기능 추가
-        copy_script = f"""
-        <script>
-        function copyToClipboard(text) {{
-            navigator.clipboard.writeText(text).then(function() {{
-                // 성공적으로 복사되었습니다.
-            }}, function(err) {{
-                // 복사 실패
-            }});
-        }}
-        document.addEventListener('DOMContentLoaded', function() {{
-            document.getElementById('copy-button-result').addEventListener('click', function() {{
-                const textToCopy = {json.dumps(combined_result)};
-                copyToClipboard(textToCopy);
-            }});
-        }});
-        </script>
-        <button id="copy-button-result">클립보드에 복사</button>
-        """
-        components.html(copy_script, height=50)
+    # 헤더에 따라 추가 단어 삽입
+    if selected_header == "[L2정전]":
+        extra_text = "일대 한전정전 추정"
+    elif selected_header == "[L2선로]":
+        extra_text = "선로장애 추정"
+    elif selected_header == "[아파트_정전]":
+        extra_text = "공용전원 정전 추정"
     else:
-        st.info("헤더와 모든 입력 항목을 입력해주세요.")
+        extra_text = ""
 
+    # 조건에 따라 출력 내용 구성
+    combined_text = f"{selected_header} {site_name} {l2_count} {subscriber_count} {extra_text}"
 
+    # 클립보드 복사 기능을 위한 HTML과 JavaScript 코드
+    copy_script = f"""
+    <script>
+    function copyToClipboard(text) {{
+        navigator.clipboard.writeText(text).then(function() {{
+            // alert(text);  // 이 줄을 제거하거나 주석 처리합니다.
+        }}, function(err) {{
+            // alert('텍스트 복사 실패: ' + err);  // 이 줄도 제거하거나 주석 처리합니다.
+        }});
+    }}
 
+    // 클릭 이벤트가 발생할 때 클립보드에 텍스트를 복사
+    document.addEventListener('DOMContentLoaded', function() {{
+        document.getElementById('copy-button').addEventListener('click', function() {{
+            const textToCopy = {json.dumps(combined_text)};
+            copyToClipboard(textToCopy);
+        }});
+    }});
+    </script>
+    <button id="copy-button">클립보드에 복사</button>
+    """
+
+    # 출력된 텍스트와 복사 버튼을 HTML로 삽입
+    st.write(combined_text)
+    components.html(copy_script, height=100)
 
 
 
