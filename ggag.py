@@ -165,7 +165,7 @@ if menu == "고장상황":
         extra_text = ""
 
     # 조건에 따라 출력 내용 구성
-    combined_text = f"{selected_header} {site_name} {l2_count} {subscriber_count} {extra_text}"
+    combined_text = f"{selected_header} {site_name}  {extra_text} L2*{l2_count}sys [{subscriber_count}고객]"
 
     # 클립보드 복사 기능을 위한 HTML과 JavaScript 코드
     copy_script = f"""
