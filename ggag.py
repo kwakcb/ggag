@@ -147,12 +147,12 @@ if menu == "고장상황":
 
     # 헤더 선택 리스트박스
     header_options = ["[L2정전]", "[L2선로]", "[아파트_정전]"]
-    selected_header = st.selectbox("■ 고장 상황 헤더 선택", header_options, key="header_option")
+    selected_header = st.selectbox("■ 다량장애 헤더선택", header_options, key="header_option")
 
     # 입력 항목
     site_name = st.text_input("국사_사업장", key="site_name")
     l2_count = st.text_input("L2 대수", key="l2_count")
-    subscriber_count = st.text_input("가입자수", key="subscriber_count")
+    subscriber_count = st.text_input("고객수", key="subscriber_count")
 
     # 헤더에 따라 추가 단어 삽입
     if selected_header == "[L2정전]":
