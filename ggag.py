@@ -145,6 +145,49 @@ if menu == "고장상황":
     # 클립보드 복사 버튼을 HTML로 삽입
     components.html(copy_script_recover_head, height=100)
 
+# 헤더 선택
+    headers = ["[L2정전]", "[L2선로]", "[아파트_정전]"]
+    selected_header = st.selectbox("헤더 선택", headers)
+
+    # 입력 항목 받기
+    guksa_business = st.text_input("국사_사업장")
+    l2_count = st.text_input("L2 대수")
+    subscriber_count = st.text_input("가입자수")
+
+    # 결과를 합친 문자열 생성
+    if selected_header and guksa_business and l2_count and subscriber_count:
+        combined_result = f"{selected_header} {guksa_business} {l2_count}대 {subscriber_count}명"
+
+        st.write("**결과:**")
+        st.write(combined_result)
+
+        # 클립보드 복사 기능 추가
+        copy_script = f"""
+        <script>
+        function copyToClipboard(text) {{
+            navigator.clipboard.writeText(text).then(function() {{
+                // 성공적으로 복사되었습니다.
+            }}, function(err) {{
+                // 복사 실패
+            }});
+        }}
+        document.addEventListener('DOMContentLoaded', function() {{
+            document.getElementById('copy-button-result').addEventListener('click', function() {{
+                const textToCopy = {json.dumps(combined_result)};
+                copyToClipboard(textToCopy);
+            }});
+        }});
+        </script>
+        <button id="copy-button-result">클립보드에 복사</button>
+        """
+        components.html(copy_script, height=50)
+    else:
+        st.info("헤더와 모든 입력 항목을 입력해주세요.")
+
+
+
+
+
 
 elif menu == "OLT-L2 Link":
     st.header("OLT-L2 Link")
