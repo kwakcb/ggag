@@ -53,7 +53,7 @@ if menu == "Home":
     <div style='text-align: right;'>
     <h3>by Kwak.cb</h3>
     </div>
-    """, unsafe_allow_html=True)
+    """, unsafe_allow_html=True)"
 
     # 메모 입력
     #etc_memo = st.text_input("#memo", key="home_memo")
@@ -147,16 +147,16 @@ if menu == "고장상황":
 
 # 헤더 선택
     headers = ["[L2정전]", "[L2선로]", "[아파트_정전]"]
-    selected_header = st.selectbox("헤더 선택", headers)
+    selected_header = st.selectbox("■ 헤더 선택", headers)
 
     # 입력 항목 받기
-    guksa_business = st.text_input("국사_사업장")
-    l2_count = st.text_input("L2 대수")
-    subscriber_count = st.text_input("가입자수")
+    guksa_business = st.text_input("■ 국사_사업장")
+    l2_count = st.text_input("■ L2 대수")
+    subscriber_count = st.text_input("■ 가입자수")
 
     # 결과를 합친 문자열 생성
     if selected_header and guksa_business and l2_count and subscriber_count:
-        combined_result = f"{selected_header} {guksa_business} {l2_count}대 {subscriber_count}명"
+        combined_result = f"{selected_header} {guksa_business}  L2*{l2_count}sys [{subscriber_count}고객]"
 
         st.write("**결과:**")
         st.write(combined_result)
