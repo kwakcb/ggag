@@ -344,7 +344,7 @@ elif menu == "L2 Check":
     for cmd in commands_yubi:
         st.write(cmd)
 
-st.write("■ L2 Log ---")
+    st.write("■ L2 Log ---")
     for cmd in commands_L2Log:
         st.write(cmd)
 
