@@ -147,7 +147,7 @@ if menu == "고장상황":
 
     # 헤더 선택 리스트박스
     header_options = ["[L2_정전]", "[L2_선로]", "[아파트_정전]"]
-    selected_header = st.selectbox("■ 다량장애 헤더선택", header_options, key="header_option")
+    selected_header = st.selectbox("■ 다량장애 HEAD", header_options, key="header_option")
 
     # 입력 항목
     site_name = st.text_input("국사_사업장", key="site_name")
