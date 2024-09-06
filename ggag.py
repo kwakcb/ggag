@@ -53,7 +53,7 @@ if menu == "Home":
     <div style='text-align: right;'>
     <h3>by Kwak.cb</h3>
     </div>
-    """, unsafe_allow_html=True)"
+    """, unsafe_allow_html=True)
 
     # 메모 입력
     #etc_memo = st.text_input("#memo", key="home_memo")
