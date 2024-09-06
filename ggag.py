@@ -314,8 +314,23 @@ elif menu == "L2 Check":
         "sh port statistics avg type",
         "sh port statistics rmon",
         "(config)#range port"
+    ]
 
-
+    commands_L2Log = [
+        "show syslog local non-volatile r | include him",
+        "show syslog local non-volatile r | include Oops",
+        "show syslog local non-volatile r | include Internal error",
+        "show syslog local non-volatile r | include SMP ARM", 
+        "show syslog local non-volatile r | include Call",
+        "show syslog local non-volatile r | include call",
+        "show syslog local non-volatile r | include kernel",
+        "show syslog local non-volatile r | include Kernel",
+        "show syslog local non-volatile r | include KERNEL",
+        "show syslog local non-volatile r | include memory",
+        "show syslog local non-volatile r | include fail",
+        "show syslog local non-volatile r | include FAIL",
+        "show syslog local non-volatile r | include Start UP",
+        "show port statistics rmon | include CRC"
     ]
 
     # Display the commands for each device
@@ -329,6 +344,9 @@ elif menu == "L2 Check":
     for cmd in commands_yubi:
         st.write(cmd)
 
+st.write("■ L2 Log ---")
+    for cmd in commands_L2Log:
+        st.write(cmd)
 
 
 elif menu == "IP SETING":
