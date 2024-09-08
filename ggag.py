@@ -46,13 +46,13 @@ if menu == "Home":
 [MOSS 항목] 전원,교환,액세스\n
 [PING경보] ACCESS_XDSL,엔토피아\n
 [공사정보] 작업통제_대쉬보드 총건수_1000/page설정_ 작업현황 전체복사 후 A2셀에 주변서식에 맟추기 붙여넣기\n\n
-
-OSP 관제센터: 02-500-6150\n
-IP망 관제센터: 042-478-1600\n
-전원관제: 042-478-1800\n
-과천 제1관제센터(교환): 02-500-6080\n
-무선: 042-489-6831\n
-NOC:1577-7315\n\n
+■ 유관기관 연락처\n
+-OSP 관제센터: 02-500-6150\n
+-IP망 관제센터: 042-478-1600\n
+-전원관제: 042-478-1800\n
+-과천 제1관제센터(교환): 02-500-6080\n
+-무선: 042-489-6831\n
+-NOC:1577-7315\n\n
 
 -교환기술부\n
 .충: 042-255-2470\n
@@ -623,14 +623,14 @@ elif menu == "ftp긴급복구":
 
     st.text("[유비]-워드패드로 편집\n"
             "#copy ftp config\n"
-            "#ftp server ip : 59.27.68.120\n"
+            "#ftp server ip : a.b.c.d\n"
             "#user : noc\n"
             "#pass : 1\n"
             "#source ip : 장비ip\n"
             "#dest : start.cfg\n\n"
             "[다산]-메모장으로 편집\n"
             "#copy ftp config download : start.cfg\n"
-            "#ftp server ip : 59.27.68.120\n"
+            "#ftp server ip : a.b.c.d\n"
             "#download file : 장비ip.cfg\n"
             "#user : noc\n"
             "#pass : 1\n")
