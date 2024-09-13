@@ -67,16 +67,8 @@ if menu == "Home":
 .부:051-464-2300\n
 .대:053-477-1985 \n\n
 """)
-# Weather radar link
-    weather_radar_url = "https://www.weather.go.kr/w/image/radar.do"
-
-    # Function to open the link in a new browser window
-    def open_weather_radar():
-        webbrowser.open_new(weather_radar_url)
-
-    # Call the function to open the link
-    if st.button('Open Weather Radar'):
-        open_weather_radar()
+# Display the clickable weather radar link
+    st.markdown("[Click here to view the Weather Radar](https://www.weather.go.kr/w/image/radar.do)")
 
     # Right-aligned subheader
     st.markdown("""
@@ -84,7 +76,6 @@ if menu == "Home":
     <h3>by Kwak.cb</h3>
     </div>
     """, unsafe_allow_html=True)
-
     
 
 
