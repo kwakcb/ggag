@@ -1,6 +1,7 @@
 import streamlit as st
 import streamlit.components.v1 as components
 import json
+import webbrowser
 
 # 서브넷 마스크와 CIDR 형식 대응표
 subnet_options = {
@@ -30,7 +31,7 @@ model_subnet_formats = {
 # 사이드바에 메뉴 생성
 menu = st.sidebar.radio(
     "",
-    ("Home", "고장상황", "OLT-L2 Link", "광3종", "OLT Check", "L2 Check", "IP SETING", "OPR", "10G","ftp긴급복구","U4224B_SDN")
+    ("Home", "고장상황", "OLT-L2 Link", "광3종", "OLT Check", "L2 Check", "IP SETING", "OPR", "10G","ftp긴급복구","U4224B_SDN","각종일지")
 )
 
 if menu == "Home":
@@ -64,8 +65,19 @@ if menu == "Home":
 .충: 042-478-7550, 7540\n
 .호:062-230-3355\n
 .부:051-464-2300\n
-.대:053-477-1985 \n
+.대:053-477-1985 \n\n
 
+날씨누리 레이더 영상\n
+
+# Weather radar link
+weather_radar_url = "https://www.weather.go.kr/w/image/radar.do"
+
+# Function to open the link in a new browser window
+def open_weather_radar():
+    webbrowser.open_new(weather_radar_url)
+
+# Call the function to open the link
+open_weather_radar()
 """)
 
     # 우측 정렬된 서브헤더 추가
@@ -368,7 +380,8 @@ elif menu == "L2 Check":
         "sh port status",
         "sh port statistics avg-pps",
         "sh port statistics rmon",
-        "(bridge)# port ena 1-24"
+        "(bridge)# port ena 1-24",
+        "sh cable-length"
         
     ]
 
@@ -381,7 +394,8 @@ elif menu == "L2 Check":
         "sh port status",
         "sh port statistics avg type",
         "sh port statistics rmon",
-        "(config)#range port"
+        "(config)#range port",
+        "sh port phy-diag"
     ]
 
     commands_L2Log = [
@@ -656,4 +670,44 @@ elif menu == "U4224B_SDN":
             "#Source : 장비ip.cfg\n"
             "#Dest : str.cfg\n"
             "#boot config str.cfg\n")
-            
+
+menu == "각종일지":
+    st.text("[일일본부일지]\n"
+            "*NMS-고장감시(TT)-고장이력\n"
+            ".도메인:ACCESS\n"
+            ".시작(종료)날짜:당일\n"
+            ".부서:해당본부\n"
+            ".상태:전체\n"
+            ".종류:전체\n"
+            ".분야1:6액세스\n"
+            ".분야2:L2\n"
+            ".고장:고장\n"
+            "엑셀저장: 국사부터 조치2까지 복.붙\n"
+            "*공사정보\n"
+            "*NMS-작업통제-대시보드\n"
+            ".해당본부 총건수 - 주요공사만 추출\n"
+            "*BS\n"
+            "-고장상황 일일 처리건 엑셀저장 후 - 엑셀에서 BS_COUNT시트에서 BS통계 추출 후 복.붙\n\n"
+
+            "[야근네트워크일지]\n"
+            "-전일 네트워크 현황보고(유선) 엑셀\n"
+            "1.NMS-고장상황\n"
+            "-ACCESS:고장상황(MOSS)\n"
+            ".조직:충호부대제주\n"
+            ".기간:전일18:00~금일09:00\n"
+            ".상태:전체\n"
+            ".작업분야:6액세스\n"
+            "검색-엑셀저장-전체복.붙\n"
+            "2.NMS-장애경보이력\n"
+            ".시설분류: 가입자수용스위치-XDSL, NTOPIA\n"
+            ".조직:충호부대제주\n"
+            ".경보원인 : Ping\n"
+            ".조회기간 : 전일18:00~금일 09:00\n"
+            ".엑셀 저장\n"
+            ".전체 복. 붙\n"
+            "3.NMS-작업통제-대시보드\n"
+            "4.전일 날짜 수정 -> 통계\n" 
+            "엑셀->워드에 선택붙여넣기(CTRL+SHIFT+V)/RTF로 붙여넣기[소계는 복붙안하셔도 됨)\n"
+            "5.특이사항 :\n" 
+            ".기상(낙뢰,태풍,소나기,강우[강설]등 재해재난, 장비[케이블]장애, 공사피해\n"
+            ".전주 실적이랑 비교 특이하게 차이가 나는 부분 찾아서 기재\n")
