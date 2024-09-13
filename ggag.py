@@ -68,7 +68,7 @@ if menu == "Home":
 .대:053-477-1985 \n\n
 """)
 # Display the clickable weather radar link
-    st.markdown("[Click here to view the Weather Radar](https://www.weather.go.kr/w/image/radar.do)")
+    st.markdown("[기상청 레이더 영상](https://www.weather.go.kr/w/image/radar.do)")
 
     # Right-aligned subheader
     st.markdown("""
