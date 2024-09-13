@@ -672,6 +672,7 @@ elif menu == "U4224B_SDN":
             "#boot config str.cfg\n")
 
 menu == "각종일지":
+    st.header("각종일지")
     st.text("[일일본부일지]\n"
             "*NMS-고장감시(TT)-고장이력\n"
             ".도메인:ACCESS\n"
