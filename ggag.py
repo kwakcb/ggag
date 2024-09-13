@@ -66,21 +66,19 @@ if menu == "Home":
 .호:062-230-3355\n
 .부:051-464-2300\n
 .대:053-477-1985 \n\n
-
-날씨누리 레이더 영상\n
 """)
 # Weather radar link
-weather_radar_url = "https://www.weather.go.kr/w/image/radar.do"
+    weather_radar_url = "https://www.weather.go.kr/w/image/radar.do"
 
-# Function to open the link in a new browser window
-def open_weather_radar():
-    webbrowser.open_new(weather_radar_url)
+    # Function to open the link in a new browser window
+    def open_weather_radar():
+        webbrowser.open_new(weather_radar_url)
 
-# Call the function to open the link
-open_weather_radar()
+    # Call the function to open the link
+    if st.button('Open Weather Radar'):
+        open_weather_radar()
 
-
-    # 우측 정렬된 서브헤더 추가
+    # Right-aligned subheader
     st.markdown("""
     <div style='text-align: right;'>
     <h3>by Kwak.cb</h3>
