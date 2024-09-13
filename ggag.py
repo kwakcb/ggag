@@ -68,7 +68,7 @@ if menu == "Home":
 .대:053-477-1985 \n\n
 
 날씨누리 레이더 영상\n
-
+""")
 # Weather radar link
 weather_radar_url = "https://www.weather.go.kr/w/image/radar.do"
 
@@ -78,7 +78,7 @@ def open_weather_radar():
 
 # Call the function to open the link
 open_weather_radar()
-""")
+
 
     # 우측 정렬된 서브헤더 추가
     st.markdown("""
