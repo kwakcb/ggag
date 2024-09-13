@@ -671,7 +671,7 @@ elif menu == "U4224B_SDN":
             "#Dest : str.cfg\n"
             "#boot config str.cfg\n")
 
-menu == "각종일지":
+elif menu == "각종일지":
     st.header("각종일지")
     st.text("[일일본부일지]\n"
             "*NMS-고장감시(TT)-고장이력\n"
