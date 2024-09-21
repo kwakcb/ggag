@@ -664,27 +664,23 @@ elif menu == "U4224B_SDN":
 elif menu == "각종일지":
     st.header("각종일지")
     
-    # 고장 특이사항 입력란
-    st.subheader("고장 특이사항")
-    fault_info = st.text_area("고장 특이사항을 입력하세요.")
+    # 고장 특이사항 입력란 (세션 값 사용)
+    fault_info = st.text_area("■ 고장 특이사항을 입력하세요.", value=st.session_state.fault_info)
     
-    # 출동 특이사항 입력란
-    st.subheader("출동 특이사항")
-    dispatch_info = st.text_area("출동 특이사항을 입력하세요.")
+    # 출동 특이사항 입력란 (세션 값 사용)
+    dispatch_info = st.text_area("■ 출동 특이사항을 입력하세요.", value=st.session_state.dispatch_info)
     
     # 저장 버튼
     if st.button("저장"):
-        # 입력값이 비어있는지 확인
-        if not fault_info:
-            st.error("고장 특이사항을 입력해주세요.")
-        elif not dispatch_info:
-            st.error("출동 특이사항을 입력해주세요.")
-        else:
-            # 저장할 데이터를 처리하는 로직 (예: 파일에 저장 또는 DB에 저장)
-            st.write("고장 특이사항:", fault_info)
-            st.write("출동 특이사항:", dispatch_info)
-            # 저장 후 메시지
-            st.success("일지가 성공적으로 저장되었습니다.")
+        # 입력된 데이터를 세션 상태에 저장
+        st.session_state.fault_info = fault_info
+        st.session_state.dispatch_info = dispatch_info
+        
+        st.success("일지가 성공적으로 저장되었습니다.")
+    
+    # 이전에 입력된 내용을 출력
+    st.write("이전 고장 특이사항:", st.session_state.fault_info)
+    st.write("이전 출동 특이사항:", st.session_state.dispatch_info)
     
     st.text("[일일본부일지]\n"
             "*NMS-고장감시(TT)-고장이력\n"
