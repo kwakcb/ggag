@@ -26,6 +26,12 @@ model_subnet_formats = {
     "V5124F": "/24"  # CIDR 형식
 }
 
+if 'fault_info' not in st.session_state:
+    st.session_state.fault_info = ""
+
+if 'dispatch_info' not in st.session_state:
+    st.session_state.dispatch_info = ""
+    
 # 제목을 표시합니다 ver1.0 2024.6.27
 
 # 사이드바에 메뉴 생성
