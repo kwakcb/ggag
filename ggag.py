@@ -685,8 +685,8 @@ elif menu == "각종일지":
         st.success("일지가 성공적으로 저장되었습니다.")
     
     # 이전에 입력된 내용을 출력
-    st.write("이전 고장 특이사항:", st.session_state.fault_info)
-    st.write("이전 출동 특이사항:", st.session_state.dispatch_info)
+    st.write("□ 이전 고장 특이사항:\n", st.session_state.fault_info)
+    st.write("□ 이전 출동 특이사항:\n", st.session_state.dispatch_info)
     
     st.text("[일일본부일지]\n"
             "*NMS-고장감시(TT)-고장이력\n"
