@@ -672,11 +672,11 @@ elif menu == "각종일지":
     
     # 고장 특이사항 입력란 (다중라인 입력 허용)
     #st.subheader("고장 특이사항")
-    fault_info = st.text_area("고장 특이사항을 입력하세요.", value=st.session_state.fault_info, height=200)
+    fault_info = st.text_area("■ 고장 특이사항을 입력하세요.", value=st.session_state.fault_info, height=200)
     
     # 출동 특이사항 입력란 (다중라인 입력 허용)
     #st.subheader("출동 특이사항")
-    dispatch_info = st.text_area("출동 특이사항을 입력하세요.", value=st.session_state.dispatch_info, height=200)
+    dispatch_info = st.text_area("■ 출동 특이사항을 입력하세요.", value=st.session_state.dispatch_info, height=200)
     
     # 저장 버튼
     if st.button("저장"):
