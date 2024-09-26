@@ -361,8 +361,8 @@ elif menu == "광3종":
         <button onclick="copyToClipboard()">클립보드에 복사</button>
     """
 
-# HTML 삽입
-st.markdown(clipboard_script, unsafe_allow_html=True)
+    # HTML 삽입
+    st.markdown(clipboard_script, unsafe_allow_html=True)
 
 
 elif menu == "OLT Check":
