@@ -326,7 +326,7 @@ elif menu == "광3종":
     import streamlit as st
 
     # 제목
-    st.title("광레벨 입력 및 출력")
+    st.header("광레벨 입력 및 출력")
 
     # 입력 받기
     ddm = st.text_input("DDM 값 입력", "-12.11")
@@ -343,7 +343,12 @@ elif menu == "광3종":
     st.text_area("클립보드에 복사할 텍스트", output)
 
     # 안내 문구
-    st.info("위 텍스트를 선택한 후 복사(Ctrl+C 또는 Cmd+C)하여 사용하세요.")
+    #st.info("위 텍스트를 선택한 후 복사(Ctrl+C 또는 Cmd+C)하여 사용하세요.")
+    
+    <button id="copy-button_optic">클립보드에 복사</button>
+    # 출력된 텍스트와 복사 버튼을 HTML로 삽입
+    st.write(output)
+    components.html(copy_script, height=100)
 
 
 
