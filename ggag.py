@@ -326,8 +326,9 @@ elif menu == "광3종":
     
 
 
+        
     # 제목
-    st.header("광레벨 입력 및 출력")
+    st.header("■ 광레벨 입력 및 출력")
 
     # 입력 받기
     ddm = st.text_input("DDM 값 입력", "-12.11")
@@ -343,10 +344,11 @@ elif menu == "광3종":
     # 클립보드에 복사할 수 있도록 텍스트를 text_area로 표시
     st.text_area("클립보드에 복사할 텍스트", output)
 
-    # JavaScript로 클립보드 복사 기능 구현
+    # JavaScript로 클립보드 복사 기능 구현 (output 내용을 안전하게 전달)
     clipboard_script = f"""
         <script>
-        function copyToClipboard(text) {{
+        function copyToClipboard() {{
+            var text = `{output}`;  // 안전하게 문자열을 처리
             var tempInput = document.createElement('textarea');
             tempInput.value = text;
             document.body.appendChild(tempInput);
@@ -356,7 +358,7 @@ elif menu == "광3종":
             alert('클립보드에 복사되었습니다!');
         }}
         </script>
-        <button onclick="copyToClipboard('{output}')">클립보드에 복사</button>
+        <button onclick="copyToClipboard()">클립보드에 복사</button>
     """
 
     # HTML 삽입
