@@ -330,6 +330,7 @@ elif menu == "광3종":
     # 제목
     st.header("■ 광레벨 입력 및 출력")
 
+ 
     # 입력 받기
     ddm = st.text_input("DDM 값 입력", "-12.11")
     rssi = st.text_input("RSSI 값 입력", "-24.32")
@@ -342,13 +343,13 @@ elif menu == "광3종":
     st.write(output)
 
     # 클립보드에 복사할 수 있도록 텍스트를 text_area로 표시
-    st.text_area("클립보드에 복사할 텍스트", output)
+    st.text_area("클립보드에 복사할 텍스트", output, height=100)
 
-    # JavaScript로 클립보드 복사 기능 구현 (output 내용을 안전하게 전달)
+    # JavaScript로 클립보드 복사 기능 구현
     clipboard_script = f"""
         <script>
         function copyToClipboard() {{
-            var text = `{output}`;  // 안전하게 문자열을 처리
+            var text = `{output.replace("`", "\\`")}`;  // 백틱 이스케이프 처리
             var tempInput = document.createElement('textarea');
             tempInput.value = text;
             document.body.appendChild(tempInput);
@@ -364,7 +365,6 @@ elif menu == "광3종":
     # HTML 삽입
     st.markdown(clipboard_script, unsafe_allow_html=True)
 
-    
 
 
 elif menu == "OLT Check":
