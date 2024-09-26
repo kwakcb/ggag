@@ -2,7 +2,7 @@ import streamlit as st
 import streamlit.components.v1 as components
 import json
 import webbrowser
-import pyperclip
+
 
 
 # 서브넷 마스크와 CIDR 형식 대응표
@@ -323,6 +323,8 @@ elif menu == "광3종":
         for cmd in commands3:
             st.write(cmd)
             
+    import streamlit as st
+
     # 제목
     st.title("광레벨 입력 및 출력")
 
@@ -337,10 +339,12 @@ elif menu == "광3종":
     # 출력 화면 표시
     st.write(output)
 
-    # 클립보드 복사 버튼
-    if st.button("클립보드에 복사"):
-        pyperclip.copy(output)
-        st.success("클립보드에 복사되었습니다!")
+    # 클립보드에 복사할 수 있도록 사용자에게 출력 결과를 강조해서 표시
+    st.text_area("클립보드에 복사할 텍스트", output)
+
+    # 안내 문구
+    st.info("위 텍스트를 선택한 후 복사(Ctrl+C 또는 Cmd+C)하여 사용하세요.")
+
 
 
 elif menu == "OLT Check":
