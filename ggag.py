@@ -325,7 +325,7 @@ elif menu == "광3종":
             
     
     # 제목
-    st.header("광레벨 입력 및 출력")
+    st.header("ㅇ광레벨 입력 및 출력")
 
     # 입력 받기
     ddm = st.text_input("DDM 값 입력", "-12.11")
