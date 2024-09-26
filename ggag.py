@@ -253,7 +253,7 @@ elif menu == "OLT-L2 Link":
 
 elif menu == "광3종":
     # st.header("광3종")
-
+    st.header("ㅇ광3종")
     # 동원 입력값을 받습니다
     user_input1 = st.text_input("-동원[MEGALITE,DWES0960]: S/P L", "1/1 1")
 
