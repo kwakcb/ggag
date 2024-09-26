@@ -324,13 +324,9 @@ elif menu == "광3종":
             st.write(cmd)
             
     
-
-
-        
     # 제목
-    st.header("■ 광레벨 입력 및 출력")
+    st.header("광레벨 입력 및 출력")
 
- 
     # 입력 받기
     ddm = st.text_input("DDM 값 입력", "-12.11")
     rssi = st.text_input("RSSI 값 입력", "-24.32")
@@ -349,7 +345,7 @@ elif menu == "광3종":
     clipboard_script = f"""
         <script>
         function copyToClipboard() {{
-            var text = `{output.replace("`", "\\`")}`;  // 백틱 이스케이프 처리
+            var text = `{output.replace("`", "\\`").replace("'", "\\'").replace('"', '\\"')}`;  // 이스케이프 처리
             var tempInput = document.createElement('textarea');
             tempInput.value = text;
             document.body.appendChild(tempInput);
@@ -364,7 +360,6 @@ elif menu == "광3종":
 
     # HTML 삽입
     st.markdown(clipboard_script, unsafe_allow_html=True)
-
 
 
 elif menu == "OLT Check":
