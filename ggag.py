@@ -2,6 +2,8 @@ import streamlit as st
 import streamlit.components.v1 as components
 import json
 import webbrowser
+import pyperclip
+
 
 # 서브넷 마스크와 CIDR 형식 대응표
 subnet_options = {
@@ -286,7 +288,8 @@ elif menu == "광3종":
             commands2 = [
                 f"sh pon onu-ddm {user_input2}",
                 f"sh pon top onu {user_input2}",
-                f"sh pon stats onu-crc {user_input2}\n"
+                f"sh pon stats onu-crc {user_input2}",
+                f"clear pon statistics {user_input2}\n"
                 
             ]
         else:
@@ -319,6 +322,26 @@ elif menu == "광3종":
         st.write("■ 다산 ----------")
         for cmd in commands3:
             st.write(cmd)
+            
+    # 제목
+    st.title("광레벨 입력 및 출력")
+
+    # 입력 받기
+    ddm = st.text_input("DDM 값 입력", "-12.11")
+    rssi = st.text_input("RSSI 값 입력", "-24.32")
+    crc = st.text_input("CRC 값 입력", "0")
+
+    # 조합된 출력 생성
+    output = f"#광레벨   DDM : {ddm}  / RSSI : {rssi}  / CRC : {crc}"
+
+    # 출력 화면 표시
+    st.write(output)
+
+    # 클립보드 복사 버튼
+    if st.button("클립보드에 복사"):
+        pyperclip.copy(output)
+        st.success("클립보드에 복사되었습니다!")
+
 
 elif menu == "OLT Check":
     st.header("OLT Check")
