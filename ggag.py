@@ -345,7 +345,7 @@ elif menu == "광3종":
     # 안내 문구
     #st.info("위 텍스트를 선택한 후 복사(Ctrl+C 또는 Cmd+C)하여 사용하세요.")
     
-    <button id="copy-button_optic">클립보드에 복사</button>
+    <button id="copy-button">클립보드에 복사</button>
     # 출력된 텍스트와 복사 버튼을 HTML로 삽입
     st.write(output)
     components.html(copy_script, height=100)
