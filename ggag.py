@@ -323,7 +323,8 @@ elif menu == "광3종":
         for cmd in commands3:
             st.write(cmd)
             
-    import streamlit as st
+    
+
 
     # 제목
     st.header("광레벨 입력 및 출력")
@@ -339,17 +340,29 @@ elif menu == "광3종":
     # 출력 화면 표시
     st.write(output)
 
-    # 클립보드에 복사할 수 있도록 사용자에게 출력 결과를 강조해서 표시
+    # 클립보드에 복사할 수 있도록 텍스트를 text_area로 표시
     st.text_area("클립보드에 복사할 텍스트", output)
 
-    # 안내 문구
-    #st.info("위 텍스트를 선택한 후 복사(Ctrl+C 또는 Cmd+C)하여 사용하세요.")
-    
-    <button id="copy-button">클립보드에 복사</button>
-    # 출력된 텍스트와 복사 버튼을 HTML로 삽입
-    st.write(output)
-    components.html(copy_script, height=100)
+    # JavaScript로 클립보드 복사 기능 구현
+    clipboard_script = f"""
+        <script>
+        function copyToClipboard(text) {{
+            var tempInput = document.createElement('textarea');
+            tempInput.value = text;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            alert('클립보드에 복사되었습니다!');
+        }}
+        </script>
+        <button onclick="copyToClipboard('{output}')">클립보드에 복사</button>
+    """
 
+    # HTML 삽입
+    st.markdown(clipboard_script, unsafe_allow_html=True)
+
+    
 
 
 elif menu == "OLT Check":
