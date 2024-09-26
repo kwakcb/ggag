@@ -336,7 +336,7 @@ elif menu == "광3종":
     output = f"#광레벨   DDM : {ddm}  / RSSI : {rssi}  / CRC : {crc}"
 
     # 출력 화면 표시
-    st.write(output)
+    #st.write(output)
 
     # 클립보드에 복사할 수 있도록 텍스트를 text_area로 표시
     st.text_area("클립보드에 복사할 텍스트", output, height=100)
