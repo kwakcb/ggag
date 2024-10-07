@@ -289,7 +289,7 @@ elif menu == "광3종":
                 f"sh pon onu-ddm {user_input2}",
                 f"sh pon top onu {user_input2}",
                 f"sh pon stats onu-crc {user_input2}",
-                f"clear pon statistics {user_input2}\n"
+                f"clear pon statistics counter {user_input2}\n"
                 
             ]
         else:
@@ -362,7 +362,11 @@ elif menu == "OLT Check":
         "sh mac-address-table pon1/1\n"
         "sh ip dhcp snoop binding\n"
         "sh ip igmp snoop table group\n"
-        "sh ip pim neighbor\n\n"
+        "sh ip pim neighbor\n"
+        "동원소용량\n"
+        "sh ip dhcp statistics\n"
+        "sh ip igmp snooping gro\n"
+        "sh ip pim sparse-mode neighbor detail\n\n"
         "[유비]\n"
         "sh slot\n"
         "sh pon onu ddm 1/1-1\n"
@@ -401,8 +405,19 @@ elif menu == "L2 Check":
         "sh port status",
         "sh port statistics avg-pps",
         "sh port statistics rmon",
-        "(bridge)# port ena 1-24",
-        "sh cable-length"
+        "sh rate",
+        "sh max-hosts ",
+        "sh cable-length",
+        "=========================",
+        "bridge",
+        "port ena 1-24",
+        "rate-limit port 1-24 rate 1000000 ingress dot3x",
+        "rate-limit port 1-24 rate 1000000 egress",
+        "rate-limit port 1-24 rate 520000 ingress dot3x",
+        "rate-limit port 1-24 rate 520000 egress",
+        "rate-limit port 1-24 rate 104000 ingress dot3x",
+        "rate-limit port 1-24 rate 104000 egress"
+        
         
     ]
 
@@ -415,8 +430,50 @@ elif menu == "L2 Check":
         "sh port status",
         "sh port statistics avg type",
         "sh port statistics rmon",
-        "(config)#range port",
-        "sh port phy-diag"
+         "sh rate",
+        "sh max-hosts",
+        "sh port phy-diag",
+        "=========================",
+        "username root password mos119!",
+        "enable password mos119!",
+        "range port",
+        "no shutdown gi1-24",
+        "rate-limit ingress 999999 gi1-24",
+        "rate-limit egress 999999 gi1-24",
+        "interface gi1"
+       
+    ]
+    
+    commands_multiroom = [
+        "TIE / 멀티룸팩",
+        "5G-GES Sxxxxxxx",
+        "UTP4 Gxxxxxxx",
+        "UTP2 GxxxUxxx",
+        "Extender연결 GxxxBxxx",
+        "UTP2 10G업링크 GxxxXxxx",
+        "통합형 GxxxLxxx",
+        10G업링크멀티룸 GxxxKxxx",
+        "중계용 GxxxTxxx",
+        "WIFI GxxxWxxx",
+        "1:8 H 업링크 9/18/24",
+        "1:5 N 업링크 6/12/18/24",
+        "1:3 M 업링크 4/8/12/16/20/24",
+        "range port",
+        "switchport access vlan 2 gi7-12",
+        "switchport access vlan 3 gi13-18",
+        "switchport access vlan 4 gi19-24",
+        "mac-count 8 gi1-5, gi7-11, gi13-17, gi19-23",
+        "flow-control on tx-rx gi6, gi12, gi18, gi24",
+        "cpu-mac-filter enable gi1-5, gi7-11, gi13-17, gi19-23",
+        "traffic-control pps unicast inbound 20000 10000 block-mode gi1-5, gi7-11, gi13-17, gi19-23",
+        "traffic-control pps multicast inbound 300 50 block-mode gi1-5, gi7-11, gi13-17, gi19-23",
+        "traffic-control pps broadcast inbound 100 50 block-mode gi1-5, gi7-11, gi13-17, gi19-23",
+        "filter dhcp gi1-5, gi7-11, gi13-17, gi19-23",
+        "filter netbios gi1-24",
+        "igmp-trap gi1-24",
+        "self-loop-detection system gi1-5, gi7-11, gi13-17, gi19-23",
+        "ip igmp snoop-filter 1 gi1-5, gi7-11, gi13-17, gi19-23",
+        "ip arp inspection arp-trap-forward gi1-5, gi7-11, gi13-17, gi19-23"
     ]
 
     commands_L2Log = [
