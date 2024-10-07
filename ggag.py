@@ -452,7 +452,7 @@ elif menu == "L2 Check":
         "Extender연결 GxxxBxxx",
         "UTP2 10G업링크 GxxxXxxx",
         "통합형 GxxxLxxx",
-        10G업링크멀티룸 GxxxKxxx",
+        "10G업링크멀티룸 GxxxKxxx",
         "중계용 GxxxTxxx",
         "WIFI GxxxWxxx",
         "1:8 H 업링크 9/18/24",
