@@ -569,19 +569,114 @@ if menu == "IP SETTING":
     # 버튼 클릭 시 설정 텍스트 출력
     if st.button("설정 저장"):
         if ip_address and gateway:
-            config_text = ""
+            if model == "U3024B":
+                config_text = f"""
+                [U3024B] 
 
-            # (모델별 설정 로직은 생략)
+                conf t
+                int vlan1
+                ip address {ip_address}{cidr}
+                exit
+                ip default-gateway {gateway}
+                exit
+                wr m
+                """
+            
+            elif model == "E5624R":
+                config_text = f"""
+                [E5624R] 
 
-            # 기존 설정 출력
-            st.subheader("기존 설정")
-            st.write(f"기존 IP: {old_ip_address}")
-            st.write(f"기존 서브넷 마스크: {old_subnet_mask}")
-            st.write(f"기존 GW: {old_gateway}")
+                conf t
+                int vlan1
+                no ip dhcp
+                ip address {ip_address}{cidr}
+                exit
+                ip default-gateway {gateway}
+                exit
+                wr m
+                """
+
+            elif model == "MVD10024":
+                config_text = f"""
+                [MVD10024] 
+
+                conf t
+                int vlan1
+                ip address {ip_address} {subnet_mask}
+                exit
+                ip route 0.0.0.0 0.0.0.0 {gateway}
+                exit
+                wr m
+                """
+            
+            elif model == "V5972":
+                config_text = f"""
+                [V5972]
+
+                conf t
+                ip route 0.0.0.0/0 {gateway}
+                int br1
+                no shutdown
+                ip address {ip_address}{cidr}
+                end
+                wr m
+                """
+
+            elif model == "V2724GB":
+                config_text = f"""
+                [V2724GB] 
+
+                conf t
+                ip route 0.0.0.0/0 {gateway}
+                int default
+                ip address {ip_address}{cidr} pri
+                end
+                wr m
+                """
+
+
+            elif model == "V2708GA":
+                config_text = f"""
+                [V2708GA] 
+
+                conf t
+                ip route 0.0.0.0 0.0.0.0 {gateway}
+                int mgmt
+                ip address {ip_address}{cidr}
+                end
+                wr m
+                """
+
+            elif model == "V3024V":
+                config_text = f"""
+                [V3024V] 
+
+                conf t
+                ip route 0.0.0.0 0.0.0.0 {gateway}
+                int vlan1
+                ip address {ip_address}{cidr}
+                end
+                wr m
+                """
+
+            elif model == "V5124F":
+                config_text = f"""
+                [V5124F] 
+
+                conf t
+                ip route 0.0.0.0/0 {gateway}
+                int bridge
+                set port nego 25-26 off
+                exit
+                int br2
+                ip address {ip_address}{cidr}
+                end
+                wr m
+                """
 
             st.code(config_text)
         else:
-            st.error("새 IP 주소와 게이트웨이를 입력해주세요.")
+            st.error("IP 주소, 서브넷 마스크, 게이트웨이를 모두 입력해주세요.")
 
     # 이미지 URL
     image_url = "https://github.com/kwakcb/ggag/blob/main/ip_band.png?raw=true"
