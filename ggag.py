@@ -39,7 +39,7 @@ if 'dispatch_info' not in st.session_state:
 # 사이드바에 메뉴 생성
 menu = st.sidebar.radio(
     "",
-    ("Home", "고장상황", "OLT-L2 Link", "광3종", "OLT Check", "L2 Check", "IP SETING", "OPR", "10G","ftp긴급복구","U4224B_SDN","각종일지")
+    ("Home", "고장상황", "OLT-L2 Link", "광3종", "OLT Check", "L2 Check", "IP SETTING", "OPR", "10G","ftp긴급복구","U4224B_SDN","각종일지")
 )
 
 if menu == "Home":
