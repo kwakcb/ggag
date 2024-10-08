@@ -514,16 +514,15 @@ elif menu == "L2 Check":
         st.write(cmd)
 
 
-menu = "IP SETTING"
 
-if menu == "IP SETTING":
-    st.header("IP SETTING")
+else if menu == "IP SETTING":
+    st.header("■ IP SETTING")
 
     # 장비 모델 선택을 위한 드롭다운 메뉴
     model = st.selectbox("장비 모델을 선택하세요", ["U3024B", "E5624R", "MVD10024", "V5972", "V2724GB", "V2708GA", "V3024V", "V5124F"], key="model")
 
     # 서브넷 마스크와 CIDR 형식 대응표를 화면에 표시
-    st.subheader("서브넷 마스크")
+    st.subheader("-서브넷 마스크")
     st.markdown("""\
     /24 : 255.255.255.0  
     /25 : 255.255.255.128  
@@ -535,23 +534,23 @@ if menu == "IP SETTING":
     """)
 
     # 새로운 IP, 서브넷 마스크, 게이트웨이 입력 필드
-    st.subheader("새 설정 입력")
+    st.subheader("- 신규IP")
     col1, col2, col3 = st.columns(3)
 
     with col1:
-        ip_address = st.text_input("새 IP", key="new_ip")
+        ip_address = st.text_input("신규IP", key="new_ip")
 
     with col2:
         if model in ["U3024B", "E5624R", "V5972", "V2724GB", "V2708GA", "V3024V", "V5124F"]:
-            cidr = st.selectbox("새 서브넷 마스크 (CIDR)", ["/24", "/25", "/26", "/27", "/28", "/29", "/30"], key="new_cidr")
+            cidr = st.selectbox("신규S/M (CIDR)", ["/24", "/25", "/26", "/27", "/28", "/29", "/30"], key="new_cidr")
         else:
-            subnet_mask = st.text_input("새 서브넷 마스크", key="new_subnet_mask")
+            subnet_mask = st.text_input("신규S/M", key="new_subnet_mask")
 
     with col3:
-        gateway = st.text_input("새 GW", key="new_gateway")
+        gateway = st.text_input("신규GW", key="new_gateway")
 
     # 기존 IP, 서브넷 마스크, 게이트웨이 입력 필드
-    st.subheader("기존 설정 입력")
+    st.subheader("- 기존IP ")
     col4, col5, col6 = st.columns(3)
 
     with col4:
@@ -564,7 +563,7 @@ if menu == "IP SETTING":
             old_subnet_mask = st.text_input("기존 S/M", key="old_subnet_mask")
 
     with col6:
-        old_gateway = st.text_input("기존 GW", key="old_gateway")
+        old_gateway = st.text_input("기존GW", key="old_gateway")
 
     # 버튼 클릭 시 설정 텍스트 출력
     if st.button("설정 저장"):
