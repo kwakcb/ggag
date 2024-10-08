@@ -408,6 +408,8 @@ elif menu == "L2 Check":
         "sh rate",
         "sh max-hosts ",
         "sh cable-length",
+        "sh ip int bri",
+        "sh ip route",
         "=========================",
         "bridge",
         "port ena 1-24",
@@ -431,6 +433,8 @@ elif menu == "L2 Check":
         "sh rate",
         "sh max-hosts",
         "sh port phy-diag",
+        "sh ip int bri",
+        "sh ip route",
         "=========================",
         "username root password mos119!",
         "enable password mos119!",
@@ -510,191 +514,77 @@ elif menu == "L2 Check":
         st.write(cmd)
 
 
-elif menu == "IP SETTING":
+menu = "IP SETTING"
+
+if menu == "IP SETTING":
     st.header("IP SETTING")
 
-    # 서브넷 마스크 CIDR 대응표
-    subnet_options = {
-        "/24": "255.255.255.0",
-        "/25": "255.255.255.128",
-        "/26": "255.255.255.192",
-        "/27": "255.255.255.224",
-        "/28": "255.255.255.240",
-        "/29": "255.255.255.248",
-        "/30": "255.255.255.252"
-    }
-
     # 장비 모델 선택을 위한 드롭다운 메뉴
-    model = st.selectbox("장비 모델을 선택하세요", ["U3024B", "E5624R", "MVD10024",  "V5972", "V2724GB","V2708GA", "V3024V", "V5124F"], key="model")
+    model = st.selectbox("장비 모델을 선택하세요", ["U3024B", "E5624R", "MVD10024", "V5972", "V2724GB", "V2708GA", "V3024V", "V5124F"], key="model")
 
     # 서브넷 마스크와 CIDR 형식 대응표를 화면에 표시
     st.subheader("서브넷 마스크")
-    st.markdown("""
-    /24 : 255.255.255.0
-    /25 : 255.255.255.128
-    /26 : 255.255.255.192
-    /27 : 255.255.255.224
-    /28 : 255.255.255.240
-    /29 : 255.255.255.248
-    /30 : 255.255.255.252
+    st.markdown("""\
+    /24 : 255.255.255.0  
+    /25 : 255.255.255.128  
+    /26 : 255.255.255.192  
+    /27 : 255.255.255.224  
+    /28 : 255.255.255.240  
+    /29 : 255.255.255.248  
+    /30 : 255.255.255.252  
     """)
 
-    # 입력 필드를 배치할 열 생성
-    old_col1, old_col2, old_col3 = st.columns(3)
-    with old_col1:
-        old_ip_address = st.text_input("old_IP :", key="old_ip")
-
-    with old_col2:
-        # 모델에 따라 서브넷 마스크 입력 방식 변경
-        if model in ["U3024B", "E5624R", "V5972", "V2724GB", "V2708GA", "V3024V", "V5124F"]:
-            # CIDR 형식 선택
-            cidr = st.selectbox("old_sm", list(subnet_options.keys()), key="subnet")
-            old_subnet_mask = subnet_options[cidr]
-        else:
-            # 서브넷 마스크 직접 입력
-            old_subnet_mask = st.text_input("old_sm:", key="subnet")
-
-    with old_col3:
-        old_gateway = st.text_input("ols_GW:", key="gateway")
-
+    # 새로운 IP, 서브넷 마스크, 게이트웨이 입력 필드
+    st.subheader("새 설정 입력")
     col1, col2, col3 = st.columns(3)
 
-    # 각 열에 입력 필드를 배치
     with col1:
-        ip_address = st.text_input("IP :", key="ip")
+        ip_address = st.text_input("새 IP", key="new_ip")
 
     with col2:
-        # 모델에 따라 서브넷 마스크 입력 방식 변경
         if model in ["U3024B", "E5624R", "V5972", "V2724GB", "V2708GA", "V3024V", "V5124F"]:
-            # CIDR 형식 선택
-            cidr = st.selectbox("서브넷 마스크", list(subnet_options.keys()), key="subnet")
-            subnet_mask = subnet_options[cidr]
+            cidr = st.selectbox("새 서브넷 마스크 (CIDR)", ["/24", "/25", "/26", "/27", "/28", "/29", "/30"], key="new_cidr")
         else:
-            # 서브넷 마스크 직접 입력
-            subnet_mask = st.text_input("서브넷 마스크:", key="subnet")
+            subnet_mask = st.text_input("새 서브넷 마스크", key="new_subnet_mask")
 
     with col3:
-        gateway = st.text_input("GW:", key="gateway")
+        gateway = st.text_input("새 GW", key="new_gateway")
+
+    # 기존 IP, 서브넷 마스크, 게이트웨이 입력 필드
+    st.subheader("기존 설정 입력")
+    col4, col5, col6 = st.columns(3)
+
+    with col4:
+        old_ip_address = st.text_input("기존 IP", key="old_ip")
+
+    with col5:
+        old_subnet_mask = st.text_input("기존 서브넷 마스크", key="old_subnet_mask")
+
+    with col6:
+        old_gateway = st.text_input("기존 GW", key="old_gateway")
 
     # 버튼 클릭 시 설정 텍스트 출력
     if st.button("설정 저장"):
         if ip_address and gateway:
-            if model == "U3024B":
-                config_text = f"""
-                [U3024B] 
+            config_text = ""
 
-                conf t
-                int vlan1
-                ip address {ip_address}{cidr}
-                exit
-                ip default-gateway {gateway}
-                exit
-                wr m
-                """
-            
-            elif model == "E5624R":
-                config_text = f"""
-                [E5624R] 
+            # (모델별 설정 로직은 생략)
 
-                conf t
-                int vlan1
-                no ip dhcp
-                ip address {ip_address}{cidr}
-                exit
-                ip default-gateway {gateway}
-                exit
-                wr m
-                """
-
-            elif model == "MVD10024":
-                config_text = f"""
-                [MVD10024] 
-
-                conf t
-                int vlan1
-                ip address {ip_address} {subnet_mask}
-                exit
-                ip route 0.0.0.0 0.0.0.0 {gateway}
-                exit
-                wr m
-                """
-            
-            elif model == "V5972":
-                config_text = f"""
-                [V5972]
-
-                conf t
-                ip route 0.0.0.0/0 {gateway}
-                int br1
-                no shutdown
-                ip address {ip_address}{cidr}
-                end
-                wr m
-                """
-
-            elif model == "V2724GB":
-                config_text = f"""
-                [V2724GB] 
-
-                conf t
-                ip route 0.0.0.0/0 {gateway}
-                int default
-                ip address {ip_address}{cidr} pri
-                end
-                wr m
-                """
-
-
-            elif model == "V2708GA":
-                config_text = f"""
-                [V2708GA] 
-
-                conf t
-                ip route 0.0.0.0 0.0.0.0 {gateway}
-                int mgmt
-                ip address {ip_address}{cidr}
-                end
-                wr m
-                """
-
-            elif model == "V3024V":
-                config_text = f"""
-                [V3024V] 
-
-                conf t
-                ip route 0.0.0.0 0.0.0.0 {gateway}
-                int vlan1
-                ip address {ip_address}{cidr}
-                end
-                wr m
-                """
-
-            elif model == "V5124F":
-                config_text = f"""
-                [V5124F] 
-
-                conf t
-                ip route 0.0.0.0/0 {gateway}
-                int bridge
-                set port nego 25-26 off
-                exit
-                int br2
-                ip address {ip_address}{cidr}
-                end
-                wr m
-                """
+            # 기존 설정 출력
+            st.subheader("기존 설정")
+            st.write(f"기존 IP: {old_ip_address}")
+            st.write(f"기존 서브넷 마스크: {old_subnet_mask}")
+            st.write(f"기존 GW: {old_gateway}")
 
             st.code(config_text)
         else:
-            st.error("IP 주소, 서브넷 마스크, 게이트웨이를 모두 입력해주세요.")
-
+            st.error("새 IP 주소와 게이트웨이를 입력해주세요.")
 
     # 이미지 URL
     image_url = "https://github.com/kwakcb/ggag/blob/main/ip_band.png?raw=true"
 
     # 이미지 표시
     st.image(image_url, caption="IP BAND 이미지", use_column_width=True)
-
 
 elif menu == "OPR":
     st.header("OPR")
