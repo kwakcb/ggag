@@ -558,7 +558,10 @@ if menu == "IP SETTING":
         old_ip_address = st.text_input("기존 IP", key="old_ip")
 
     with col5:
-        old_subnet_mask = st.text_input("기존 서브넷 마스크", key="old_subnet_mask")
+        if model in ["U3024B", "E5624R", "V5972", "V2724GB", "V2708GA", "V3024V", "V5124F"]:
+            old_cidr = st.selectbox("기존S/M (CIDR)", ["/24", "/25", "/26", "/27", "/28", "/29", "/30"], key="old_cidr")
+        else:
+            old_subnet_mask = st.text_input("기존 S/M", key="old_subnet_mask")
 
     with col6:
         old_gateway = st.text_input("기존 GW", key="old_gateway")
