@@ -617,8 +617,8 @@ elif menu == "IP SETTING":
                 config_text += "[V5972]\n\n"
                 config_text += "conf t\n"
                 if old_gateway:  # 기존 gw 입력이 있을 경우
-                    config_text += f"no ip route 0.0.0.0 0.0.0.0 {old_gateway}\n"
-                config_text += "ip route 0.0.0.0/0 {gateway}\n"
+                    config_text += f"no ip route 0.0.0.0/0 {old_gateway}\n"
+                config_text += f"ip route 0.0.0.0/0 {gateway}\n"
                 config_text += "int br1\n"
                 config_text += "no shutdown\n"
                 if old_ip_address:  # 기존 IP 입력이 있을 경우
@@ -632,7 +632,7 @@ elif menu == "IP SETTING":
                 config_text += "conf t\n"
                 if old_gateway:  # 기존 gw 입력이 있을 경우
                     config_text += f"no ip route 0.0.0.0/0 {old_gateway}\n"
-                config_text += "ip route 0.0.0.0/0 {gateway}\n"
+                config_text += f"ip route 0.0.0.0/0 {gateway}\n"
                 config_text += "int default\n"
                 if old_ip_address:  # 기존 IP 입력이 있을 경우
                     config_text += f"no ip address {old_ip_address}{old_cidr}\n"
@@ -645,7 +645,7 @@ elif menu == "IP SETTING":
                 config_text += "conf t\n"
                 if old_gateway:  # 기존 gw 입력이 있을 경우
                     config_text += f"no ip route 0.0.0.0 0.0.0.0 {old_gateway}\n"
-                config_text += "ip route 0.0.0.0 0.0.0.0 {gateway}\n"
+                config_text += f"ip route 0.0.0.0 0.0.0.0 {gateway}\n"
                 config_text += "int mgmt\n"
                 if old_ip_address:  # 기존 IP 입력이 있을 경우
                     config_text += f"no ip address {old_ip_address}{old_cidr}\n"
@@ -658,7 +658,7 @@ elif menu == "IP SETTING":
                 config_text += "conf t\n"
                 if old_gateway:  # 기존 gw 입력이 있을 경우
                     config_text += f"no ip route 0.0.0.0 0.0.0.0 {old_gateway}\n"
-                config_text += "ip route 0.0.0.0 0.0.0.0 {gateway}\n"
+                config_text += f"ip route 0.0.0.0 0.0.0.0 {gateway}\n"
                 config_text += "int vlan1\n"
                 if old_ip_address:  # 기존 IP 입력이 있을 경우
                     config_text += f"no ip address {old_ip_address}{old_cidr}\n"
@@ -671,7 +671,7 @@ elif menu == "IP SETTING":
                 config_text += "conf t\n"
                 if old_gateway:  # 기존 gw 입력이 있을 경우
                     config_text += f"no ip route 0.0.0.0 0.0.0.0 {old_gateway}\n"
-                config_text += "ip route 0.0.0.0/0 {gateway}\n"
+                config_text += f"ip route 0.0.0.0/0 {gateway}\n"
                 config_text += "int bridge\n"
                 config_text += "set port nego 25-26 off\n"
                 config_text += "exit\n"
