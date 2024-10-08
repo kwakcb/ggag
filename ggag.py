@@ -417,8 +417,6 @@ elif menu == "L2 Check":
         "rate-limit port 1-24 rate 520000 egress",
         "rate-limit port 1-24 rate 104000 ingress dot3x",
         "rate-limit port 1-24 rate 104000 egress"
-        
-        
     ]
 
     commands_yubi = [
@@ -430,7 +428,7 @@ elif menu == "L2 Check":
         "sh port status",
         "sh port statistics avg type",
         "sh port statistics rmon",
-         "sh rate",
+        "sh rate",
         "sh max-hosts",
         "sh port phy-diag",
         "=========================",
@@ -441,9 +439,8 @@ elif menu == "L2 Check":
         "rate-limit ingress 999999 gi1-24",
         "rate-limit egress 999999 gi1-24",
         "interface gi1"
-       
     ]
-    
+
     commands_multiroom = [
         "TIE / 멀티룸팩",
         "5G-GES Sxxxxxxx",
@@ -503,13 +500,11 @@ elif menu == "L2 Check":
     st.write("■ 유비 L2 ---")
     for cmd in commands_yubi:
         st.write(cmd) 
-        
+
     st.write("■ Multiroom ---")
-        for cmd in commands_multiroom:
+    for cmd in commands_multiroom:
         st.write(cmd) 
-        
-        
-        
+
     st.write("■ L2 Log ---")
     for cmd in commands_L2Log:
         st.write(cmd)
