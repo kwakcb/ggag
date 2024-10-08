@@ -569,17 +569,16 @@ elif menu == "IP SETTING":
     if st.button("설정 저장"):
         if ip_address and gateway:
             if model == "U3024B":
-                config_text = f"""
-                [U3024B] 
-
-                conf t
-                int vlan1
-                ip address {ip_address}{cidr}
-                exit
-                ip default-gateway {gateway}
-                exit
-                wr m
-                """
+                config_text += "[U3024B]\n\n"
+                config_text += "conf t\n"
+                if old_ip_address:  # 기존 IP 입력이 있을 경우
+                config_text += f"no ip address {old_ip_address}{old_cidr}\n"
+                config_text += f"int vlan1\n"
+                config_text += f"ip address {ip_address}{cidr}\n"
+                config_text += "exit\n"
+                config_text += f"ip default-gateway {gateway}\n"
+                config_text += "exit\n"
+                config_text += "wr m\n"
             
             elif model == "E5624R":
                 config_text = f"""
