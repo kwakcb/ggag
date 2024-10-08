@@ -696,7 +696,6 @@ elif menu == "IP SETTING":
     st.image(image_url, caption="IP BAND 이미지", use_column_width=True)
 
 
-
 elif menu == "OPR":
     st.header("OPR")
 
