@@ -682,9 +682,9 @@ elif menu == "IP SETTING":
                 config_text += "end\n"
                 config_text += "wr m\n"
             
-        st.code(config_text)
-        else:
-        st.error("IP 주소, 서브넷 마스크, 게이트웨이를 모두 입력해주세요.")
+            st.code(config_text)
+            else:
+            st.error("IP 주소, 서브넷 마스크, 게이트웨이를 모두 입력해주세요.")
 
     # 이미지 URL
     image_url = "https://github.com/kwakcb/ggag/blob/main/ip_band.png?raw=true"
