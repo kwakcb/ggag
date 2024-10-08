@@ -578,7 +578,7 @@ elif menu == "IP SETTING":
                 config_text += f"int vlan1\n"
                 config_text += f"ip address {ip_address}{cidr}\n"
                 config_text += "exit\n"
-                if old_gw:  # 기존 gw 입력이 있을 경우
+                if old_gateway:  # 기존 gw 입력이 있을 경우
                     config_text += f"no ip default-gateway {old_gateway}\n"
                 config_text += f"ip default-gateway {gateway}\n"
                 config_text += "exit\n"
