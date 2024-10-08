@@ -515,7 +515,7 @@ elif menu == "L2 Check":
 
 
 
-else if menu == "IP SETTING":
+elif menu == "IP SETTING":
     st.header("■ IP SETTING")
 
     # 장비 모델 선택을 위한 드롭다운 메뉴
