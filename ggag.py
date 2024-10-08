@@ -568,6 +568,8 @@ elif menu == "IP SETTING":
     # 버튼 클릭 시 설정 텍스트 출력
     if st.button("설정 저장"):
         if ip_address and gateway:
+             # config_text 변수를 초기화합니다.
+            config_text = ""
             if model == "U3024B":
                 config_text += "[U3024B]\n\n"
                 config_text += "conf t\n"
@@ -576,6 +578,8 @@ elif menu == "IP SETTING":
                 config_text += f"int vlan1\n"
                 config_text += f"ip address {ip_address}{cidr}\n"
                 config_text += "exit\n"
+                if old_gw:  # 기존 gw 입력이 있을 경우
+                    config_text += f"no ip default-gateway {old_gateway}\n"
                 config_text += f"ip default-gateway {gateway}\n"
                 config_text += "exit\n"
                 config_text += "wr m\n"
