@@ -573,9 +573,9 @@ elif menu == "IP SETTING":
             if model == "U3024B":
                 config_text += "[U3024B]\n\n"
                 config_text += "conf t\n"
+                config_text += f"int vlan1\n"
                 if old_ip_address:  # 기존 IP 입력이 있을 경우
                     config_text += f"no ip address {old_ip_address}{old_cidr}\n"
-                config_text += f"int vlan1\n"
                 config_text += f"ip address {ip_address}{cidr}\n"
                 config_text += "exit\n"
                 if old_gateway:  # 기존 gw 입력이 있을 경우
@@ -585,100 +585,106 @@ elif menu == "IP SETTING":
                 config_text += "wr m\n"
             
             elif model == "E5624R":
-                config_text = f"""
-                [E5624R] 
-
-                conf t
-                int vlan1
-                no ip dhcp
-                ip address {ip_address}{cidr}
-                exit
-                ip default-gateway {gateway}
-                exit
-                wr m
-                """
+                config_text += "[E5624R]\n\n"
+                config_text += "conf t\n"
+                config_text += "int vlan1\n"
+                if old_ip_address:  # 기존 IP 입력이 있을 경우
+                    config_text += f"no ip address {old_ip_address}{old_cidr}\n"
+                config_text += "no ip dhcp\n"
+                config_text += f"ip address {ip_address}{cidr}\n"
+                config_text += "exit\n"
+                if old_gateway:  # 기존 gw 입력이 있을 경우
+                    config_text += f"no ip default-gateway {old_gateway}\n"
+                config_text += f"ip default-gateway {gateway}\n"
+                config_text += "exit\n"
+                config_text += "wr m\n"
 
             elif model == "MVD10024":
-                config_text = f"""
-                [MVD10024] 
+                config_text += "[MVD10024]\n\n"
+                config_text += "conf t\n"
+                config_text += "int vlan1\n"
+                if old_ip_address:  # 기존 IP 입력이 있을 경우
+                    config_text += f"no ip address {old_ip_address} {old_subnet_mask}\n"
+                config_text += f"ip address {ip_address} {subnet_mask}\n"
+                config_text += "exit\n"
+                if old_gateway:  # 기존 gw 입력이 있을 경우
+                    config_text += f"no ip route 0.0.0.0 0.0.0.0 {old_gateway}\n"
+                config_text += f"ip route 0.0.0.0 0.0.0.0 {gateway}\n"
+                config_text += "exit\n"
+                config_text += "wr m\n"
 
-                conf t
-                int vlan1
-                ip address {ip_address} {subnet_mask}
-                exit
-                ip route 0.0.0.0 0.0.0.0 {gateway}
-                exit
-                wr m
-                """
-            
             elif model == "V5972":
-                config_text = f"""
-                [V5972]
-
-                conf t
-                ip route 0.0.0.0/0 {gateway}
-                int br1
-                no shutdown
-                ip address {ip_address}{cidr}
-                end
-                wr m
-                """
+                config_text += "[V5972]\n\n"
+                config_text += "conf t\n"
+                if old_gateway:  # 기존 gw 입력이 있을 경우
+                    config_text += f"no ip route 0.0.0.0 0.0.0.0 {old_gateway}\n"
+                config_text += "ip route 0.0.0.0/0 {gateway}\n"
+                config_text += "int br1\n"
+                config_text += "no shutdown\n"
+                if old_ip_address:  # 기존 IP 입력이 있을 경우
+                    config_text += f"no ip address {old_ip_address}{old_cidr}\n"
+                config_text += f"ip address {ip_address}{cidr}\n"
+                config_text += "end\n"
+                config_text += "wr m\n"
 
             elif model == "V2724GB":
-                config_text = f"""
-                [V2724GB] 
-
-                conf t
-                ip route 0.0.0.0/0 {gateway}
-                int default
-                ip address {ip_address}{cidr} pri
-                end
-                wr m
-                """
-
+                config_text += "[V2724GB]\n\n"
+                config_text += "conf t\n"
+                if old_gateway:  # 기존 gw 입력이 있을 경우
+                    config_text += f"no ip route 0.0.0.0/0 {old_gateway}\n"
+                config_text += "ip route 0.0.0.0/0 {gateway}\n"
+                config_text += "int default\n"
+                if old_ip_address:  # 기존 IP 입력이 있을 경우
+                    config_text += f"no ip address {old_ip_address}{old_cidr}\n"
+                config_text += f"ip address {ip_address}{cidr} pri\n"
+                config_text += "end\n"
+                config_text += "wr m\n"
 
             elif model == "V2708GA":
-                config_text = f"""
-                [V2708GA] 
-
-                conf t
-                ip route 0.0.0.0 0.0.0.0 {gateway}
-                int mgmt
-                ip address {ip_address}{cidr}
-                end
-                wr m
-                """
+                config_text += "[V2708GA]\n\n"
+                config_text += "conf t\n"
+                if old_gateway:  # 기존 gw 입력이 있을 경우
+                    config_text += f"no ip route 0.0.0.0 0.0.0.0 {old_gateway}\n"
+                config_text += "ip route 0.0.0.0 0.0.0.0 {gateway}\n"
+                config_text += "int mgmt\n"
+                if old_ip_address:  # 기존 IP 입력이 있을 경우
+                    config_text += f"no ip address {old_ip_address}{old_cidr}\n"
+                config_text += f"ip address {ip_address}{cidr}\n"
+                config_text += "end\n"
+                config_text += "wr m\n"
 
             elif model == "V3024V":
-                config_text = f"""
-                [V3024V] 
-
-                conf t
-                ip route 0.0.0.0 0.0.0.0 {gateway}
-                int vlan1
-                ip address {ip_address}{cidr}
-                end
-                wr m
-                """
+                config_text += "[V3024V]\n\n"
+                config_text += "conf t\n"
+                if old_gateway:  # 기존 gw 입력이 있을 경우
+                    config_text += f"no ip route 0.0.0.0 0.0.0.0 {old_gateway}\n"
+                config_text += "ip route 0.0.0.0 0.0.0.0 {gateway}\n"
+                config_text += "int vlan1\n"
+                if old_ip_address:  # 기존 IP 입력이 있을 경우
+                    config_text += f"no ip address {old_ip_address}{old_cidr}\n"
+                config_text += f"ip address {ip_address}{cidr}\n"
+                config_text += "end\n"
+                config_text += "wr m\n"
 
             elif model == "V5124F":
-                config_text = f"""
-                [V5124F] 
-
-                conf t
-                ip route 0.0.0.0/0 {gateway}
-                int bridge
-                set port nego 25-26 off
-                exit
-                int br2
-                ip address {ip_address}{cidr}
-                end
-                wr m
-                """
-
-            st.code(config_text)
-        else:
-            st.error("IP 주소, 서브넷 마스크, 게이트웨이를 모두 입력해주세요.")
+                config_text += "[V5124F]\n\n"
+                config_text += "conf t\n"
+                if old_gateway:  # 기존 gw 입력이 있을 경우
+                    config_text += f"no ip route 0.0.0.0 0.0.0.0 {old_gateway}\n"
+                config_text += "ip route 0.0.0.0/0 {gateway}\n"
+                config_text += "int bridge\n"
+                config_text += "set port nego 25-26 off\n"
+                config_text += "exit\n"
+                config_text += "int br2\n"
+                if old_ip_address:  # 기존 IP 입력이 있을 경우
+                    config_text += f"no ip address {old_ip_address}{old_cidr}\n"
+                config_text += f"ip address {ip_address}{cidr}\n"
+                config_text += "end\n"
+                config_text += "wr m\n"
+            
+                st.code(config_text)
+            else:
+                st.error("IP 주소, 서브넷 마스크, 게이트웨이를 모두 입력해주세요.")
 
     # 이미지 URL
     image_url = "https://github.com/kwakcb/ggag/blob/main/ip_band.png?raw=true"
