@@ -502,8 +502,14 @@ elif menu == "L2 Check":
 
     st.write("■ 유비 L2 ---")
     for cmd in commands_yubi:
-        st.write(cmd)
-
+        st.write(cmd) 
+        
+    st.write("■ Multiroom ---")
+        for cmd in commands_multiroom:
+        st.write(cmd) 
+        
+        
+        
     st.write("■ L2 Log ---")
     for cmd in commands_L2Log:
         st.write(cmd)
@@ -528,6 +534,22 @@ elif menu == "IP SETING":
     """)
 
     # 입력 필드를 배치할 열 생성
+    old_col1, old_col2, old_col3 = st.columns(3)
+    with old_col1:
+        old_ip_address = st.text_input("old_IP :", key="old_ip")
+
+    with old_col2:
+        # 모델에 따라 서브넷 마스크 입력 방식 변경
+        if model in ["U3024B", "E5624R", "V5972", "V2724GB", "V2708GA", "V3024V", "V5124F"]:
+            # CIDR 형식 선택
+            cidr = st.selectbox("old_sm", list(subnet_options.keys()), key="subnet")
+            old_subnet_mask = subnet_options[cidr]
+        else:
+            # 서브넷 마스크 직접 입력
+            old_subnet_mask = st.text_input("old_sm:", key="subnet")
+
+    with old_col3:
+        old_gateway = st.text_input("ols_GW:", key="gateway")
     col1, col2, col3 = st.columns(3)
 
     # 각 열에 입력 필드를 배치
