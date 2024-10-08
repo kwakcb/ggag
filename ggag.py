@@ -572,7 +572,7 @@ elif menu == "IP SETTING":
                 config_text += "[U3024B]\n\n"
                 config_text += "conf t\n"
                 if old_ip_address:  # 기존 IP 입력이 있을 경우
-                config_text += f"no ip address {old_ip_address}{old_cidr}\n"
+                    config_text += f"no ip address {old_ip_address}{old_cidr}\n"
                 config_text += f"int vlan1\n"
                 config_text += f"ip address {ip_address}{cidr}\n"
                 config_text += "exit\n"
