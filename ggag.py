@@ -510,8 +510,19 @@ elif menu == "L2 Check":
         st.write(cmd)
 
 
-elif menu == "IP SETING":
+elif menu == "IP SETTING":
     st.header("IP SETTING")
+
+    # 서브넷 마스크 CIDR 대응표
+    subnet_options = {
+        "/24": "255.255.255.0",
+        "/25": "255.255.255.128",
+        "/26": "255.255.255.192",
+        "/27": "255.255.255.224",
+        "/28": "255.255.255.240",
+        "/29": "255.255.255.248",
+        "/30": "255.255.255.252"
+    }
 
     # 장비 모델 선택을 위한 드롭다운 메뉴
     model = st.selectbox("장비 모델을 선택하세요", ["U3024B", "E5624R", "MVD10024",  "V5972", "V2724GB","V2708GA", "V3024V", "V5124F"], key="model")
@@ -545,6 +556,7 @@ elif menu == "IP SETING":
 
     with old_col3:
         old_gateway = st.text_input("ols_GW:", key="gateway")
+
     col1, col2, col3 = st.columns(3)
 
     # 각 열에 입력 필드를 배치
