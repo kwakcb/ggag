@@ -39,7 +39,7 @@ if 'dispatch_info' not in st.session_state:
 # 사이드바에 메뉴 생성
 menu = st.sidebar.radio(
     "",
-    ("Home", "고장상황", "OLT-L2 Link", "광3종", "OLT Check", "L2 Check", "IP SETTING", "OPR", "10G","ftp긴급복구","U4224B_SDN","각종일지")
+    ("Home", "고장상황", "OLT-L2 Link", "OLT광3종", "OLT Check", "L2 Check", "IP SETTING", "OPR", "10G","ftp긴급복구","U4224B_SDN","각종일지")
 )
 
 if menu == "Home":
@@ -228,10 +228,11 @@ elif menu == "OLT-L2 Link":
     
     # 코드 블록을 표시합니다
     st.code("Link 현행화 중...")
+    st.code("DB현행화 중...")
     st.code("DB현행화 완료...")
     st.code("★ 장비교체 NeOSS, NMS, SDN 현행화 완료")
     st.code("★ 상황전파 수정요청")
-
+    st.code("★ 경보회복 되었습니다 ★")
     ip_address = st.text_input("■ [OLT LINK] Enter the L2 IP address")
     
     # 여러 개의 추가 텍스트 정의
@@ -251,7 +252,7 @@ elif menu == "OLT-L2 Link":
 
     SlotPortLink = st.text_input("Slot/Port-Link", key="LLID")
 
-elif menu == "광3종":
+elif menu == "OLT광3종":
     # st.header("광3종")
     st.header("ㅇ광3종")
     # 동원 입력값을 받습니다
