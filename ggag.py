@@ -417,8 +417,11 @@ elif menu == "L2 Check":
         "sh ip int bri",
         "sh ip route",
         "--- L2 diag ---",
+        "show syslog local non-volatile r | include fail",
+        "show syslog local non-volatile r | include FAIL",
+        "show syslog local non-volatile r | include Start UP",
+        "show port statistics rmon | include CRC",
         "sh sysl l n r",
-        "....? ",
         "--- modem reset ---",
         "(config/cpe)#cpe reset 1-24"
         "--- conf t ---",
