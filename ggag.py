@@ -74,6 +74,10 @@ if menu == "Home":
 .호:062-230-3355\n
 .부:051-464-2300\n
 .대:053-477-1985 \n\n
+
+※유선제어팀: neobiz_gmoscc_c1000_d3595@ktmos.co.kr
+​  -> L2/L3 정비요청 및 민원요청관련 업무 등
+
 """)
 # Display the clickable weather radar link
     st.markdown("[기상청 레이더 영상](https://www.weather.go.kr/w/image/radar.do)")
@@ -411,7 +415,12 @@ elif menu == "L2 Check":
         "sh cable-length",
         "sh ip int bri",
         "sh ip route",
-        "=========================",
+        "--- L2 diag ---",
+        "sh sysl l n r",
+        "....? ",
+        "--- modem reset ---",
+        "(config/cpe)#cpe reset 1-24"
+        "--- conf t ---",
         "bridge",
         "port ena 1-24",
         "rate-limit port 1-24 rate 1000000 ingress dot3x",
@@ -434,9 +443,18 @@ elif menu == "L2 Check":
         "sh rate",
         "sh max-hosts",
         "sh port phy-diag",
+        "--- L2 diag ---",
+        "sh logg back | inc gi1",
+        "sh port status",
+        "sh rmon statistics gi1",
+        "sh self-loop-detection", 
+        "clear counters gi1",
+        "--- ip/route check ---",
         "sh ip int bri",
         "sh ip route",
-        "=========================",
+        "--- modem reset ---",
+        "(config-range-port)#cpe reset gi1-24",
+        "--- conf t ---",
         "username root password mos119!",
         "enable password mos119!",
         "range port",
