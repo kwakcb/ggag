@@ -413,6 +413,7 @@ elif menu == "L2 Check":
         "sh rate",
         "sh max-hosts ",
         "sh cable-length",
+        "--- ip/route check ---",
         "sh ip int bri",
         "sh ip route",
         "--- L2 diag ---",
