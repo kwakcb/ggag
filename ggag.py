@@ -231,12 +231,20 @@ elif menu == "OLT-L2 Link":
     st.header("OLT-L2 Link")
     
     # 코드 블록을 표시합니다
+    st.code("DB현행화 중...") 
     st.code("Link 현행화 중...")
-    st.code("DB현행화 중...")
-    st.code("DB현행화 완료...")
+    st.code("DB현행화 완료")
     st.code("★ 장비교체 NeOSS, NMS, SDN 현행화 완료")
     st.code("★ 상황전파 수정요청")
-    st.code("★ 경보회복 되었습니다 ★")
+    st.code("★ PING복구 > MOSS자동회복 > 조치사항 입력 ")
+    st.code("★ 경보회복 되었습니다 ")
+    st.code("★ 연락처 수정완료 ")
+    
+    
+
+elif menu == "OLT광3종":
+    # st.header("광3종")
+    st.header("■ OLT광3종")
     ip_address = st.text_input("■ [OLT LINK] Enter the L2 IP address")
     
     # 여러 개의 추가 텍스트 정의
@@ -255,10 +263,7 @@ elif menu == "OLT-L2 Link":
             st.write(combined_text)
 
     SlotPortLink = st.text_input("Slot/Port-Link", key="LLID")
-
-elif menu == "OLT광3종":
-    # st.header("광3종")
-    st.header("ㅇOLT광3종")
+        
     # 동원 입력값을 받습니다
     user_input1 = st.text_input("-동원[MEGALITE,DWES0960]: S/P L", "1/1 1")
 
@@ -353,11 +358,13 @@ elif menu == "OLT광3종":
 elif menu == "OLT Check":
     st.header("OLT Check")
     
-    st.text("[동원]\n"
+    st.text("[동원 DW0960]\n"
         "sh slot\n"
         "sh system\n"
-        "소용량PIU:ge1,2,3,4,5,6/1~4\n"
-    	"대용량PIU:xe1,2,3,4,5,6,9,A,B,C/1~8\n"
+        "대용량PIU:xe1,2,3,4,5,6,9,A,B,C/1~8\n"
+        "sh epon port-status 12/4\n"
+        "sh epon onu-statistics pon 12/4 0\n"
+        "sh mac-address-table xe12/4 | inc 77f6\n"
         "sh epon servic-police 1/1 all\n"
         "sh epon ip-macs 1/1 all | inc a.b.c.d\n"
         "sh epon onu ddm 1/1 all\n"
@@ -368,11 +375,12 @@ elif menu == "OLT Check":
         "sh ip dhcp snoop binding\n"
         "sh ip igmp snoop table group\n"
         "sh ip pim neighbor\n"
-        "동원소용량\n"
+        "동원 MEGALITE\n"
+        "소용량PIU:ge1,2,3,4,5,6/1~4\n"
         "sh ip dhcp statistics\n"
         "sh ip igmp snooping gro\n"
         "sh ip pim sparse-mode neighbor detail\n\n"
-        "[유비]\n"
+        "[유비 U-9500H]\n"
         "sh slot\n"
         "sh pon onu ddm 1/1-1\n"
         "sh pon top onu 1/1\n"
@@ -387,7 +395,11 @@ elif menu == "OLT Check":
         "sh ip dhcp sno bin\n"
         "sh ip igmp sno tab rep\n"
         "sh ip pim sparse-mode neigbor\n\n"
-        "[다산]\n"
+        "[유비  U-9200A]\n"
+        "sh pon onu ddm 6/1-1\n" 
+        "sh pon top onu sum\n"
+        "sh pon statistics ave type 6/1\n\n"
+        "[다산 V5832XG]\n"
         "sh onu ddm epon 1/1\n"
         "sh olt rssi-info epon 1/1\n"
         "sh olt statistics epon 1/1\n"
@@ -423,7 +435,7 @@ elif menu == "L2 Check":
         "show port statistics rmon | include CRC",
         "sh sysl l n r",
         "--- modem reset ---",
-        "(config/cpe)#cpe reset 1-24"
+        "(config/cpe)#cpe reset 1-24",
         "--- conf t ---",
         "bridge",
         "port ena 1-24",
@@ -778,9 +790,8 @@ elif menu == "U4224B_SDN":
     st.header("U4224B_SDN")
 
     st.text("R114[X]->R104[O]\n"
-            "#copy ftp config\n"
             "#sh flash\n"
-            "#boot system os2 U4200.r104\n"
+            "#boot system os1 U4200.r104\n"
             "#erase os1 U4200.r104\n"
             "#copy ftp os1\n"
             "#ip : 59.27.68.120\n\n"
@@ -788,6 +799,7 @@ elif menu == "U4224B_SDN":
             "#password : 1\n"
             "#Source : U4200.r104\n"
             "#Dest : U4200.r104\n\n"
+           
             "#copy ftp config\n"
             "#ip : 59.27.68.120\n"
             "#id : noc\n"
@@ -795,7 +807,7 @@ elif menu == "U4224B_SDN":
             "#Source : 장비ip.cfg\n"
             "#Dest : str.cfg\n"
             "#boot config str.cfg\n")
-
+            "#boot system os1 U4200.r114\n"
 elif menu == "각종일지":
     st.header("각종일지")
     
