@@ -375,7 +375,7 @@ elif menu == "OLT Check":
         "sh ip dhcp snoop binding\n"
         "sh ip igmp snoop table group\n"
         "sh ip pim neighbor\n"
-        "동원 MEGALITE\n"
+        "[동원 MEGALITE]\n"
         "소용량PIU:ge1,2,3,4,5,6/1~4\n"
         "sh ip dhcp statistics\n"
         "sh ip igmp snooping gro\n"
