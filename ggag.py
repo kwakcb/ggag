@@ -228,7 +228,7 @@ if menu == "고장상황":
 
 
 elif menu == "MOSS_Copy":
-    st.header("MOSS_Copy")
+    st.header("■ MOSS_Copy")
     
     # 코드 블록을 표시합니다
     st.code("DB현행화 중...") 
