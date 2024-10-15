@@ -39,7 +39,7 @@ if 'dispatch_info' not in st.session_state:
 # 사이드바에 메뉴 생성
 menu = st.sidebar.radio(
     "",
-    ("Home", "고장상황", "OLT-L2 Link", "OLT광3종", "OLT Check", "L2 Check", "IP SETTING", "OPR", "10G","ftp긴급복구","U4224B_SDN","각종일지")
+    ("Home", "고장상황", "MOSS_Copy", "OLT광3종", "OLT Check", "L2 Check", "IP SETTING", "OPR", "10G","ftp긴급복구","U4224B_SDN","각종일지")
 )
 
 if menu == "Home":
@@ -227,8 +227,8 @@ if menu == "고장상황":
 
 
 
-elif menu == "OLT-L2 Link":
-    st.header("OLT-L2 Link")
+elif menu == "MOSS_Copy":
+    st.header("MOSS_Copy")
     
     # 코드 블록을 표시합니다
     st.code("DB현행화 중...") 
