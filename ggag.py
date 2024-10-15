@@ -806,8 +806,9 @@ elif menu == "U4224B_SDN":
             "#password : 1\n"
             "#Source : 장비ip.cfg\n"
             "#Dest : str.cfg\n"
-            "#boot config str.cfg\n")
-            "#boot system os1 U4200.r114\n"
+            "#boot config str.cfg\n"
+            "#boot system os1 U4200.r114\n")
+            
 elif menu == "각종일지":
     st.header("각종일지")
     
