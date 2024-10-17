@@ -39,11 +39,11 @@ if 'dispatch_info' not in st.session_state:
 # 사이드바에 메뉴 생성
 menu = st.sidebar.radio(
     "",
-    ("Home", "고장상황", "MOSS_Copy", "OLT광3종", "OLT Check", "L2 Check", "IP SETTING", "OPR", "10G","ftp긴급복구","U4224B_SDN","각종일지")
+    ("KWAK", "고장상황", "MOSS_Copy", "OLT광3종", "OLT Check", "L2 Check", "IP SETTING", "OPR", "10G","ftp긴급복구","U4224B_SDN","각종일지")
 )
 
-if menu == "Home":
-    st.title("""Memo
+if menu == "KWAK":
+    st.title("""■ Memo
 -전원분야 고장성 경보 범위-\n
 [한전정전] 한전정전으로 발전기 가동 또는 축전기 방전 중\n
 [차단기OFF] VCB / ACB / MG / MC OFF로 축전지 방전, 발전기 가동 중\n
@@ -239,7 +239,8 @@ elif menu == "MOSS_Copy":
     st.code("★ PING복구 > MOSS자동회복 > 조치사항 입력 ")
     st.code("★ 경보회복 되었습니다 ")
     st.code("★ 연락처 수정완료 ")
-    
+    st.code("장비 경보(Ping) 해제되었습니다.\n 최종복구 여부 확인 및 조치사항 입력 후 '회복처리' 요청 드립니다.")
+
     
 
 elif menu == "OLT광3종":
@@ -375,6 +376,10 @@ elif menu == "OLT Check":
         "sh ip dhcp snoop binding\n"
         "sh ip igmp snoop table group\n"
         "sh ip pim neighbor\n"
+        "(config/pon)#reset hybridonu slot/port-ont\n"
+        "(config/pon)#reboot hybrid-onu\n"
+        "(config/pon)#shutdown onu port\n"
+        "(config/pon)#ldshutdown\n"
         "[동원 MEGALITE]\n"
         "소용량PIU:ge1,2,3,4,5,6/1~4\n"
         "sh ip dhcp statistics\n"
