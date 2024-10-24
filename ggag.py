@@ -474,23 +474,23 @@ data = [
     ]
     
 
-# DataFrame으로 데이터 변환
-df = pd.DataFrame(data, columns=["OLT", "SP", "1차RN"])
+    # DataFrame으로 데이터 변환
+    df = pd.DataFrame(data, columns=["OLT", "SP", "1차RN"])
 
-# Streamlit 앱 제목
-st.title("OLT 선택기")
+    # Streamlit 앱 제목
+    st.title("OLT 선택기")
 
-# 사용자가 OLT를 선택하도록 선택 상자 생성
-olt_options = sorted(df["OLT"].unique())
-selected_olt = st.selectbox("OLT 선택:", olt_options)
+    # 사용자가 OLT를 선택하도록 선택 상자 생성
+    olt_options = sorted(df["OLT"].unique())
+    selected_olt = st.selectbox("OLT 선택:", olt_options)
 
-# 선택된 OLT에 해당하는 데이터 필터링
-filtered_df = df[df["OLT"] == selected_olt][["SP", "1차RN"]]
+    # 선택된 OLT에 해당하는 데이터 필터링
+    filtered_df = df[df["OLT"] == selected_olt][["SP", "1차RN"]]
 
-# 필터링된 결과 표시
-st.write(f"선택된 OLT: {selected_olt}")
-st.write("SP와 1차RN 목록:")
-st.dataframe(filtered_df)
+    # 필터링된 결과 표시
+    st.write(f"선택된 OLT: {selected_olt}")
+    st.write("SP와 1차RN 목록:")
+    st.dataframe(filtered_df)
 
 elif menu == "L2 Check":
     st.header("L2 Check")
