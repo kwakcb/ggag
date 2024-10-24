@@ -486,11 +486,11 @@ elif menu == "OLT_1stRN":
 
     # 선택된 OLT에 해당하는 데이터 필터링
     #filtered_df = df[df["OLT"] == selected_olt][["SP", "1차RN"]]
-    filtered_df = df[["SP", "1차RN"]]
+    filtered_df = df[["S/P", "1차RN"]]
 
     # 필터링된 결과 표시
     #st.write(f"선택된 OLT: {selected_olt}")
-    st.write("SP와 1차RN 목록:")
+    st.write("S/P와 1차RN 목록:")
     st.dataframe(filtered_df)
 
 elif menu == "L2 Check":
