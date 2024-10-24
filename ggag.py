@@ -39,7 +39,7 @@ if 'dispatch_info' not in st.session_state:
 # 사이드바에 메뉴 생성
 menu = st.sidebar.radio(
     "",
-    ("KWAK", "고장상황", "MOSS_Copy", "OLT광3종", "OLT Check", "L2 Check", "IP SETTING", "OPR", "10G","ftp긴급복구","U4224B_SDN","각종일지")
+    ("KWAK", "고장상황", "MOSS_Copy", "OLT광3종", "OLT Check", "OLT_1stRN", "L2 Check", "IP SETTING", "OPR", "10G","ftp긴급복구","U4224B_SDN","각종일지")
 )
 
 if menu == "KWAK":
@@ -231,16 +231,14 @@ elif menu == "MOSS_Copy":
     st.header("■ MOSS_Copy")
     
     # 코드 블록을 표시합니다
-    st.code("DB현행화 중...") 
-    st.code("Link 현행화 중...")
-    st.code("DB현행화 완료")
+    st.code("DB/LINK 현행화 중...") 
     st.code("★ 장비교체 NeOSS, NMS, SDN 현행화 완료")
     st.code("★ 상황전파 수정요청")
     st.code("★ PING복구 > MOSS자동회복 > 조치사항 입력 ")
     st.code("★ 경보회복 되었습니다 ")
-    st.code("★ 연락처 수정완료 ")
+    st.code("★ 사업장 정보 / 연락처 수정완료 ")
     st.code("장비 경보(Ping) 해제되었습니다.\n최종복구 여부 확인 및 조치사항 입력 후 '회복처리' 요청 드립니다.")
-
+    st.code("[출동중복구]\n출동전 자동회복\n수고하셨습니다~")
     
 
 elif menu == "OLT광3종":
@@ -263,7 +261,7 @@ elif menu == "OLT광3종":
             combined_text = text + ip_address
             st.write(combined_text)
 
-    SlotPortLink = st.text_input("Slot/Port-Link", key="LLID")
+    #SlotPortLink = st.text_input("Slot/Port-Link", key="LLID")
         
     # 동원 입력값을 받습니다
     user_input1 = st.text_input("-동원[MEGALITE,DWES0960]: S/P L", "1/1 1")
@@ -297,7 +295,8 @@ elif menu == "OLT광3종":
     if user_input2:
         if len(user_input2.split('/')) == 2 and all(part.isdigit() for part in user_input2.replace('/', '').split()):
             commands2 = [
-                f"sh pon onu-ddm {user_input2}",
+                f"(U9500H)#sh pon onu-ddm {user_input2}",
+                f"(U9024A)#sh pon onu ddm {user_input1}",
                 f"sh pon top onu {user_input2}",
                 f"sh pon stats onu-crc {user_input2}",
                 f"clear pon statistics counter {user_input2}\n"
@@ -311,8 +310,13 @@ elif menu == "OLT광3종":
         if len(user_input3.split()) == 2:
             commands3 = [
                 f"sh epon onu-ddm {user_input3}",
-                f"sh epon rssi rx-pwr-periodic {user_input3}",
-                f"sh epon crc-monitoring statistics {user_input3}"
+                f"sh onu ddm epon {user_input3}",
+                f"sh olt rssi-info epon {user_input3}",
+                f"sh olt statistics epon 1/1",
+                f"sh olt statistics onu epon 1/1",
+                f"sh arp",
+                f"sh olt mac epon 1/1",
+                f"sh sysl l v r"
                
             ]
         else:
@@ -412,8 +416,8 @@ elif menu == "OLT Check":
         "sh arp | inc 183.106.186.23\n"
         "sh olt mac epon 1/1 | inc 183.106.186.23\n")
 
-
-
+elif menu == "OLT_1stRN":
+    st.header("■ OLT_1차RN")
 
 elif menu == "L2 Check":
     st.header("L2 Check")
@@ -441,6 +445,11 @@ elif menu == "L2 Check":
         "sh sysl l n r",
         "--- modem reset ---",
         "(config/cpe)#cpe reset 1-24",
+        
+        "--- port description ---",
+        "sh port desc",
+        "(bridge)# port description 24 " ,
+        
         "--- conf t ---",
         "bridge",
         "port ena 1-24",
@@ -475,6 +484,12 @@ elif menu == "L2 Check":
         "sh ip route",
         "--- modem reset ---",
         "(config-range-port)#cpe reset gi1-24",
+        "--- port description ---",
+        "(config-if-gi12)# description XXXX_uplink"
+        "--- Barcode System ---",
+        "sh bar",
+        "barcode system K912144500027470",
+        
         "--- conf t ---",
         "username root password mos119!",
         "enable password mos119!",
