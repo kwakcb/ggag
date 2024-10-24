@@ -478,7 +478,7 @@ elif menu == "OLT_1stRN":
     df = pd.DataFrame(data, columns=["OLT", "SP", "1차RN"])
 
     # Streamlit 앱 제목
-    st.title("OLT 선택기")
+    st.title("OLT 선택")
 
     # 사용자가 OLT를 선택하도록 선택 상자 생성
     olt_options = sorted(df["OLT"].unique())
@@ -488,7 +488,7 @@ elif menu == "OLT_1stRN":
     filtered_df = df[df["OLT"] == selected_olt][["SP", "1차RN"]]
 
     # 필터링된 결과 표시
-    st.write(f"선택된 OLT: {selected_olt}")
+    #st.write(f"선택된 OLT: {selected_olt}")
     st.write("SP와 1차RN 목록:")
     st.dataframe(filtered_df)
 
