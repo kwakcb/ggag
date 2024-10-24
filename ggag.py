@@ -478,7 +478,7 @@ elif menu == "OLT_1stRN":
     df = pd.DataFrame(data, columns=["OLT", "SP", "1차RN"])
 
     # Streamlit 앱 제목
-    st.title("OLT 선택")
+    st.header("OLT 선택")
 
     # 사용자가 OLT를 선택하도록 선택 상자 생성
     olt_options = sorted(df["OLT"].unique())
