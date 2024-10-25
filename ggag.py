@@ -512,6 +512,10 @@ elif menu == "L2 Check":
     commands_dasan = [
         "admin/vertex25",
         "default / bridge",
+        "--- ip/route check ---",
+        "sh ip int bri",
+        "sh ip route",
+        "--- L2 diag ---",
         "sh mac | inc Total",
         "sh ip dhcp sno bin | inc Total",
         "sh ip igmp sno tab | inc Total",
@@ -521,10 +525,6 @@ elif menu == "L2 Check":
         "sh rate",
         "sh max-hosts ",
         "sh cable-length",
-        "--- ip/route check ---",
-        "sh ip int bri",
-        "sh ip route",
-        "--- L2 diag ---",
         "show syslog local non-volatile r | include fail",
         "show syslog local non-volatile r | include FAIL",
         "show syslog local non-volatile r | include Start UP",
@@ -551,6 +551,7 @@ elif menu == "L2 Check":
     commands_yubi = [
         "root / premier",
         "vlan1 / range port",
+        "--- L2 diag ---",
         "sh mac | inc total",
         "sh ip dhcp sno bin | inc total",
         "sh ip igmp sno tab gro | inc total",
@@ -560,9 +561,7 @@ elif menu == "L2 Check":
         "sh rate",
         "sh max-hosts",
         "sh port phy-diag",
-        "--- L2 diag ---",
         "sh logg back | inc gi1",
-        "sh port status",
         "sh rmon statistics gi1",
         "sh self-loop-detection", 
         "clear counters gi1",
@@ -585,6 +584,17 @@ elif menu == "L2 Check":
         "rate-limit ingress 999999 gi1-24",
         "rate-limit egress 999999 gi1-24",
         "interface gi1"
+    ]
+
+    commands_MVD10024 = [
+        admin/password
+        sh syslog local volate 100
+        config/vdsl/
+        sh status 1-24
+        sh counter 1
+        sh cpestatus
+        portdisable/portenable/portreset/cpereset/counterclear 1
+        sh physicalline 1
     ]
 
     commands_multiroom = [
