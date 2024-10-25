@@ -39,7 +39,7 @@ if 'dispatch_info' not in st.session_state:
 # 사이드바에 메뉴 생성
 menu = st.sidebar.radio(
     "",
-    ("KWAK", "고장상황", "MOSS_Copy", "OLT광3종", "OLT Check", "OLT_1stRN", "L2 Check", "IP SETTING", "OPR", "10G","ftp긴급복구","U4224B_SDN","각종일지")
+    ("KWAK", "고장상황", "MOSS_Copy", "OLT광3종", "OLT Check", "OLT_1stRN", "L2 Check", "IP SETTING", "SDN_L2_YESNO"  ,"OPR", "10G","ftp긴급복구","U4224B_SDN","각종일지")
 )
 
 if menu == "KWAK":
@@ -848,10 +848,82 @@ elif menu == "IP SETTING":
     # 이미지 표시
     st.image(image_url, caption="IP BAND 이미지", use_column_width=True)
 
+elif menu == "SDN_L2_YESNO":
+    st.header("SDN_L2_YESNO")
+
+# Sample Data
+    data = {
+    "모델명": [
+        "DAS_V27O8GB  [UTP2]", "DAS_V2708GC", "DAS_V2708M  [UTP2]", 
+        "DAS_V2716GB  [utp2]", "DAS_Y2716GC", "DAS_V2724GB  [UTP2]", 
+        "DAS_V2724GC", "DAS_V2908GB  [UTP2]", "DAS_V2916GB  [UTP2]", 
+        "DAS_V2924GB  [UTP2]", "DAS V3024V", "LOC_E5008H",
+        "LOC_E5016H", "LOC_E5024H", "LOC_E5608C [UTP2]",
+        "LOC_E5608R [UTP2]", "LOC_E5616R [UTP2]", "LOC_E5624B",
+        "LOC_E5624R [UTP2]", "LOC_E5924K", "LOC_E5924KE",
+        "LOC_U4124B", "LOC_U4224B",
+        # ...'불가능'
+        "DAS_V1624", "V1724", "VERTEX1124", 
+        "V1808", "V1816", "V1816-R4-MD", 
+        "V1824", "V1824-R3", "V2808K", 
+        "V2708M", "V2716G", "V2724G", 
+        "DX6524", "IRT-800", "MFS1024", 
+        "MFS2324", "MFS2708", "MFS2716", 
+        "MFS2716W", "MFS2724", "MVD10024", 
+        "MVD10048", "P3316FG", "P3324FG", 
+        "P3516FGD", "P3516FGO", "P3524FG", 
+        "P3624FGA", "U3024B", "U3024L", 
+        "U3048A", "E5016", "E5024", 
+        "EX-1172"
+        
+    ],
+    
+    "여부": [
+        "가능", "가능", "가능", 
+        "가능", "가능", "가능",
+        "가능", "가능", "가능",
+        "가능", "가능", "가능",
+        "가능", "가능", "가능",
+        "가능", "가능", "가능",
+        "가능", "가능", "가능",
+        "가능", "가능",  
+        # ...'불가능'
+        "불가능", "불가능", "불가능",
+        "불가능", "불가능", "불가능",
+        "불가능", "불가능", "불가능",
+        "불가능", "불가능", "불가능",
+        "불가능", "불가능", "불가능",
+        "불가능", "불가능", "불가능",
+        "불가능", "불가능", "불가능",
+        "불가능", "불가능", "불가능",
+        "불가능", "불가능", "불가능",
+        "불가능", "불가능", "불가능",
+        "불가능", "불가능", "불가능",
+        "불가능"
+    ]
+    }   
+
+    # Create a DataFrame
+    df = pd.DataFrame(data)
+
+    # Streamlit App
+    st.title("Model Search Interface")
+
+    # User Input
+    search_query = st.text_input("Enter the model name to search:")
+    # Search and Display Results
+    if search_query:
+        search_results = df[df["모델명"].str.contains(search_query, case=False, na=False)]
+    
+        if not search_results.empty:
+            st.write("Search Results:")
+            st.table(search_results)
+        else:
+            st.write("No matching models found.")
+
+
 elif menu == "OPR":
     st.header("OPR")
-
-    
     st.text("[OPR]\n\n"
             "admin/enter/ en\n\n"
             "V5204# sh onu service-info\n"
