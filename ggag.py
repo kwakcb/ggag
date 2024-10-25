@@ -657,6 +657,10 @@ elif menu == "L2 Check":
     for cmd in commands_yubi:
         st.write(cmd) 
 
+    st.write("■ MVD10024 ---")
+    for cmd in commands_MVD10024:
+        st.write(cmd) 
+
     st.write("■ Multiroom ---")
     for cmd in commands_multiroom:
         st.write(cmd) 
