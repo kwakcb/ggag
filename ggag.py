@@ -587,14 +587,14 @@ elif menu == "L2 Check":
     ]
 
     commands_MVD10024 = [
-        admin/password
-        sh syslog local volate 100
-        config/vdsl/
-        sh status 1-24
-        sh counter 1
-        sh cpestatus
-        portdisable/portenable/portreset/cpereset/counterclear 1
-        sh physicalline 1
+        "admin/password",
+        "sh syslog local volate 100",
+        "config/vdsl/",
+        "sh status 1-24",
+        "sh counter 1",
+        "sh cpestatus",
+        "portdisable/portenable/portreset/cpereset/counterclear 1",
+        "sh physicalline 1"
     ]
 
     commands_multiroom = [
