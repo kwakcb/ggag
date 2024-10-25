@@ -849,7 +849,7 @@ elif menu == "IP SETTING":
     st.image(image_url, caption="IP BAND 이미지", use_column_width=True)
 
 elif menu == "SDN_L2_YESNO":
-    st.header("SDN_L2_YESNO")
+    st.header("■ SDN_L2_YESNO")
 
 # Sample Data
     data = {
@@ -907,10 +907,10 @@ elif menu == "SDN_L2_YESNO":
     df = pd.DataFrame(data)
 
     # Streamlit App
-    st.title("Model Search Interface")
+    #st.header("모델명 입력")
 
     # User Input
-    search_query = st.text_input("Enter the model name to search:")
+    search_query = st.text_input("Enter the model name :")
     # Search and Display Results
     if search_query:
         search_results = df[df["모델명"].str.contains(search_query, case=False, na=False)]
