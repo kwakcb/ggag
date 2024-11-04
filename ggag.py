@@ -223,7 +223,7 @@ if menu == "고장상황":
 
 
     # Streamlit 애플리케이션 제목 설정
-    st.title("■ 어댑터 교체")
+    st.header("■ 어댑터 교체")
 
     # 두 개의 입력 필드 생성
     before_adapter = st.text_input("전_어댑터")
@@ -249,7 +249,7 @@ if menu == "고장상황":
             st.write("모든 입력 필드를 채워주세요.")
 
     # 스티커 부착 섹션
-    st.title("■ 스티커 부착")
+    st.header("■ 스티커 부착")
 
     # 두 개의 숫자 입력 필드 생성
     namecard_type = st.number_input("명함형 입력", min_value=0, max_value=100)
