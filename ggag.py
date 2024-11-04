@@ -238,13 +238,13 @@ if menu == "고장상황":
             st.write(output)
         
             # 복사 버튼과 HTML 코드 추가
-            copy_script = f"""
-            <div>
-                <textarea id="outputText" style="width: 100%;">{output}</textarea>
-                <button onclick="navigator.clipboard.writeText(document.getElementById('outputText').value)">복사</button>
-            </div>
-            """
-            components.html(copy_script, height=100)
+            #copy_script = f"""
+            #<div>
+             #   <textarea id="outputText" style="width: 100%;">{output}</textarea>
+             #   <button onclick="navigator.clipboard.writeText(document.getElementById('outputText').value)">복사</button>
+            #</div>
+            #"""
+            #components.html(copy_script, height=100)
         else:
             st.write("모든 입력 필드를 채워주세요.")
 
@@ -252,8 +252,8 @@ if menu == "고장상황":
     st.title("■ 스티커 부착")
 
     # 두 개의 숫자 입력 필드 생성
-    namecard_type = st.integer_input("명함형 입력", min_value=0, max_value=100)
-    sticker_type = st.integer_input("스티커형 입력", min_value=0, max_value=100)
+    namecard_type = st.number_input("명함형 입력", min_value=0, max_value=100)
+    sticker_type = st.number_input("스티커형 입력", min_value=0, max_value=100)
 
     # 스티커 부착 출력 버튼 생성
     if st.button("스티커 출력"):
@@ -262,13 +262,13 @@ if menu == "고장상황":
             st.write(output)
         
             # 복사 버튼과 HTML 코드 추가
-            copy_script = f"""
-            <div>
-                <textarea id="stickerOutput" style="width: 100%;">{output}</textarea>
-                <button onclick="navigator.clipboard.writeText(document.getElementById('stickerOutput').value)">복사</button>
-            </div>
-            """
-            components.html(copy_script, height=100)
+            #copy_script = f"""
+            #<div>
+            #    <textarea id="stickerOutput" style="width: 100%;">{output}</textarea>
+            #    <button onclick="navigator.clipboard.writeText(document.getElementById('stickerOutput').value)">복사</button>
+            #</div>
+            #"""
+            #components.html(copy_script, height=100)
         else:
             st.write("모든 입력 필드를 채워주세요.")
 
