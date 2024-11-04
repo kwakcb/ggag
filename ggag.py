@@ -3,6 +3,7 @@ import streamlit.components.v1 as components
 import json
 import webbrowser
 import pandas as pd
+from datetime import datetime
 
 
 # 서브넷 마스크와 CIDR 형식 대응표
@@ -45,35 +46,32 @@ menu = st.sidebar.radio(
 if menu == "KWAK":
     st.title("""■ Memo
 -전원분야 고장성 경보 범위-\n
-[한전정전] 한전정전으로 발전기 가동 또는 축전기 방전 중\n
-[차단기OFF] VCB / ACB / MG / MC OFF로 축전지 방전, 발전기 가동 중\n
-[변압기 고장] 축전기 방전 또는 발전기 가동 중\n
-[국사 화재] 화재감지기 작동 현장 출동중\n
-[국사 침수] 침수 알람 발생 현장 출동중\n
-
+[한전정전] [차단기OFF] [변압기 고장] [국사 화재] [국사 침수]\n
 -네트워트 현황보고-\n
 [MOSS 항목] 전원,교환,액세스\n
 [PING경보] ACCESS_XDSL,엔토피아\n
-[공사정보] 작업통제_대쉬보드 총건수_1000/page설정_ 작업현황 전체복사 후 A2셀에 주변서식에 맟추기 붙여넣기\n\n
+[공사정보] 작업통제_대쉬보드 총건수_1000/page설정_ 작업현황 전체복사 후 A2셀에 주변서식에 맟추기 붙여넣기\n
+엑셀 체크표시 없애기 : A열선택 -> F5+옵션+개체 + DEL\n\n
+
+
 ■ 유관기관 연락처\n
 -OSP 관제센터: 02-500-6150\n
 -IP망 관제센터: 042-478-1600\n
 -전원관제: 042-478-1800\n
 -과천 제1관제센터(교환): 02-500-6080\n
 -무선: 042-489-6831\n
--NOC:1577-7315\n\n
-
+-NOC:1577-7315\n
 -교환기술부\n
 .충: 042-255-2470\n
 .호: 062-513-1200\n
 .부: 051-464-4699\n
-.대:053-477-3010\n\n
+.대: 053-477-3010\n\n
 
 -분기국사출입문(전원)\n
 .충: 042-478-7550, 7540\n
-.호:062-230-3355\n
-.부:051-464-2300\n
-.대:053-477-1985 \n\n
+.호: 062-230-3355\n
+.부: 051-464-2300\n
+.대: 053-477-1985 \n\n
 
 ※유선제어팀: neobiz_gmoscc_c1000_d3595@ktmos.co.kr
 ​  -> L2/L3 정비요청 및 민원요청관련 업무 등
@@ -139,7 +137,7 @@ if menu == "고장상황":
     options1 = ["[KT차단기복구]", "[고객원인]", "[고객측작업]", "[광커넥터복구]", "[기타]", "[멀티탭 ON/교체]", "[모듈교체]",
                 "[발전기가동]", "[사설정전복구]", "[사설차단기복구]", "[장비교체]", "[장비리셋]", "[장비철거]", "[전원가복구]",
                 "[전원어댑터교체]", "[출동중복구]", "[타사전환]", "[폐문]", "[한전정전복구]"]
-
+    # ======================================================================================================
     # 긴급복구 리스트박스 생성
     selected_option1 = st.selectbox("■ 고장회복 HEAD", options1, key="recover_option1")
     moss_recover = st.text_input("회복내용", key="recover_recover")
@@ -176,7 +174,7 @@ if menu == "고장상황":
 
     # 클립보드 복사 버튼을 HTML로 삽입
     components.html(copy_script_recover_head, height=100)
-
+    #==================================================================================================
     # 헤더 선택 리스트박스
     header_options = ["[L2_정전]", "[L2_선로]", "[아파트_정전]"]
     selected_header = st.selectbox("■ 다량장애 HEAD", header_options, key="header_option")
@@ -224,8 +222,44 @@ if menu == "고장상황":
     # 출력된 텍스트와 복사 버튼을 HTML로 삽입
     st.write(combined_text)
     components.html(copy_script, height=100)
+    #===================================================
 
+    # Streamlit 애플리케이션 제목 설정
+    st.title("■어댑터 교체")
 
+    # 두 개의 입력 필드 생성
+    before_adapter = st.text_input("전_어댑터")
+    after_adapter = st.text_input("후_어댑터")
+
+    # 현재 날짜 가져오기
+    current_date = datetime.now().strftime("%Y년 %m월 %d일")
+
+    # 출력 버튼 생성
+    if st.button("출력"):
+        if before_adapter and after_adapter:
+            output = f"[{current_date}] 어댑터 {before_adapter} > {after_adapter}"
+            st.write(output)
+        else:
+            st.write("모든 입력 필드를 채워주세요.")
+    #=====================================================================
+    # Streamlit 애플리케이션 제목 설정
+    st.title("■스티커 부착")
+
+    # 두 개의 입력 필드 생성
+    namecard_type = st.integer_input("숫자를 입력하세요", min_value=0, max_value=100)
+    sticker_type = st.integer_input("숫자를 입력하세요", min_value=0, max_value=100)
+
+    # 현재 날짜 가져오기
+    current_date = datetime.now().strftime("%Y년 %m월 %d일")
+
+    # 출력 버튼 생성
+    if st.button("출력"):
+        if namecard_type > 0 or sticker_type > 0 :
+            output = f"[{current_date}] 명함형: {namecard_type}, 스티터형: {sticker_type} "
+            st.write(output)
+        else:
+            st.write("모든 입력 필드를 채워주세요.")
+    #=====================================================================
 
 elif menu == "MOSS_Copy":
     st.header("■ MOSS_Copy")
@@ -1027,20 +1061,33 @@ elif menu == "각종일지":
 
     
     st.text("[일일본부일지]\n"
-            "*NMS-고장감시(TT)-고장이력\n"
+            "1.NMS-고장상황\n"
+            "-ACCESS:고장상황(MOSS)\n"
+            ".조직:충호부대제주\n"
+            ".기간:금일07:00~금일18:00\n"
+            ".상태:전체\n"
+            ".작업분야:전체\n"
+            "2.NMS-장애경보이력\n"
+            ".시설분류: 가입자수용스위치-XDSL, NTOPIA\n"
+            ".조직:충호부대제주\n"
+            ".경보원인 : Ping\n"
+            ".조회기간 : 전일18:00~금일 09:00\n"
+            ".엑셀 저장\n"
+            ".전체 복. 붙\n"
+            "3.NMS-고장감시(TT)-고장이력\n"
             ".도메인:ACCESS\n"
             ".시작(종료)날짜:당일\n"
             ".부서:해당본부\n"
             ".상태:전체\n"
             ".종류:전체\n"
-            ".분야1:6액세스\n"
+            ".분야1:전체\n"
             ".분야2:L2\n"
             ".고장:고장\n"
             "엑셀저장: 국사부터 조치2까지 복.붙\n"
-            "*공사정보\n"
+            "4.공사정보\n"
             "*NMS-작업통제-대시보드\n"
             ".해당본부 총건수 - 주요공사만 추출\n"
-            "*BS\n"
+            "5.BS\n"
             "-고장상황 일일 처리건 엑셀저장 후 - 엑셀에서 BS_COUNT시트에서 BS통계 추출 후 복.붙\n\n"
 
             "[야근네트워크일지]\n"
@@ -1050,7 +1097,7 @@ elif menu == "각종일지":
             ".조직:충호부대제주\n"
             ".기간:전일18:00~금일09:00\n"
             ".상태:전체\n"
-            ".작업분야:6액세스\n"
+            ".작업분야:전체\n"
             "검색-엑셀저장-전체복.붙\n"
             "2.NMS-장애경보이력\n"
             ".시설분류: 가입자수용스위치-XDSL, NTOPIA\n"
