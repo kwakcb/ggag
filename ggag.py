@@ -259,22 +259,16 @@ if menu == "고장상황":
     if st.button("스티커 출력"):
         if namecard_type > 0 and sticker_type > 0:
             output = f"[{current_date}] 명함형: {namecard_type}, 스티커형: {sticker_type}"
-        else if namecard_type > 0 and sticker_type = 0:
+            st.write(output)
+        elif namecard_type > 0:
             output = f"[{current_date}] 명함형: {namecard_type}"
-        else
+            st.write(output)
+        elif sticker_type > 0:
             output = f"[{current_date}] 스티커형: {sticker_type}"
             st.write(output)
-        
-            # 복사 버튼과 HTML 코드 추가
-            #copy_script = f"""
-            #<div>
-            #    <textarea id="stickerOutput" style="width: 100%;">{output}</textarea>
-            #    <button onclick="navigator.clipboard.writeText(document.getElementById('stickerOutput').value)">복사</button>
-            #</div>
-            #"""
-            #components.html(copy_script, height=100)
-        else:
-            st.write("모든 입력 필드를 채워주세요.")
+    else:
+        # 모든 값이 0일 때는 출력하지 않음
+        st.write("숫자가 0보다 큰 값을 입력하세요.")
 
     
 elif menu == "MOSS_Copy":
