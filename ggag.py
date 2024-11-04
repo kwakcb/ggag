@@ -4,7 +4,7 @@ import json
 import webbrowser
 import pandas as pd
 from datetime import datetime
-
+import streamlit.components.v1 as components
 
 # 서브넷 마스크와 CIDR 형식 대응표
 subnet_options = {
@@ -219,13 +219,11 @@ if menu == "고장상황":
     <button id="copy-button">클립보드에 복사</button>
     """
 
-    # 출력된 텍스트와 복사 버튼을 HTML로 삽입
-    st.write(combined_text)
-    components.html(copy_script, height=100)
-    #===================================================
+   
+
 
     # Streamlit 애플리케이션 제목 설정
-    st.title("■어댑터 교체")
+    st.title("■ 어댑터 교체")
 
     # 두 개의 입력 필드 생성
     before_adapter = st.text_input("전_어댑터")
@@ -233,34 +231,48 @@ if menu == "고장상황":
 
     # 현재 날짜 가져오기
     current_date = datetime.now().strftime("%Y년 %m월 %d일")
-
-    # 출력 버튼 생성
-    if st.button("출력"):
+    # 어댑터 교체 출력 버튼 생성
+    if st.button("어댑터 출력"):
         if before_adapter and after_adapter:
             output = f"[{current_date}] 어댑터 {before_adapter} > {after_adapter}"
             st.write(output)
+        
+            # 복사 버튼과 HTML 코드 추가
+            copy_script = f"""
+            <div>
+                <textarea id="outputText" style="width: 100%;">{output}</textarea>
+                <button onclick="navigator.clipboard.writeText(document.getElementById('outputText').value)">복사</button>
+            </div>
+            """
+            components.html(copy_script, height=100)
         else:
             st.write("모든 입력 필드를 채워주세요.")
-    #=====================================================================
-    # Streamlit 애플리케이션 제목 설정
-    st.title("■스티커 부착")
 
-    # 두 개의 입력 필드 생성
-    namecard_type = st.integer_input("숫자를 입력하세요", min_value=0, max_value=100)
-    sticker_type = st.integer_input("숫자를 입력하세요", min_value=0, max_value=100)
+    # 스티커 부착 섹션
+    st.title("■ 스티커 부착")
 
-    # 현재 날짜 가져오기
-    current_date = datetime.now().strftime("%Y년 %m월 %d일")
+    # 두 개의 숫자 입력 필드 생성
+    namecard_type = st.integer_input("명함형 입력", min_value=0, max_value=100)
+    sticker_type = st.integer_input("스티커형 입력", min_value=0, max_value=100)
 
-    # 출력 버튼 생성
-    if st.button("출력"):
-        if namecard_type > 0 or sticker_type > 0 :
-            output = f"[{current_date}] 명함형: {namecard_type}, 스티터형: {sticker_type} "
+    # 스티커 부착 출력 버튼 생성
+    if st.button("스티커 출력"):
+        if namecard_type > 0 or sticker_type > 0:
+            output = f"[{current_date}] 명함형: {namecard_type}, 스티커형: {sticker_type}"
             st.write(output)
+        
+            # 복사 버튼과 HTML 코드 추가
+            copy_script = f"""
+            <div>
+                <textarea id="stickerOutput" style="width: 100%;">{output}</textarea>
+                <button onclick="navigator.clipboard.writeText(document.getElementById('stickerOutput').value)">복사</button>
+            </div>
+            """
+            components.html(copy_script, height=100)
         else:
             st.write("모든 입력 필드를 채워주세요.")
-    #=====================================================================
 
+    
 elif menu == "MOSS_Copy":
     st.header("■ MOSS_Copy")
     
