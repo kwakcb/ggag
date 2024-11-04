@@ -257,8 +257,12 @@ if menu == "고장상황":
 
     # 스티커 부착 출력 버튼 생성
     if st.button("스티커 출력"):
-        if namecard_type > 0 or sticker_type > 0:
+        if namecard_type > 0 and sticker_type > 0:
             output = f"[{current_date}] 명함형: {namecard_type}, 스티커형: {sticker_type}"
+        else if namecard_type > 0 and sticker_type = 0:
+            output = f"[{current_date}] 명함형: {namecard_type}"
+        else
+            output = f"[{current_date}] 스티커형: {sticker_type}"
             st.write(output)
         
             # 복사 버튼과 HTML 코드 추가
