@@ -405,7 +405,7 @@ elif menu == "OLT광3종":
 
 
 elif menu == "OLT Check":
-    st.header("OLT Check")
+    st.header("■ OLT Check")
     
     st.text("[동원 DW0960]\n"
         "sh slot\n"
@@ -551,7 +551,7 @@ elif menu == "OLT_1stRN":
     st.dataframe(filtered_df)
 
 elif menu == "L2 Check":
-    st.header("L2 Check")
+    st.header("■ L2 Check")
 
     commands_dasan = [
         "admin/vertex25",
@@ -967,7 +967,7 @@ elif menu == "SDN_L2_YESNO":
 
 
 elif menu == "OPR":
-    st.header("OPR")
+    st.header("■ OPR")
     st.text("[OPR]\n\n"
             "admin/enter/ en\n\n"
             "V5204# sh onu service-info\n"
@@ -989,7 +989,7 @@ elif menu == "OPR":
 
 
 elif menu == "10G":
-    st.header("[NOC_10G[용량확대]]")
+    st.header("■ NOC_10G[용량확대]")
 
     st.text("-PING : 1G, 10G\n"
             "-SDN\n"
@@ -1007,7 +1007,7 @@ elif menu == "10G":
             "-5G 속도측정 : 모뎀4번포트에 고정IP\n\n")
 
 elif menu == "ftp긴급복구":
-    st.header("ftp긴급복구")
+    st.header("■ ftp긴급복구")
 
     st.text("[유비]-워드패드로 편집\n"
             "#copy ftp config\n"
@@ -1024,7 +1024,7 @@ elif menu == "ftp긴급복구":
             "#pass : 1\n")
             
 elif menu == "U4224B_SDN":
-    st.header("U4224B_SDN")
+    st.header("■ U4224B_SDN")
 
     st.text("R114[X]->R104[O]\n"
             "#sh flash\n"
@@ -1047,7 +1047,7 @@ elif menu == "U4224B_SDN":
             "#boot system os1 U4200.r114\n")
             
 elif menu == "각종일지":
-    st.header("각종일지")
+    st.header("■ 각종일지")
     
     # 고장 특이사항 입력란 (다중라인 입력 허용)
     #st.subheader("고장 특이사항")
@@ -1099,7 +1099,7 @@ elif menu == "각종일지":
             ".해당본부 총건수 - 주요공사만 추출\n"
             "5.BS\n"
             "-고장상황 일일 처리건 엑셀저장 후 - 엑셀에서 BS_COUNT시트에서 BS통계 추출 후 복.붙\n\n"
-
+            "================================================================================="
             "[야근네트워크일지]\n"
             "-전일 네트워크 현황보고(유선) 엑셀\n"
             "1.NMS-고장상황\n"
