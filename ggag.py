@@ -278,7 +278,7 @@ elif menu == "MOSS_Copy":
     st.code("DB/LINK 현행화 중...") 
     st.code("★ 장비교체 NeOSS, NMS, SDN 현행화 완료")
     st.code("★ 상황전파 수정요청")
-    st.code("★ PING복구 > MOSS자동회복 > 조치사항 입력 ")
+    st.code("★ 안전 최우선! 안전에 유의 하시기 바랍니다.")
     st.code("★ 경보회복 되었습니다 ")
     st.code("★ 사업장 정보 / 연락처 수정완료 ")
     st.code("장비 경보(Ping) 해제되었습니다.\n최종복구 여부 확인 및 조치사항 입력 후 '회복처리' 요청 드립니다.")
