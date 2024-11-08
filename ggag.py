@@ -218,6 +218,10 @@ if menu == "고장상황":
     </script>
     <button id="copy-button">클립보드에 복사</button>
     """
+    # 출력된 텍스트와 복사 버튼을 HTML로 삽입
+    st.write(combined_text)
+    components.html(copy_script, height=100)
+
 
    
 
