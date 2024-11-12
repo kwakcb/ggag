@@ -283,7 +283,7 @@ elif menu == "MOSS_Copy":
     st.code("★ 장비교체 NeOSS, NMS, SDN 현행화 완료")
     st.code("★ 상황전파 수정요청")
     st.code("★ 안전 최우선! 안전에 유의 하시기 바랍니다.")
-    st.code("♡ 수고하셨습니다 ♡")
+    st.code("★ Follower추가")
     st.code("★ 사업장 정보 / 연락처 수정완료 ")
     st.code("장비 경보(Ping) 해제되었습니다.\n최종복구 여부 확인 및 조치사항 입력 후 '회복처리' 요청 드립니다.")
     st.code("[출동중복구]\n출동전 자동회복\n수고하셨습니다~")
@@ -344,7 +344,7 @@ elif menu == "OLT광3종":
         if len(user_input2.split('/')) == 2 and all(part.isdigit() for part in user_input2.replace('/', '').split()):
             commands2 = [
                 f"(U9500H)#sh pon onu-ddm {user_input2}",
-                f"(U9024A)#sh pon onu ddm {user_input1}",
+                f"(U9024A)#sh pon onu ddm {user_input2}",
                 f"sh pon top onu {user_input2}",
                 f"sh pon stats onu-crc {user_input2}",
                 f"clear pon statistics counter {user_input2}\n"
@@ -563,6 +563,7 @@ elif menu == "L2 Check":
         "--- ip/route check ---",
         "sh ip int bri",
         "sh ip route",
+        "sh ip default",
         "--- L2 diag ---",
         "sh mac | inc Total",
         "sh ip dhcp sno bin | inc Total",
@@ -623,7 +624,7 @@ elif menu == "L2 Check":
         "--- Barcode System ---",
         "sh bar",
         "barcode system K912144500027470",
-        
+        "barcode system MDSM~",
         "--- conf t ---",
         "username root password mos119!",
         "enable password mos119!",
@@ -644,6 +645,61 @@ elif menu == "L2 Check":
         "portdisable/portenable/portreset/cpereset/counterclear 1",
         "sh physicalline 1"
     ]
+
+    commands_DX6524 = [
+        ">pm",
+        "$ ip if delete bridge",
+        "$ ip if add bridge 10.0.0.2 10.0.0.1 255.255.255.0",
+        "$ pass",
+        "$ pmpass pass",
+        "$wr",
+        "$sr...y",
+        "$ut",
+        "$sl show",
+        "$help[home",
+        "$su 초기설정",
+        "chips$spm show",
+        "chips$spm x enable[disable]",
+        "chips$spm x 8160[4000] 640 ",
+        "chips$ai x",
+        "chips$cs all",
+        "bridge$ pom",
+        "bridge$ ms",
+        "snmp$ac read public",
+        "snmp$ac write public"
+    ]
+    commands_IRT800 = [
+        ">set-ip:",
+        ">system:",
+        ">ping:",
+        ">chg-pwd:",
+        ">set-community:",
+        ">set-unblock:2,1",
+        ">set-mac:",
+        ">set-subs:",
+        ">rtrv-ip",
+        ">rtrv-mcu",
+        ">rtrv-community",
+        ">ping: 168.126.63.1, 5;",
+        ">rtrv-subs:2,4",
+        ">rtrv-mac",
+        ">rtrv-chconf:2,4",
+        ">rtrv-pm:2,4,5"
+    ]
+    commands_HAMX6000 = [
+        "root/",
+        ">sh mod bridgecfg",
+        ">ping 168.126.63.1",
+        ">mod user",
+        ">show shelf/boad/port",
+        ">show bridgecfg",
+        ">show iproute",
+        ">show community",
+        ">show dsllink",
+        ">reset board",
+        ">restart"
+    ]
+
 
     commands_multiroom = [
         "TIE / 멀티룸팩",
@@ -708,7 +764,19 @@ elif menu == "L2 Check":
     st.write("■ MVD10024 ---")
     for cmd in commands_MVD10024:
         st.write(cmd) 
-
+        
+    st.write("■ DX6524 ---")
+    for cmd in commands_DX6524:
+        st.write(cmd) 
+    
+    st.write("■ IRT800 ---")
+    for cmd in commands_IRT800:
+        st.write(cmd) 
+    
+    st.write("■ HAMX6000 ---")
+    for cmd in commands_HAMX6000:
+        st.write(cmd) 
+    
     st.write("■ Multiroom ---")
     for cmd in commands_multiroom:
         st.write(cmd) 
@@ -1085,7 +1153,7 @@ elif menu == "각종일지":
             ".시설분류: 가입자수용스위치-XDSL, NTOPIA\n"
             ".조직:충호부대제주\n"
             ".경보원인 : Ping\n"
-            ".조회기간 : 전일18:00~금일 09:00\n"
+            ".조회기간 : 금일07:00~금일 18:00\n"
             ".엑셀 저장\n"
             ".전체 복. 붙\n"
             "3.NMS-고장감시(TT)-고장이력\n"
