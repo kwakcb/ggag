@@ -686,6 +686,7 @@ elif menu == "L2 Check":
         ">rtrv-chconf:2,4",
         ">rtrv-pm:2,4,5"
     ]
+    
     commands_HAMX6000 = [
         "root/",
         ">sh mod bridgecfg",
