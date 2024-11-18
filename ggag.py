@@ -463,7 +463,14 @@ elif menu == "OLT Check":
         "sh olt statistics epon 1/1\n"
         "sh olt statistics onu epon 1/1\n"
         "sh arp | inc 183.106.186.23\n"
-        "sh olt mac epon 1/1 | inc 183.106.186.23\n")
+        "sh olt mac epon 1/1 | inc 183.106.186.23\n\n"
+        "[다산 L3 V5124F]\n"
+        "sh run grep ip\n"
+        "arp access-list kt\n"
+        "permit ip 121.148.73.251 mac 00:07:70:96:af:96\n"
+        "permit ip 121.148.73.251 mac any\n")
+    
+    
 
 elif menu == "OLT_1stRN":
     st.header("■ OLT_1차RN")
