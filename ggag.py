@@ -466,8 +466,9 @@ elif menu == "OLT Check":
         "sh olt mac epon 1/1 | inc 183.106.186.23\n\n"
         "[다산 L3 V5124F]\n"
         "sh run grep ip\n"
+        "conf t\n"
         "arp access-list kt\n"
-        "permit ip 121.148.73.251 mac 00:07:70:96:af:96\n"
+        "no permit ip 121.148.73.251 mac 00:07:70:96:af:96\n"
         "permit ip 121.148.73.251 mac any\n")
     
     
