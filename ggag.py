@@ -40,10 +40,10 @@ if 'dispatch_info' not in st.session_state:
 # 사이드바에 메뉴 생성
 menu = st.sidebar.radio(
     "",
-    ("KWAK", "고장상황", "MOSS_Copy", "OLT광3종", "OLT Check", "OLT_1stRN", "L2 Check", "IP SETTING", "SDN_L2_YESNO"  ,"OPR", "10G","ftp긴급복구","U4224B_SDN","각종일지")
+    ("KWAK[용서_연민_사랑]", "고장상황", "MOSS_Copy", "OLT광3종", "OLT Check", "OLT_1stRN", "L2 Check", "IP SETTING", "SDN_L2_YESNO"  ,"OPR", "10G","ftp긴급복구","U4224B_SDN","각종일지")
 )
 
-if menu == "KWAK":
+if menu == "KWAK[용서_연민_사랑]":
     st.title("""■ Memo
 -전원분야 고장성 경보 범위-\n
 [한전정전] [차단기OFF] [변압기 고장] [국사 화재] [국사 침수]\n
@@ -577,7 +577,7 @@ elif menu == "L2 Check":
         "int default",
         "no ip address dchp",
         "ip address a.b.c.d/m",
-        "=== V2924GB ---",
+        "--- V2924GB ---",
         "(config)#passwd",
         "(config)#passwd ena xxxx",
         "--- V3024V ---",
