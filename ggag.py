@@ -1259,16 +1259,16 @@ data = {
 df = pd.DataFrame(data)
 
 # Streamlit App
-st.title("IP 조회 시스템")
+#st.title("IP 조회 시스템")
 
 # IP 입력
-input_ip = st.text_input("조회할 IP를 입력하세요:")
+input_ip = st.text_input("-조회할 IP를 입력하세요:")
 
 # IP로 검색
 if input_ip:
     result = df[df["IP"] == input_ip]
     if not result.empty:
-        st.success("조회 결과:")
+        #st.success("조회 결과:")
         st.write(result)
     else:
         st.error("해당 IP에 대한 정보가 없습니다.")
