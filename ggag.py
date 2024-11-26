@@ -1223,8 +1223,7 @@ elif menu == "TV_ch":
             "(olt)#sh ip igmp snooping tab | inc L2ip \n"
             "(L2)#sh ip igmp snooping tab gro\n")
         st.text("[TV channel]\n")
-import streamlit as st
-import pandas as pd
+
 
 # 데이터 정의
     data = {
