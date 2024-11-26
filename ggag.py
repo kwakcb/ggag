@@ -1217,9 +1217,9 @@ elif menu == "각종일지":
             ".기상(낙뢰,태풍,소나기,강우[강설]등 재해재난, 장비[케이블]장애, 공사피해\n"
             ".전주 실적이랑 비교 특이하게 차이가 나는 부분 찾아서 기재\n")
     
-elif menu == "TV_ch":
-    st.header("■ TV")
-    st.text("[TV Diag]\n"
+    elif menu == "TV_ch":
+        st.header("■ TV")
+        st.text("[TV Diag]\n"
             "(olt)#sh ip igmp snooping tab | inc L2ip \n"
             "(L2)#sh ip igmp snooping tab gro\n")
-    st.text("[TV channel]\n")
+        st.text("[TV channel]\n")
