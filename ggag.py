@@ -40,7 +40,7 @@ if 'dispatch_info' not in st.session_state:
 # 사이드바에 메뉴 생성
 menu = st.sidebar.radio(
     "",
-    ("KWAK[용서_연민_사랑]", "고장상황", "MOSS_Copy", "OLT광3종", "OLT Check", "OLT_1stRN", "L2 Check", "IP SETTING", "SDN_L2_YESNO"  ,"OPR", "10G","ftp긴급복구","U4224B_SDN","각종일지")
+    ("KWAK[용서_연민_사랑]", "고장상황", "MOSS_Copy", "OLT광3종", "OLT Check", "OLT_1stRN", "L2 Check", "IP SETTING", "SDN_L2_YESNO"  ,"OPR", "10G","ftp긴급복구","U4224B_SDN","각종일지","TV_ch")
 )
 
 if menu == "KWAK[용서_연민_사랑]":
@@ -280,7 +280,8 @@ elif menu == "MOSS_Copy":
     st.header("■ MOSS_Copy")
     
     # 코드 블록을 표시합니다
-    st.code("DB/LINK 현행화 중...") 
+    st.code("DB 현행화 중...")
+    st.code("Link 현행화 중...")
     st.code("★ 장비교체 NeOSS, NMS, SDN 현행화 완료")
     st.code("★ 상황전파 수정요청")
     st.code("★ 안전 최우선! 안전에 유의 하시기 바랍니다.")
@@ -575,7 +576,7 @@ elif menu == "L2 Check":
         "sh ip default",
         "--- no ip address ---",
         "int default",
-        "no ip address dchp",
+        "no ip address dhcp",
         "ip address a.b.c.d/m",
         "--- V2924GB ---",
         "(config)#passwd",
@@ -1215,3 +1216,10 @@ elif menu == "각종일지":
             "5.특이사항 :\n" 
             ".기상(낙뢰,태풍,소나기,강우[강설]등 재해재난, 장비[케이블]장애, 공사피해\n"
             ".전주 실적이랑 비교 특이하게 차이가 나는 부분 찾아서 기재\n")
+    
+elif menu == "TV_ch":
+    st.header("■ TV")
+    st.text("[TV Diag]\n"
+            "(olt)#sh ip igmp snooping tab | inc L2ip \n"
+            "(L2)#sh ip igmp snooping tab gro\n")
+    st.text("[TV channel]\n")
