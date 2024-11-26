@@ -1226,7 +1226,7 @@ elif menu == "TV_ch":
 
 
 # 데이터 정의
-    data = {
+    data_ch = {
         "Service Name": [
             "KBS1 부산", "KBS1 울산", "KBS1 창원", "KBS1 원주", "KBS1 대구", "KBS1 안동",
             "KBS1 포항", "KBS1 광주", "KBS1 목포", "KBS경인 제1TV", "KBS1 대전", "KBS1 청주",
@@ -1256,7 +1256,7 @@ elif menu == "TV_ch":
     }
 
     # DataFrame 생성
-    df = pd.DataFrame(data)
+    df = pd.DataFrame(data_ch)
 
     # Streamlit App
     st.title("IP 조회 시스템")
