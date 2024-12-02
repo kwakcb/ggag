@@ -1224,7 +1224,7 @@ elif menu == "TV_ch":
     st.text("[TV Diag]\n"
         "(olt)#sh ip igmp snooping tab | inc L2ip \n"
         "(L2)#sh ip igmp snooping tab gro\n")
-        #"sh port statistics avg type\n"
+        "sh port statistics avg type\n"
     st.text("[TV channel]\n")
 
 
