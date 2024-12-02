@@ -1220,12 +1220,12 @@ elif menu == "각종일지":
             ".전주 실적이랑 비교 특이하게 차이가 나는 부분 찾아서 기재\n")
     
 elif menu == "TV_ch":
-        st.header("■ TV")
-        st.text("[TV Diag]\n"
-            "(olt)#sh ip igmp snooping tab | inc L2ip \n"
-            "(L2)#sh ip igmp snooping tab gro\n")
-            "sh port statistics avg type\n"
-        st.text("[TV channel]\n")
+    st.header("■ TV")
+    st.text("[TV Diag]\n"
+        "(olt)#sh ip igmp snooping tab | inc L2ip \n"
+        "(L2)#sh ip igmp snooping tab gro\n")
+        "sh port statistics avg type\n"
+    st.text("[TV channel]\n")
 
 
     # 데이터 정의
