@@ -1140,7 +1140,10 @@ elif menu == "U4224B_SDN":
             "#Source : 장비ip.cfg\n"
             "#Dest : str.cfg\n"
             "#boot config str.cfg\n"
-            "#boot system os1 U4200.r114\n")
+            "#boot system os1 U4200.r114\n"
+    
+            "*4224신규개통\n"
+            "#네오스 xdsl장치관리-수용변경에서 4124->4224로\n")
             
 elif menu == "각종일지":
     st.header("■ 각종일지")
