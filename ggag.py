@@ -1132,7 +1132,6 @@ elif menu == "U4224B_SDN":
             "#password : 1\n"
             "#Source : U4200.r104\n"
             "#Dest : U4200.r104\n\n"
-           
             "#copy ftp config\n"
             "#ip : 59.27.68.120\n"
             "#id : noc\n"
@@ -1141,8 +1140,7 @@ elif menu == "U4224B_SDN":
             "#Dest : str.cfg\n"
             "#boot config str.cfg\n"
             "#boot system os1 U4200.r114\n"
-    
-            "*4224신규개통\n"
+            "#4224신규개통\n"
             "#네오스 xdsl장치관리-수용변경에서 4124->4224로\n")
             
 elif menu == "각종일지":
