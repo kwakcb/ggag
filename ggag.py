@@ -1510,9 +1510,8 @@ elif menu == "TV_ch":
             st.error("해당 IP에 대한 정보가 없습니다.")
             
             
-elif menu == "인터넷상품":
+elif menu == "인터넷상품" :
     st.header("■ 인터넷상품/속도")
-
     st.text("슈퍼프리미엄 10G\n" 
             "프리미엄플러스 5G E5924K E5908KE V3024V V2908V\n" 
             "프리미엄 2.5G E5924K E5908KE V3024V V2908V\n"
