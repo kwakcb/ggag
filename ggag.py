@@ -40,7 +40,8 @@ if 'dispatch_info' not in st.session_state:
 # 사이드바에 메뉴 생성
 menu = st.sidebar.radio(
     "",
-    ("KWAK[용서_연민_사랑]", "고장상황", "MOSS_Copy", "OLT광3종", "OLT Check", "OLT_1stRN", "L2 Check", "IP SETTING", "SDN_L2_YESNO"  ,"OPR", "10G","ftp긴급복구","U4224B_SDN","각종일지","TV_ch","인터넷상품","국사찾기")
+    ("KWAK[용서_연민_사랑]", "고장상황", "MOSS_Copy", "OLT광3종", "OLT Check", "OLT_1stRN", "L2 Check", "IP SETTING", 
+     "SDN_L2_YESNO"  ,"OPR", "10G","ftp긴급복구","U4224B_SDN","각종일지","TV_ch","인터넷상품","국사찾기")
 )
 
 if menu == "KWAK[용서_연민_사랑]":
@@ -1513,7 +1514,7 @@ elif menu == "TV_ch":
             st.error("해당 IP에 대한 정보가 없습니다.")
             
             
-elif menu == "인터넷상품" :
+elif menu == "인터넷상품":
     st.header("■ 인터넷상품/속도")
     st.text("-슈퍼프리미엄 10G\n" 
             "-프리미엄플러스 5G : E5924K E5908KE V3024V V2908V\n" 
@@ -1523,5 +1524,5 @@ elif menu == "인터넷상품" :
             "-슬림플러스 200M : E5924K E5908KE V3024V V2908V : V29XXGB V27XXGB E56XXR E50XX : U4214B U4224B : E5608C V2708M\n"
             "-슬림 100M : E5924K E5908KE V3024V V2908V : V29XXGB V27XXGB E56XXR E50XX : U4214B U4224B : E5608C V2708M\n")
     
-elif menu == "국사찾기" :
+elif menu == "국사찾기":
     st.header("■ 국사/분기국사 찾기")
