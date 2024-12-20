@@ -40,7 +40,7 @@ if 'dispatch_info' not in st.session_state:
 # 사이드바에 메뉴 생성
 menu = st.sidebar.radio(
     "",
-    ("KWAK[용서_연민_사랑]", "고장상황", "MOSS_Copy", "OLT광3종", "OLT Check", "OLT_1stRN", "L2 Check", "IP SETTING", "SDN_L2_YESNO"  ,"OPR", "10G","ftp긴급복구","U4224B_SDN","각종일지","TV_ch","인터넷상품")
+    ("KWAK[용서_연민_사랑]", "고장상황", "MOSS_Copy", "OLT광3종", "OLT Check", "OLT_1stRN", "L2 Check", "IP SETTING", "SDN_L2_YESNO"  ,"OPR", "10G","ftp긴급복구","U4224B_SDN","각종일지","TV_ch","인터넷상품","국사찾기")
 )
 
 if menu == "KWAK[용서_연민_사랑]":
@@ -52,7 +52,9 @@ if menu == "KWAK[용서_연민_사랑]":
 [PING경보] ACCESS_XDSL,엔토피아\n
 [공사정보] 작업통제_대쉬보드 총건수_1000/page설정_ 작업현황 전체복사 후 A2셀에 주변서식에 맟추기 붙여넣기\n
 -동명 국사 : 구미공단국사 / 광주하남국사 / 부산강서국사 / 울산성남국사 / 충북영동국사\n 
--엑셀 체크표시 없애기 : A열선택 -> F5+옵션+개체 + DEL\n\n
+-엑셀 체크표시 없애기 : A열선택 -> F5+옵션+개체 + DEL\n
+*멀티룸팩 1:2 RN 광으로변경시 타이번호 그대로 가기\n\n
+
 
 
 ■ 유관기관 연락처\n
@@ -623,6 +625,7 @@ elif menu == "L2 Check":
     commands_yubi = [
         "root / premier",
         "vlan1 / range port",
+        "logging session[console] enable",
         "--- ip/route check ---",
         "sh ip int bri",
         "sh ip route",
@@ -1519,3 +1522,6 @@ elif menu == "인터넷상품" :
             "-베이직 500M : E5924K E5908KE V3024V V2908V : V29XXGB V27XXGB E56XXR E50XX : U4214B U4224B : E5608C V2708M\n"
             "-슬림플러스 200M : E5924K E5908KE V3024V V2908V : V29XXGB V27XXGB E56XXR E50XX : U4214B U4224B : E5608C V2708M\n"
             "-슬림 100M : E5924K E5908KE V3024V V2908V : V29XXGB V27XXGB E56XXR E50XX : U4214B U4224B : E5608C V2708M\n")
+    
+elif menu == "국사찾기" :
+    st.header("■ 국사/분기국사 찾기")
