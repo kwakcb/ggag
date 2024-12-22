@@ -2704,7 +2704,7 @@ elif menu == "국사찾기":
     
     
 
-    분기국사 검색
+    #분기국사 검색
     if input_branch:
         result = df_branch[df_branch['branch_branch'].str.contains(input_branch, na=False)]
         #result = df_branch[df_branch["branch_branch"] == input_branch]
