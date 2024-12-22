@@ -2670,13 +2670,13 @@ data_branch = {
         }
     
         # DataFrame 생성
-        df_kuk = pd.DataFrame(data_kuk)
+df_kuk = pd.DataFrame(data_kuk)
 
     # 국사입력
-        input_kuksa = st.text_input("국사 입력")
+input_kuksa = st.text_input("국사 입력")
 
     # IP로 검색
-        if input_kuksa:
+if input_kuksa:
             result = df_kuk[df_kuk["office_kuk"] == input_kuksa]
             if not result.empty:
                 #st.success("조회 결과:")
