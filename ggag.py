@@ -2681,6 +2681,8 @@ elif menu == "국사찾기":
     df_kuk = pd.DataFrame(data_kuk)
     # DataFrame 생성분기국사
     df_branch = pd.DataFrame(data_branch)
+    # 데이터프레임이 아닌 리스트 사용
+    #for mos, branch in zip(data_branch["MOSteam_branch"], data_branch["branch_branch"] + [""] * (len(data_branch["MOSteam_branch"]) - len(data_branch["branch_branch"]))):
 
     # 국사입력
     input_kuksa = st.text_input("국사 입력")
@@ -2688,7 +2690,7 @@ elif menu == "국사찾기":
     input_branch = st.text_input("분기국사 입력")
 
 
-    # IP로 검색
+    # 국사 검색
     if input_kuksa:
         result = df_kuk[df_kuk["office_kuk"] == input_kuksa]
         if not result.empty:
@@ -2700,11 +2702,28 @@ elif menu == "국사찾기":
     
 
     # 분기국사 검색
+    # if input_branch:
+    #     result = df_branch[df_branch['branch_branch'].str.contains(input_branch, na=False)]
+    #     #result = df_branch[df_branch["branch_branch"] == input_branch]
+    #     if not result.empty:
+    #         st.success("분기국사 조회결과:")
+    #         st.write(result)
+    #     else:
+    #         st.error("해당 분기국사에 대한 정보가 없습니다.")
+
     if input_branch:
-        result = df_branch[df_branch['branch_branch'].str.contains(input_branch, na=False)]
-        #result = df_branch[df_branch["branch_branch"] == input_branch]
-        if not result.empty:
-            st.success("분기국사 조회결과:")
-            st.write(result)
-        else:
-            st.error("해당 분기국사에 대한 정보가 없습니다.")
+        # 공백 제거
+        input_branch = input_branch.strip()
+
+        # 데이터 검색
+        try:
+            result = df_branch[df_branch['branch_branch'].str.contains(input_branch, na=False)]
+            if not result.empty:
+                st.success("분기국사 조회결과:")
+                st.write(result)
+            else:
+                st.error(f"'{input_branch}'에 해당하는 분기국사 정보가 없습니다.")
+        except Exception as e:
+            st.error(f"오류가 발생했습니다: {e}")
+    else:
+        st.warning("검색어를 입력하세요.")
