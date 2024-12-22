@@ -2679,10 +2679,14 @@ elif menu == "국사찾기":
     
     # DataFrame 생성
     df_kuk = pd.DataFrame(data_kuk)
+    
+    # 리스트 길이 맞추기
+    max_length = max(len(v) for v in data_branch.values())
+    for key in data_branch:
+        while len(data_branch[key]) < max_length:
+            data_branch[key].append(None)
     # DataFrame 생성분기국사
     df_branch = pd.DataFrame(data_branch)
-    # branch_branch 열을 문자열로 변환
-    df_branch['branch_branch'] = df_branch['branch_branch'].astype(str)
 
     # 데이터프레임이 아닌 리스트 사용
     #for mos, branch in zip(data_branch["MOSteam_branch"], data_branch["branch_branch"] + [""] * (len(data_branch["MOSteam_branch"]) - len(data_branch["branch_branch"]))):
