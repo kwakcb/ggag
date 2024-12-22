@@ -2687,14 +2687,14 @@ if input_kuksa:
         st.error("해당 국사에 대한 정보가 없습니다.")
     
     # DataFrame 생성
-df = pd.DataFrame(data_branch)
+df_branch = pd.DataFrame(data_branch)
 
         # 분기국사입력
 input_branch = st.text_input("분기국사 입력")
 
         # IP로 검색
 if input_branch:
-    result = df[df["office_branch"] == input_branch]
+    result = df_branch[df_branch["office_branch"] == input_branch]
     if not result.empty:
         #st.success("조회 결과:")
         st.write(result)
