@@ -2694,17 +2694,17 @@ elif menu == "국사찾기":
         else:
             st.error("해당 국사에 대한 정보가 없습니다.")
     
-    # DataFrame 생성
-    df_branch = pd.DataFrame(data_branch)
+    # # DataFrame 생성분기국사
+    # df_branch = pd.DataFrame(data_branch)
 
-    # 분기국사입력
-    input_branch = st.text_input("분기국사 입력")
+    # # 분기국사입력
+    # input_branch = st.text_input("분기국사 입력")
 
-    # 분기국사 검색
-    if input_branch:
-        result = df_branch[df_branch["branch_branch"] == input_branch]
-        if not result.empty:
-            #st.success("조회 결과:")
-            st.write(result)
-        else:
-            st.error("해당 분기국사에 대한 정보가 없습니다.")
+    # # 분기국사 검색
+    # if input_branch:
+    #     result = df_branch[df_branch["branch_branch"] == input_branch]
+    #     if not result.empty:
+    #         #st.success("조회 결과:")
+    #         st.write(result)
+    #     else:
+    #         st.error("해당 분기국사에 대한 정보가 없습니다.")
