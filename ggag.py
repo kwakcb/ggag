@@ -1494,22 +1494,22 @@ elif menu == "TV_ch":
     }
 
     # DataFrame 생성
-df_tvch = pd.DataFrame(data_tvch)
+    df_tvch = pd.DataFrame(data_tvch)
 
     # Streamlit App
     #st.title("IP 조회 시스템")
 
-# IP 입력
-input_ip = st.text_input("-조회할 IP를 입력하세요:")
+    # IP 입력
+    input_ip = st.text_input("-조회할 IP를 입력하세요:")
 
-# IP로 검색
-if input_ip:
-    result = df_tvch[df_tvch["IP"] == input_ip]
-    if not result.empty:
-        #st.success("조회 결과:")
-        st.write(result)
-    else:
-        st.error("해당 IP에 대한 정보가 없습니다.")
+    # IP로 검색
+    if input_ip:
+        result = df_tvch[df_tvch["IP"] == input_ip]
+        if not result.empty:
+            #st.success("조회 결과:")
+            st.write(result)
+        else:
+            st.error("해당 IP에 대한 정보가 없습니다.")
             
             
 elif menu == "인터넷상품":
@@ -2669,20 +2669,20 @@ data_branch = {
             ]
         }
     
-        # DataFrame 생성
-df_kuk = pd.DataFrame(data_kuk)
+    # DataFrame 생성
+    df_kuk = pd.DataFrame(data_kuk)
 
     # 국사입력
-input_kuksa = st.text_input("국사 입력")
+    input_kuksa = st.text_input("국사 입력")
 
     # IP로 검색
-if input_kuksa:
-    result = df_kuk[df_kuk["office_kuk"] == input_kuksa]
-    if not result.empty:
+    if input_kuksa:
+        result = df_kuk[df_kuk["office_kuk"] == input_kuksa]
+        if not result.empty:
             #st.success("조회 결과:")
-        st.write(result)
-    else:
-        st.error("해당 국사에 대한 정보가 없습니다.")
+            st.write(result)
+        else:
+            st.error("해당 국사에 대한 정보가 없습니다.")
     
     # DataFrame 생성
 #   df_branch = pd.DataFrame(data_branch)
