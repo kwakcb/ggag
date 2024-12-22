@@ -1234,7 +1234,7 @@ elif menu == "TV_ch":
 
 
     # 데이터 정의
-    data = {
+    data_tvch = {
         "Service Name": [
             "MBC 에브리원","ENA","NS홈쇼핑","tvN","롯데홈쇼핑",
             "SBS","CJ ONSTYLE","KBS2","GS SHOP","KBS1",
@@ -1496,7 +1496,7 @@ elif menu == "TV_ch":
     }
 
     # DataFrame 생성
-    df = pd.DataFrame(data)
+    df_tvch = pd.DataFrame(data_thch)
 
     # Streamlit App
     #st.title("IP 조회 시스템")
@@ -1506,7 +1506,7 @@ elif menu == "TV_ch":
 
     # IP로 검색
     if input_ip:
-        result = df[df["IP"] == input_ip]
+        result = df_tvch[df_tvch["IP"] == input_ip]
         if not result.empty:
             #st.success("조회 결과:")
             st.write(result)
