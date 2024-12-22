@@ -2669,20 +2669,20 @@ data_branch = {
             ]
         }
     
-    #     # DataFrame 생성
-    #     df_kuk = pd.DataFrame(data_kuk)
+        # DataFrame 생성
+        df_kuk = pd.DataFrame(data_kuk)
 
-    # # 국사입력
-    #     input_kuksa = st.text_input("국사 입력")
+    # 국사입력
+        input_kuksa = st.text_input("국사 입력")
 
-    # # IP로 검색
-    #     if input_kuksa:
-    #         result = df_kuk[df_kuk["office_kuk"] == input_kuksa]
-    #         if not result.empty:
-    #             #st.success("조회 결과:")
-    #             st.write(result)
-    #         else:
-    #             st.error("해당 국사에 대한 정보가 없습니다.")
+    # IP로 검색
+        if input_kuksa:
+            result = df_kuk[df_kuk["office_kuk"] == input_kuksa]
+            if not result.empty:
+                #st.success("조회 결과:")
+                st.write(result)
+            else:
+                st.error("해당 국사에 대한 정보가 없습니다.")
     
     # DataFrame 생성
 #   df_branch = pd.DataFrame(data_branch)
