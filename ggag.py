@@ -1494,7 +1494,7 @@ elif menu == "TV_ch":
     }
 
     # DataFrame 생성
-    df_tvch = pd.DataFrame(data_thch)
+    df_tvch = pd.DataFrame(data_tvch)
 
     # Streamlit App
     #st.title("IP 조회 시스템")
